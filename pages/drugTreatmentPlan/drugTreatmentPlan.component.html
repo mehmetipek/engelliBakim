@@ -1,0 +1,658 @@
+<div class="row" >
+    <div class="col-md-12">
+      <nb-card size="active" style="border-radius: 20px;">
+        <div class="col-md-12">
+          <div class="row" id="clrBaslik" >
+            <div class="col-md-12" style="height: 42px">
+                <div style="float:left" class="col-md-4">
+                    <h3 style="margin-top:7px;color: #fff;">İLAÇ TEDAVİ PLANI</h3>
+                </div>
+             <div style="float:right;margin-top:13px;">
+              <strong style="color: #fff">ID: #0001</strong>
+            </div>
+          </div>
+        </div>
+        </div>
+      </nb-card>
+    </div>
+  </div>
+<nb-card style="background-color: transparent;box-shadow: 0 0 0 0 transparent !important;">
+    <div class="card col-md-6" align="center">
+
+        <div class="card-body">
+          <div id="clrEngelli" class="center">
+            <h5 style="color: white">ENGELLİ BİLGİLERİ</h5>
+          </div>
+          <hr>
+          <div class="row">
+          <div class="col-md-6"><!--img url i için özür :Dddddasdasdasdadnasjd ahahaha-->
+            <img src="data:image/png;base64,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" style="border-radius: 50%;" alt="Paris" width="300" height="300">
+          </div>
+          <div class="col-md-6">
+          <table >
+            <colgroup>
+              <col span="1" style="width: 19%;">
+              <col span="1" style="width: 1%;">
+              <col span="1" style="width: 80%;">
+            </colgroup>
+
+            <tbody >
+              <tr style="height: 45px;vertical-align: top;">
+                <td style="color: black;"><strong>Adı Soyadı</strong></td>
+                <td>:</td>
+                <td>&nbsp;{{_drug.ikadi}}</td>
+              </tr>
+              <tr style="height: 45px;vertical-align: top;">
+                <td style="color: black;"><strong>TC/Passaport</strong></td>
+                <td>:</td>
+                <td>&nbsp;{{_drug.iktcno}}</td>
+              </tr>
+              <tr style="height: 45px;vertical-align: top;">
+                <td style="color: black;"><strong>Engel Grubu</strong></td>
+                <td>:</td>
+                <td>&nbsp;{{_drug.ikengelligrubu}}</td>
+              </tr>
+              <tr style="height: 45px;vertical-align: top;">
+                <td style="color: black;"><strong>Baba Adı</strong></td>
+                <td>:</td>
+                <td>&nbsp;{{_drug.ikbabaadi}}</td>
+              </tr>
+              <tr style="height: 45px;vertical-align: top;">
+                <td style="color: black;"><strong>Doğum Tarihi</strong></td>
+                <td>:</td>
+                <td>&nbsp;{{_drug.ikdogtar | date:'dd/MM/yyyy'}}</td>
+              </tr>
+              <tr style="height: 45px;vertical-align: top;">
+                <td style="color: black;"><strong>Cinsiyet</strong></td>
+                <td>:</td>
+                <td>&nbsp;{{_drug.ikcinsiyet}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <button type="button" class="btn btn-info" style="float: right;">Engelli Seçiniz...</button>
+        </div>
+      </div>
+        </div>
+      </div>
+
+</nb-card>
+<br>
+<!-- İlaç Listesi -->
+<div class="row">
+    <div class="col-md-12">
+      <nb-card>
+        <div class="col-md-12">
+          <div class="row" id="clrPlanlanan">
+            <div class="col-md-12" style="height: 25px">
+                <div style="float:left" class="col-md-4">
+                    <h5 style="color: white;">Planlanmış İlaç Listesi</h5>
+                </div>
+
+          </div>
+        </div>
+          <div class="table-responsive">
+            <table class="table table-bordered ">
+              <thead>
+                <tr>
+                  <th>İlaç Adı</th>
+                  <!-- <th>Yapılacak Faaliyet</th> -->
+                  <th>Veriliş Tarihi</th>
+                  <th>Dozu</th>
+                  <th>Veriliş Zamanı</th>
+                  <th>Öneri</th>
+                  <th>Reçete Kodu</th>
+                  <th>Başlama Tarihi</th>
+                  <th>Bitiş Tarihi</th>
+                  <th>Tekrar Aktifleştirme Tarihi</th>
+                  <th>Düzenleyen Sağlık Personeli</th>
+                  <th>İşlemler</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let drug of dtpPlannedDrugs" [hidden]="(drug.itp_pasif==false)&&(drug.itp_stoplama_tar!=null)">
+                  <td scope="row">
+                    <div class="form-check form-check-inline">
+                        {{drug.ilacadi}}
+                    </div>
+                  </td>
+                  <!-- <td>
+                      <div class="input-group-prepend">
+                          
+                      </div>
+                    </td> -->
+                  <td>
+                    <div class="input-group-prepend">
+                        {{drug.itp_datetime | date:'dd/MM/yyyy'}}
+                    </div>
+                  </td>
+                  <td scope="row">
+                      {{drug.itp_planlanan_doz}}
+                  </td>
+                  <td>
+                    <div class="col-md-12">
+                        {{drug.itp_planlanan_ver_zamani}}
+                    </div>
+                  </td>
+                  <td scope="row">
+                    <div class="form-check form-check-inline">
+                        {{drug.itp_oneri}}
+                    </div>
+                  </td>
+                  <td scope="row">
+                      <div class="form-check form-check-inline">
+                          {{drug.itp_recete_kodu}}
+                      </div>
+                    </td>
+                    <td scope="row">
+                        <div class="form-check form-check-inline">
+                            {{drug.itp_planlanan_bas_tar | date:'dd/MM/yyyy'}}
+                        </div>
+                      </td>
+                      <td scope="row">
+                          <div class="form-check form-check-inline">
+                              {{drug.itp_planlanan_bit_tar | date:'dd/MM/yyyy' }}
+                          </div>
+                        </td>
+                        <td>
+                          <div class="col-md-12">
+                              {{drug.itp_yeniden_aktiflestirme_tar | date:'dd/MM/yyyy'}}
+                          </div>
+                        </td>
+                        <td scope="row">
+                            <div class="form-check form-check-inline">
+                                {{drug.peradi}}
+                            </div>
+                          </td>
+                          <td scope="row">
+                              <div class="form-check form-check-inline">
+                                  <div class="btn-group btn-group-xs">
+                                      <a href="javascript:void(0)" style="margin-left:5px;width: 130px;" (click)="uygulamaKaydDrug.show();_drug=drug;" class="btn btn-success btn-xs">Uygulama</a>
+                                      <a href="javascript:void(0)" style="max-height: 24px;margin-left:5px;"  (click)="stopedDrugInfomodal.show();_drug=drug;" class="btn btn-danger btn-xs">Stopla</a>
+                                      <a href="javascript:void(0)" style="max-height: 24px;margin-left:5px;" (click)="drugInfomodal.show();editDrug(drug);"  class="btn btn-primary btn-xs">Düzenle</a>
+                                      <a href="javascript:void(0)" style="max-height: 24px;margin-left:5px;"  class="btn btn-warning btn-xs">Sil</a>
+                                    </div>
+                              </div>
+                            </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <br>
+      </nb-card>
+    </div>
+  </div>
+<!-- Stoplanan İlaç Listesi -->
+<div class="row">
+    <div class="col-md-12">
+      <nb-card>
+        
+        <div class="col-md-12">
+          <div class="row" id="clrStop">
+            <div class="col-md-12" style="height: 25px">
+                <div style="float:left" class="col-md-4">
+                    <h5 style="color: white;">Stoplanan İlaç Listesi</h5>
+                </div>
+          </div>
+        </div>
+          <div class="table-responsive">
+            <!-- Rapor Listesi -->
+            <table class="table table-bordered ">
+              <thead>
+                <tr>
+                  <th>İlaç Adı</th>
+                  <th>Reçete Kodu</th>
+                  <th>Stoplama Tarihi</th>
+                  <th>Kalan İlaç Miktarı</th>
+                  <th>Stoplayan Hekim</th>
+                  <th>Düzenleyen</th>
+                  <th>İşlemler</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let drug of dtpPlannedDrugs"[hidden]="(drug.itp_pasif==false)&&(drug.itp_stoplama_tar==null)">
+                  <td scope="row">
+                    <div class="form-check form-check-inline">
+                        {{drug.ilacadi}}
+                    </div>
+                  </td>
+                  <td>
+                    <div class="input-group-prepend">
+                        {{drug.itp_recete_kodu}}
+                    </div>
+                  </td>
+                  <td scope="row">
+                      {{drug.itp_stoplama_tar | date:'dd/MM/yyyy'}}
+                  </td>
+                 
+                  <td scope="row">
+                    <div class="form-check form-check-inline">
+                        {{drug.itp_kalan_ilac_miktari}}
+                    </div>
+                  </td>
+                  <td scope="row">
+                      <div class="form-check form-check-inline">
+                          {{drug.itp_stoplayan_hekim}}
+                      </div>
+                    </td>
+                    <td scope="row">
+                        <div class="form-check form-check-inline">
+                            {{drug.peradi}}
+                        </div>
+                      </td>
+                  <td>
+                      <div class="btn-group btn-group-xs">
+                          <a href="javascript:void(0)" style="margin-left:5px;width: 130px;" (click)="uygulamaKaydDrug.show();_drug=drug;" class="btn btn-success btn-xs">Uygulama</a>
+                          <a href="javascript:void(0)" style="max-height: 24px;margin-left:5px;"  (click)="reLoginDrugInfomodal.show();_drug=drug;" class="btn btn-danger btn-xs">Tekrar</a>
+                          <a href="javascript:void(0)" style="max-height: 24px;margin-left:5px;" (click)="drugInfomodal.show();_drug=drug"  class="btn btn-primary btn-xs">Düzenle</a>
+                          <a href="javascript:void(0)" style="max-height: 24px;margin-left:5px;"  class="btn btn-warning btn-xs">Sil</a>
+                        </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <br>
+      </nb-card>
+    </div>
+  </div>
+<!-- Tamamlanan İlaçlar -->
+<div class="row">
+    <div class="col-md-12">
+      <nb-card>
+        <div class="col-md-12">
+          <div class="row" id="clrTamamlanan">
+            <div class="col-md-12" style="height: 25px">
+                <div style="float:left" class="col-md-4">
+                    <h5 style="color: white;">Tamamlanmış İlaç Listesi</h5>
+                </div>
+          </div>
+        </div>
+          <div class="table-responsive">
+            <table class="table table-bordered ">
+              <thead>
+                <tr>
+                  <th>İlaç Adı</th>
+                  <th>Veriliş Tarihi</th>
+                  <th>Dozu</th>
+                  <th>Veriliş Zamanı</th>
+                  <th>Öneri</th>
+                  <th>Reçete Kodu</th>
+                  <th>Başlama Tarihi</th>
+                  <th>Bitiş Tarihi</th>
+                  <th>Düzenleyen Sağlık Personeli</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let drug of dtpPlannedDrugs"[hidden]="drug.itp_pasif==false">
+                  <td scope="row">
+                    <div class="form-check form-check-inline">
+                        {{drug.ilacadi}}
+                    </div>
+                  </td>
+                  <td>
+                    <div class="input-group-prepend">
+                        
+                    </div>
+                  </td>
+                  <td scope="row">
+                      {{drug.itp_planlanan_doz}}
+                  </td>
+                  <td>
+                    <div class="col-md-12">
+                        {{drug.itp_planlanan_ver_zamani }} 
+                    </div>
+                  </td>
+                  <td scope="row">
+                    <div class="form-check form-check-inline">
+                        {{drug.itp_oneri}}
+                    </div>
+                  </td>
+                  <td scope="row">
+                      <div class="form-check form-check-inline">
+                          {{drug.itp_recete_kodu}}
+                      </div>
+                    </td>
+                  <td scope="row">
+                        <div class="form-check form-check-inline">
+                            {{drug.itp_planlanan_bas_tar | date:'dd/MM/yyyy'}}
+                        </div>
+                 </td>
+                  <td scope="row">
+                          <div class="form-check form-check-inline">
+                              {{drug.itp_planlanan_bit_tar | date:'dd/MM/yyyy'}}
+                          </div>
+                  </td>
+                  <td scope="row">
+                            <div class="form-check form-check-inline">
+                                {{drug.itp_duz_sag_per}}
+                            </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <br>
+      </nb-card>
+    </div>
+  </div>
+
+<div bsModal #stopedDrugInfomodal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" id="clrBackGr">
+      <div class="modal-header">
+        <h5 id="dialog-sizes-name1" class="modal-title pull-left" style="color: #fff">Stoplanacak İlaç Bilgileri</h5>
+        <button type="button" class="close pull-right" (click)="stopedDrugInfomodal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group row">
+          <label class="col-3 col-form-label">İlaç Adı</label>
+          <div class="col-9">
+            {{_drug.ilacadi}}
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Reçete Kodu</label>
+          <div class="col-9">
+              {{_drug.itp_recete_kodu}}
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Stoplama Tarihi</label>
+          <div class="col-9">
+            <input  type="text" class="form-control" bsDatepicker placement="right" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" [(ngModel)]="_drug.itp_stoplama_tar" [ngModelOptions]="{standalone:true}">
+
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Kalan İlaç Miktarı</label>
+          <div class="col-9">
+            <input   type="text" class="form-control textbox" [(ngModel)]="_drug.itp_kalan_ilac_miktari" [ngModelOptions]="{standalone:true}">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Stoplayan Hekim</label>
+          <div class="col-9">
+            <input  type="text" class="form-control textbox" [(ngModel)]="_drug.itp_stoplayan_hekim " [ngModelOptions]="{standalone:true}"><!---->
+          </div>
+        </div>
+        <!-- <div class="form-group row">
+          <label class="col-3 col-form-label">Düzenleyen</label>
+          <div class="col-9">
+            <input type="text" class="form-control textbox">
+          </div>
+        </div> -->
+      </div>
+      <div class="modal-footer">
+        <a href="javascript:void(0)" (click)="stopedDrugInfomodal.hide();" class="btn btn-danger  btn-tn">Vazgeç</a>
+        <a href="javascript:void(0)" (click)="stopDrug();stopedDrugInfomodal.hide();"  class="btn btn-success  btn-tn">Kaydet</a><!-- stopDrug();-->
+      </div>
+    </div>
+  </div>
+</div>
+<div bsModal #reLoginDrugInfomodal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" id="clrBackGr">
+      <div class="modal-header">
+        <h5 id="dialog-sizes-name1" class="modal-title pull-left">Yeniden Aktifleştirme İlaç Bilgileri</h5>
+        <button type="button" class="close pull-right" (click)="reLoginDrugInfomodal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Stoplayan Hekim</label>
+          <div class="col-9">
+            <input  type="text" class="form-control textbox" [(ngModel)]="_drug.itp_stoplayan_hekim " [ngModelOptions]="{standalone:true}"><!---->
+          </div>
+        </div>
+        <!-- <div class="form-group row">
+          <label class="col-3 col-form-label">Düzenleyen</label>
+          <div class="col-9">
+            <input type="text" class="form-control textbox">
+          </div>
+        </div> -->
+      </div>
+      <div class="modal-footer">
+        <a href="javascript:void(0)" (click)="reLoginDrugInfomodal.hide()" class="btn btn-danger  btn-tn">Vazgeç</a>
+        <a href="javascript:void(0)" (click)="reLoginTekrarlastirma();reLoginDrugInfomodal.hide();"  class="btn btn-success  btn-tn">Kaydet</a><!-- stopDrug();-->
+      </div>
+    </div>
+  </div>
+</div>
+<div bsModal #uygulamaKaydDrug="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content" id="clrBackGr">
+        <div class="modal-header">
+          <h5 id="dialog-sizes-name1" class="modal-title pull-left" style="color: white">Uygulama Kaydı</h5>
+          <button type="button" class="close pull-right" (click)="uygulamaKaydDrug.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body"  style="color: black;font-weight: bold;">
+          <div class="form-group input-group-md">
+              <div class="row">
+                  <div class="col-md-12">
+                      <div>
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="form-group input-group-md">
+                                <label>Tarih</label>
+                                <input type="text"  class="form-control" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group input-group-md">
+                                <label>Saat</label>
+                                <input type="text"  class="form-control">
+                            </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                      <div class="col-sm-6">
+                          <div class="form-group input-group-md">
+                              <label>İlaç Adı</label>
+                              <input type="text" [(ngModel)]="_drug.ilacadi" class="form-control" disabled>
+                          </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group input-group-md">
+                            <label>Veriliş Zamanı</label>
+                            <input type="text" [(ngModel)]="_drug.itp_planlanan_ver_zamani" class="form-control">
+                        </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-6">
+                          <div class="form-group input-group-md">
+                              <label>Dozu</label>
+                              <select #sectionUygDoz   class="form-control form-control-sm" style="height: 40px;"><!---->
+                                <option value="null" disabled>Seçiniz..</option>
+                                <option value="İçmedi(Red)">İçmedi(Red)</option>
+                                <option value="0.5">0.5</option>
+                                <option value="1">1</option>
+                                <option value="1.5">1.5</option>
+                                <option value="2">2</option>
+                              </select>
+                          </div>
+                      </div>
+                      
+                    </div>
+                    <div class="row" [hidden]="sectionUygDoz.value!='İçmedi(Red)'">
+                      <div class="col-sm-12">
+                          <div class="form-group input-group-md">
+                              <label>Red Nedeni:</label>
+                              <input type="text"  class="form-control" >
+                          </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-12">
+                          <div class="form-group input-group-md">
+                              <label>Sağlık Personelinin Adı Soyadı</label>
+                              <input type="text"  class="form-control" >
+                          </div>
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+              </div>
+          </div>         
+        </div>
+        <div class="modal-footer">
+          <a href="javascript:void(0)" (click)="uygulamaKaydDrug.hide();" class="btn btn-danger  btn-tn">Vazgeç</a>
+          <a href="javascript:void(0)" (click)="uygulamaKaydDrug.hide();" class="btn btn-success btn-tn">Tamam</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div bsModal #drugInfomodal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content" id="clrBackGr">
+          <div class="modal-header">
+            <h5 id="dialog-sizes-name1" class="modal-title pull-left" style="color: #fff">Planlanacak İlaç Bilgileri</h5>
+            <button type="button" class="close pull-right" (click)="drugInfomodal.hide()" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <div class="form-group row">
+                  <label class="col-3 col-form-label">Engelli Adı</label>
+                  <div class="col-9">
+                      <app-disablitySearchWithTypeHead  (getDisablitiyId)="getDisablitiyId($event)" (model)="engelliadi"></app-disablitySearchWithTypeHead>
+                  </div>
+              </div>
+            <div class="form-group row">
+              <label class="col-3 col-form-label">İlaç Adı</label>
+              <div class="col-9">
+                <app-searchDrug (getDrug)="getDrug($event)" [_drugname]="drugname"></app-searchDrug>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-3 col-form-label">Dozu</label>
+              <div class="col-9">
+                <select [(ngModel)]="_drug.itp_planlanan_doz" [ngModelOptions]="{standalone:true}" class="form-control form-control-sm" style="height: 40px;"><!--[(ngModel)]="_drug.itp_planlanan_dozu" [ngModelOptions]="{standalone:true}"-->
+                  <option value="null" disabled>Seçiniz..</option>
+                  <option value="1X0,5">1X0,5</option>
+                  <option value="1X1">1X1</option>
+                  <option value="1X1,5">1X1,5</option>
+                  <option value="1X2">1X2</option>
+                  <option value="2X0,5">1X0,5</option>
+                  <option value="2X1">2X1</option>
+                  <option value="2X1,5">2X1,5</option>
+                  <option value="2X2">2X2</option>
+                  <option value="3X0,5">3X0,5</option>
+                  <option value="3X1">3X1</option>
+                  <option value="3X1,5">3X1,5</option>
+                  <option value="3X2">3X2</option>
+                  <option value="4X0,5">4X0,5</option>
+                  <option value="4X1">4X1</option>
+                  <option value="4X1,5">4X1,5</option>
+                  <option value="4X2">4X2</option>
+                  <option value="5X0,5">5X0,5</option>
+                  <option value="5X1">5X1</option>
+                  <option value="5X1,5">5X1,5</option>
+                  <option value="5X2">5X2</option>
+                  <option value="6X0,5">6X0,5</option>
+                  <option value="6X1">6X1</option>
+                  <option value="6X1,5">6X1,5</option>
+                  <option value="6X2">6X2</option>
+                  <option value="7X0,5">7X0,5</option>
+                  <option value="7X1">7X1</option>
+                  <option value="7X1,5">7X1,5</option>
+                  <option value="7X2">7X2</option>
+                  <option value="8X0,5">8X0,5</option>
+                  <option value="8X1">8X1</option>
+                  <option value="8X1,5">8X1,5</option>
+                  <option value="8X2">8X2</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-3 col-form-label">Öneri</label>
+              <div class="col-9">
+                <select [(ngModel)]="_drug.itp_oneri" [ngModelOptions]="{standalone:true}" class="form-control form-control-sm" style="height: 40px;"><!---->
+                  <option value="null" disabled>Seçiniz..</option>
+                  <option value="Aç">Aç</option>
+                  <option value="Tok">Tok</option>
+                  <option value="Fark Etmez">Fark Etmez</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-3 col-form-label">İlaç Başlama Tarihi</label>
+              <div class="col-9">
+                <input type="text"  class="form-control" bsDatepicker [(ngModel)]="_drug.itp_planlanan_bas_tar" [ngModelOptions]="{standalone:true}"
+                  placement="right" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"> <!---->
+    
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-3 col-form-label">İlaç Bitiş (Medula) Tarihi</label>
+              <div class="col-9">
+                <input type="text"  class="form-control" bsDatepicker [(ngModel)]="_drug.itp_planlanan_bit_tar" [ngModelOptions]="{standalone:true}"
+                  placement="right" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"><!---->
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-3 col-form-label">Veriliş Yolu</label>
+              <div class="col-9">
+                <select [(ngModel)]="_drug.itp_planlanan_ver_yolu" [ngModelOptions]="{standalone:true}" class="form-control form-control-sm" style="height: 40px;"><!-- -->
+                  <option value="null" disabled>Seçiniz...</option>
+                  <option value="Oral (PO)">Oral (PO)</option>
+                  <option value="Intra Venüs (IV)">Intra Venüs (IV)</option>
+                  <option value="Intra Müsküler (İM)">Intra Müsküler (İM)</option>
+                  <option value="Supcutan (SC)">Supcutan (SC)</option>
+                  <option value="İntradermal (İD)">İntradermal (İD)</option>
+                  <option value="Rectal">Rectal</option>
+                  <option value="Suplingual ( Dilaltı) (SL)">Suplingual ( Dilaltı) (SL)</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-3 col-form-label">Veriliş Zamanı</label>
+              <div class="col-9">
+                <select [(ngModel)]="_drug.itp_planlanan_ver_zamani" [ngModelOptions]="{standalone:true}" class="form-control form-control-sm" style="height: 40px;"><!---->
+                  <option value="null" disabled>Seçiniz..</option>
+                  <option value="Sabah">Sabah</option>
+                  <option value="Öğlen">Öğlen</option>
+                  <option value="Akşam">Akşam</option>
+                  <option value="Gece">Gece</option>
+                  <option value="Sabah-Akşam">Sabah-Akşam</option>
+                  <option value="Sabah-Öğlen">Sabah-Öğlen</option>
+                  <option value="Sabah-Gece">Sabah-Gece</option>
+                  <option value="Öğlen-Akşam">Öğlen-Akşam</option>
+                  <option value="Öğlen-Akşam-Gece">Öğlen-Akşam-Gece</option>
+                  <option value="Sabah-Öğlen-Akşam-Gece">Sabah-Öğlen-Akşam-Gece</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-3 col-form-label">Reçete Kodu</label>
+              <div class="col-9">
+                <input type="text" [(ngModel)]="_drug.itp_recete_kodu" [ngModelOptions]="{standalone:true}" class="form-control textbox"><!---->
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-3 col-form-label">Düzenleyen Sağlık Personeli</label>
+              <div class="col-9">
+                <app-searchEmployee (getEmployeeId)="getEmployeeId($event)"></app-searchEmployee><!-- [(ngModel)]="_drug.itp_duz_sag_per" [ngModelOptions]="{standalone:true}"  -->
+              </div>
+            </div>
+            
+          </div>
+          <div class="modal-footer">
+            <a href="javascript:void(0)" (click)="drugInfomodal.hide()" class="btn btn-danger  btn-tn">Vazgeç</a>
+            <a href="javascript:void(0)" (click)="save();drugInfomodal.hide()" class="btn btn-success  btn-tn">Kaydet</a><!--save();-->
+          </div>
+        </div>
+      </div>
+    </div>
+<toaster-container>
+</toaster-container>

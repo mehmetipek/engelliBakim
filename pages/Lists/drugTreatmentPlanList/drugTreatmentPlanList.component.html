@@ -1,0 +1,415 @@
+<nb-card>
+  <nb-card-header> 
+    <div id="clrFiziksel" class="center" >
+      <h5  style="color: white">FILTRELEME</h5>
+    </div>
+  </nb-card-header>
+<nb-card-body>
+            <div style="float:left" class="col-md-2">
+                <label style="color: black;font-weight: bold;">Engelli Adından</label>
+                <input name="_searchText" [(ngModel)]="filter._engelli_adi" (ngModelChange)="getAllDrugTreatmentPlanByFilter()" type="text" class="form-control " placeholder="Engelli Ara...">
+              </div>
+          <div style="float:left" class="col-md-2">
+            <label style="color: black;font-weight: bold;">Başlangıç Tarihinden</label>
+            <input type="text" [(ngModel)]="filter.baslangic_tar" (ngModelChange)="getAllDrugTreatmentPlanByFilter();" name="" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" placeholder="Tarih Belirleyiniz.."/>
+          </div>
+          <div style="float:left" class="col-md-2">
+            <label style="color: black;font-weight: bold;">Bitiş Tarihinden</label>
+            <input type="text" [(ngModel)]="filter.bitis_tar" (ngModelChange)="getAllDrugTreatmentPlanByFilter();" name="" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" placeholder="Tarih Belirleyiniz.."/>
+          </div>
+          <div style="float:left" class="col-md-2">
+            <label style="color: black;font-weight: bold;">İlaç Adından</label>
+              <input name="_searchTextDrug" [(ngModel)]="filter._ilac_adi" (ngModelChange)="getAllDrugTreatmentPlanByFilter();" type="text" class="form-control " placeholder="İlaç Ara...">
+          </div>
+          <div style="float: left;"class="col-md-2" >
+            <label style="color: black;font-weight: bold;" >Durumundan</label>
+            <select [(ngModel)]="filter.durum" (ngModelChange)="getAllDrugTreatmentPlanByFilter();" #selectoption class="form-control" >
+              <option value="p">Planlanmış İlaç Listesi</option>
+              <option value="s">Stoplanan İlaç Listesi</option>
+              <option value="t">Tamamlanmış İlaç Listesi</option>
+            </select>
+          </div>
+          
+          <div style="float: right;">
+            <button  style="height:70px;font-size: 1rem;" class="btn btn-info btn-tn" (click)="drugInfomodal.show();cleanPlans();">İlaç Tedavi Planı Yap</button>
+          </div>
+      </nb-card-body>
+      </nb-card>
+      <app-formHeader></app-formHeader>
+<!---------  -------->
+<nb-card>
+<nb-card-body>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel">
+      <table class="table table-striped">
+        <thead style="background: red;vertical-align: top;">
+          <tr style="color: white; height: 40px;">
+              <th>Sıra No</th>
+              <th>Engelli Adı</th>
+              <th>İlaç Adı</th>
+              <th>Dozu</th>
+              <th>Öneri</th>
+              <th>Veriliş Yolu</th>
+              <th>Reçete Kodu</th>
+              <th>Başlama Tarihi</th>
+              <th>Bitiş Tarihi(Medula Bitiş)</th>
+              <th>Sağlık Personeli Adı Soyadı</th>
+              <th [hidden]="selectoption.value =='p'">Stoplama Tarihi</th>
+              <th [hidden]="selectoption.value =='p'">Stoplayan Hekim</th>
+              <th [hidden]="selectoption.value =='p'">Kalan İlaç Miktarı</th>
+              <th style="text-align: center" [hidden]="selectoption.value =='t'">İŞLEMLER</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let plan of planlarList;let i=index" > <!-- [routerLink]="['../ilactedaviplanı']" [queryParams]="{ id: plan.id }"   -->
+              <td>{{i+1}}</td>
+              <td>{{plan.ikadi}}</td>
+              <td>{{plan.ilacadi}}</td>
+              <td>{{plan.itp_planlanan_doz}}</td>
+              <td>{{plan.itp_oneri}}</td>
+              <td>{{plan.itp_planlanan_ver_yolu}}</td>
+              <td>{{plan.itp_recete_kodu}}</td>
+              <td>{{plan.itp_planlanan_bas_tar | date:'dd/MM/yyyy'}}</td>
+              <td>{{plan.itp_planlanan_bit_tar | date:'dd/MM/yyyy'}}</td>
+              <td>{{plan.peradi}}</td>
+              <td [hidden]="selectoption.value =='p'">{{plan.itp_stoplama_tar | date:'dd/MM/yyyy'}}</td>
+              <td [hidden]="selectoption.value =='p'">{{plan.itp_stoplayan_hekim }}</td>
+              <td [hidden]="selectoption.value =='p'">{{plan.itp_kalan_ilac_miktari}}</td>
+              <td>
+                <div class="btn-group btn-group-xs" [hidden]="selectoption.value =='t'">
+                    <a href="javascript:void(0)" [hidden]="(selectoption.value =='t') || (selectoption.value=='s')" [routerLink]="['../ilactedaviplanı']" [queryParams]="{id:plan.itp_engelliid}" class="btn btn-info btn-xs">Göster</a>
+                    <a href="javascript:void(0)" style="margin-left:5px;width: 130px;"  [hidden]="(selectoption.value =='t') || (selectoption.value=='s')"(click)="uygulamaKaydDrug.show();_drug=plan;" class="btn btn-success btn-xs">Uygulama</a>
+                    <a href="javascript:void(0)" style="margin-left:5px;" [hidden]="(selectoption.value =='t') || (selectoption.value=='s')" (click)="stopedDrugInfomodal.show();_drug=plan;" class="btn btn-danger btn-xs">Stopla</a>
+                    <a href="javascript:void(0)" style="max-height: 24px;margin-left:5px;"  [hidden]="(selectoption.value =='p') || (selectoption.value =='t')" (click)="reLoginDrugInfomodal.show();_drug=plan;" class="btn btn-danger btn-xs">Tekrar</a>
+                    <a href="javascript:void(0)" style="max-height: 24px;margin-left:5px;" (click)="editDrug(plan);drugInfomodal.show();"  class="btn btn-primary btn-xs">Düzenle</a>
+                    <a href="javascript:void(0)" style="max-height: 24px;margin-left:5px;"  class="btn btn-warning btn-xs">Sil</a>
+                  </div>
+              </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</nb-card-body>
+</nb-card>
+<!-- İlaç Planlama-->
+<div bsModal #drugInfomodal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" id="clrBlue">
+      <div class="modal-header">
+        <h5 id="dialog-sizes-name1" class="modal-title pull-left" style="color:#fff">Planlanacak İlaç Bilgileri</h5>
+        <button type="button" class="close pull-right" (click)="drugInfomodal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="form-group row">
+              <label class="col-3 col-form-label">Engelli Adı</label>
+              <div class="col-9">
+                  <app-disablitySearchWithTypeHead  (getDisablitiyId)="getDisablitiyId($event)"></app-disablitySearchWithTypeHead>
+              </div>
+          </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">İlaç Adı</label>
+          <div class="col-9">
+            <app-searchDrug (getDrug)="getDrug($event)" [_drugname]="drugname"></app-searchDrug>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Dozu</label>
+          <div class="col-9">
+            <select [(ngModel)]="_drug.itp_planlanan_doz" [ngModelOptions]="{standalone:true}" class="form-control form-control-sm" style="height: 40px;"><!--[(ngModel)]="_drug.itp_planlanan_dozu" [ngModelOptions]="{standalone:true}"-->
+              <option value="null" disabled>Seçiniz..</option>
+              <option value="1X0,5">1X0,5</option>
+              <option value="1X1">1X1</option>
+              <option value="1X1,5">1X1,5</option>
+              <option value="1X2">1X2</option>
+              <option value="2X0,5">1X0,5</option>
+              <option value="2X1">2X1</option>
+              <option value="2X1,5">2X1,5</option>
+              <option value="2X2">2X2</option>
+              <option value="3X0,5">3X0,5</option>
+              <option value="3X1">3X1</option>
+              <option value="3X1,5">3X1,5</option>
+              <option value="3X2">3X2</option>
+              <option value="4X0,5">4X0,5</option>
+              <option value="4X1">4X1</option>
+              <option value="4X1,5">4X1,5</option>
+              <option value="4X2">4X2</option>
+              <option value="5X0,5">5X0,5</option>
+              <option value="5X1">5X1</option>
+              <option value="5X1,5">5X1,5</option>
+              <option value="5X2">5X2</option>
+              <option value="6X0,5">6X0,5</option>
+              <option value="6X1">6X1</option>
+              <option value="6X1,5">6X1,5</option>
+              <option value="6X2">6X2</option>
+              <option value="7X0,5">7X0,5</option>
+              <option value="7X1">7X1</option>
+              <option value="7X1,5">7X1,5</option>
+              <option value="7X2">7X2</option>
+              <option value="8X0,5">8X0,5</option>
+              <option value="8X1">8X1</option>
+              <option value="8X1,5">8X1,5</option>
+              <option value="8X2">8X2</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Öneri</label>
+          <div class="col-9">
+            <select [(ngModel)]="_drug.itp_oneri" [ngModelOptions]="{standalone:true}" class="form-control form-control-sm" style="height: 40px;"><!---->
+              <option value="null" disabled>Seçiniz..</option>
+              <option value="Aç">Aç</option>
+              <option value="Tok">Tok</option>
+              <option value="Fark Etmez">Fark Etmez</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">İlaç Başlama Tarihi</label>
+          <div class="col-9">
+            <input type="text"  class="form-control" bsDatepicker [(ngModel)]="_drug.itp_planlanan_bas_tar" [ngModelOptions]="{standalone:true}"
+              placement="right" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"> <!---->
+
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">İlaç Bitiş (Medula) Tarihi</label>
+          <div class="col-9">
+            <input type="text"  class="form-control" bsDatepicker [(ngModel)]="_drug.itp_planlanan_bit_tar" [ngModelOptions]="{standalone:true}"
+              placement="right" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"><!---->
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Veriliş Yolu</label>
+          <div class="col-9">
+            <select [(ngModel)]="_drug.itp_planlanan_ver_yolu" [ngModelOptions]="{standalone:true}" class="form-control form-control-sm" style="height: 40px;"><!-- -->
+              <option value="null" disabled>Seçiniz...</option>
+              <option value="Oral (PO)">Oral (PO)</option>
+              <option value="Intra Venüs (IV)">Intra Venüs (IV)</option>
+              <option value="Intra Müsküler (İM)">Intra Müsküler (İM)</option>
+              <option value="Supcutan (SC)">Supcutan (SC)</option>
+              <option value="İntradermal (İD)">İntradermal (İD)</option>
+              <option value="Rectal">Rectal</option>
+              <option value="Suplingual ( Dilaltı) (SL)">Suplingual ( Dilaltı) (SL)</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Veriliş Zamanı</label>
+          <div class="col-9">
+            <select [(ngModel)]="_drug.itp_planlanan_ver_zamani" [ngModelOptions]="{standalone:true}" class="form-control form-control-sm" style="height: 40px;"><!---->
+              <option value="null" disabled>Seçiniz..</option>
+              <option value="Sabah">Sabah</option>
+              <option value="Öğlen">Öğlen</option>
+              <option value="Akşam">Akşam</option>
+              <option value="Gece">Gece</option>
+              <option value="Sabah-Akşam">Sabah-Akşam</option>
+              <option value="Sabah-Öğlen">Sabah-Öğlen</option>
+              <option value="Sabah-Gece">Sabah-Gece</option>
+              <option value="Öğlen-Akşam">Öğlen-Akşam</option>
+              <option value="Öğlen-Akşam-Gece">Öğlen-Akşam-Gece</option>
+              <option value="Sabah-Öğlen-Akşam-Gece">Sabah-Öğlen-Akşam-Gece</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Reçete Kodu</label>
+          <div class="col-9">
+            <input type="text" [(ngModel)]="_drug.itp_recete_kodu" [ngModelOptions]="{standalone:true}" class="form-control textbox"><!---->
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Düzenleyen Sağlık Personeli</label>
+          <div class="col-9">
+            <app-searchEmployee (getEmployeeId)="getEmployeeId($event)" [_employeename]="_employeename" ></app-searchEmployee><!-- [(ngModel)]="_drug.itp_duz_sag_per" [ngModelOptions]="{standalone:true}"  -->
+          </div>
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+        <a href="javascript:void(0)" (click)="drugInfomodal.hide()" class="btn btn-danger  btn-tn">Vazgeç</a>
+        <a href="javascript:void(0)" (click)="save();drugInfomodal.hide()" class="btn btn-success  btn-tn">Kaydet</a><!--save();-->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- İlaç stoplama -->
+<div bsModal #stopedDrugInfomodal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" id="clrBlue">
+      <div class="modal-header">
+        <h5 id="dialog-sizes-name1" class="modal-title pull-left" style="color: #fff">Stoplanacak İlaç Bilgileri</h5>
+        <button type="button" class="close pull-right" (click)="stopedDrugInfomodal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group row">
+          <label class="col-3 col-form-label">İlaç Adı</label>
+          <div class="col-9">
+            {{_drug.ilacadi}}
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Reçete Kodu</label>
+          <div class="col-9">
+              {{_drug.itp_recete_kodu}}
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Stoplama Tarihi</label>
+          <div class="col-9">
+            <input  type="text" class="form-control" bsDatepicker placement="right" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" [(ngModel)]="_drug.itp_stoplama_tar" [ngModelOptions]="{standalone:true}">
+
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Kalan İlaç Miktarı</label>
+          <div class="col-9">
+            <input   type="text" class="form-control textbox" [(ngModel)]="_drug.itp_kalan_ilac_miktari" [ngModelOptions]="{standalone:true}">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Stoplayan Hekim</label>
+          <div class="col-9">
+            <input  type="text" class="form-control textbox" [(ngModel)]="_drug.itp_stoplayan_hekim " [ngModelOptions]="{standalone:true}"><!---->
+          </div>
+        </div>
+        <!-- <div class="form-group row">
+          <label class="col-3 col-form-label">Düzenleyen</label>
+          <div class="col-9">
+            <input type="text" class="form-control textbox">
+          </div>
+        </div> -->
+      </div>
+      <div class="modal-footer">
+        <a href="javascript:void(0)" (click)="stopedDrugInfomodal.hide();" class="btn btn-danger  btn-tn">Vazgeç</a>
+        <a href="javascript:void(0)" (click)="stopDrug();stopedDrugInfomodal.hide();"  class="btn btn-success  btn-tn">Kaydet</a><!-- stopDrug();-->
+      </div>
+    </div>
+  </div>
+</div>
+<div bsModal #reLoginDrugInfomodal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" id="clrBlue">
+      <div class="modal-header">
+        <h5 id="dialog-sizes-name1" class="modal-title pull-left" style="color: #fff">Yeniden Aktifleştirme İlaç Bilgileri</h5>
+        <button type="button" class="close pull-right" (click)="reLoginDrugInfomodal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Stoplayan Hekim</label>
+          <div class="col-9">
+            <input  type="text" class="form-control textbox" [(ngModel)]="_drug.itp_stoplayan_hekim " [ngModelOptions]="{standalone:true}"><!---->
+          </div>
+        </div>
+        <!-- <div class="form-group row">
+          <label class="col-3 col-form-label">Düzenleyen</label>
+          <div class="col-9">
+            <input type="text" class="form-control textbox">
+          </div>
+        </div> -->
+      </div>
+      <div class="modal-footer">
+        <a href="javascript:void(0)" (click)="reLoginDrugInfomodal.hide()" class="btn btn-danger  btn-tn">Vazgeç</a>
+        <a href="javascript:void(0)" (click)="reLoginTekrarlastirma();reLoginDrugInfomodal.hide();"  class="btn btn-success  btn-tn">Kaydet</a><!-- stopDrug();-->
+      </div>
+    </div>
+  </div>
+</div>
+<div bsModal #uygulamaKaydDrug="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" id="clrBlue">
+      <div class="modal-header">
+        <h5 id="dialog-sizes-name1" class="modal-title pull-left" style="color: white">Uygulama Kaydı</h5>
+        <button type="button" class="close pull-right" (click)="uygulamaKaydDrug.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body"  style="color: black;font-weight: bold;">
+          <div class="form-group input-group-md">
+              <div class="row">
+                  <div class="col-md-12">
+                      <div>
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="form-group input-group-md">
+                                <label>Tarih</label>
+                                <input type="text"  class="form-control" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group input-group-md">
+                                <label>Saat</label>
+                                <input type="text"  class="form-control">
+                            </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                      <div class="col-sm-6">
+                          <div class="form-group input-group-md">
+                              <label>İlaç Adı</label>
+                              <input type="text" [(ngModel)]="_drug.ilacadi" class="form-control" disabled>
+                          </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group input-group-md">
+                            <label>Veriliş Zamanı</label>
+                            <input type="text" [(ngModel)]="_drug.itp_planlanan_ver_zamani" class="form-control">
+                        </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-6">
+                          <div class="form-group input-group-md">
+                              <label>Dozu</label>
+                              <select #sectionUygDoz   class="form-control form-control-sm" style="height: 40px;"><!---->
+                                <option value="null" disabled>Seçiniz..</option>
+                                <option value="İçmedi(Red)">İçmedi(Red)</option>
+                                <option value="0.5">0.5</option>
+                                <option value="1">1</option>
+                                <option value="1.5">1.5</option>
+                                <option value="2">2</option>
+                              </select>
+                          </div>
+                      </div>
+                      
+                    </div>
+                    <div class="row" [hidden]="sectionUygDoz.value!='İçmedi(Red)'">
+                      <div class="col-sm-12">
+                          <div class="form-group input-group-md">
+                              <label>Red Nedeni:</label>
+                              <input type="text"  class="form-control" >
+                          </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-12">
+                          <div class="form-group input-group-md">
+                              <label>Sağlık Personelinin Adı Soyadı</label>
+                              <input type="text"  class="form-control" >
+                          </div>
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+              </div>
+          </div>         
+        </div>
+      <div class="modal-footer">
+        <a href="javascript:void(0)" (click)="uygulamaKaydDrug.hide();" class="btn btn-danger  btn-tn">Vazgeç</a>
+        <a href="javascript:void(0)" (click)="uygulamaKaydDrug.hide();" class="btn btn-success btn-tn">Tamam</a>
+      </div>
+    </div>
+  </div>
+</div>
+<toaster-container>
+</toaster-container>

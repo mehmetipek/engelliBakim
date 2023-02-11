@@ -1,0 +1,73 @@
+
+    <nb-card size="active" style="max-width: 1000px;margin-left: auto;margin-right: auto">
+      <br>
+      <div class="col-md-12">
+        <h5 style="text-align: center">AYLIK PSİKO-SOSYAL ETKİNLİK PLANLARI</h5>
+    </div>
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-6">
+              <div class="col-6">
+                <div class="form-group row">
+                  <label class="col-3 col-form-label">YIL</label>
+                  <div class="col-9">
+                    <select  class="form-control" [(ngModel)]="_yil" (ngModelChange)="getActivityList($event)" [ngModelOptions]="{standalone: true}"><!---->
+                      <option value="null" disabled>Seçiniz..</option>
+                        <option [ngValue]="2018">2018</option>
+                        <option [ngValue]="2019">2019</option>
+                        <option [ngValue]="2020">2020</option>
+                        <option [ngValue]="2021">2021</option>
+                        <option [ngValue]="2022">2022</option>
+                        <option [ngValue]="2023">2023</option>
+                        <option [ngValue]="2024">2024</option>
+                        <option [ngValue]="2025">2025</option>
+                        <option [ngValue]="2026">2026</option>
+                        <option [ngValue]="2027">2027</option>
+                        <option [ngValue]="2028">2028</option>
+                        <option [ngValue]="2029">2029</option>
+                        <option [ngValue]="2030">2030</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="col-md-6" align="right">
+            <button class="btn btn-info btn-tn" [routerLink]="['../engelliEtkinlikPlanı']">Yeni Etkinlik Planı Oluştur</button>
+          </div>
+        </div>
+      </div>
+    </nb-card>
+  
+<nb-card style="text-align: center;max-width: 1000px;margin-left: auto;margin-right: auto">
+  <nb-card-body>
+     <div class="row">
+       <div class="col-md-12">
+         <div class="panel" style="text-align: center">
+           <table class="table table-striped">
+             <thead>
+               <tr>
+                 <th>Sıra No</th>
+                 <th>AYI</th>
+                 <th>YILI</th>
+                 <th>Mesleki Kayıt No</th>
+                 <th>İşlemler</th>
+               </tr>
+             </thead>
+             <tbody>
+               <tr *ngFor="let item of _activityList;let i=index">
+                 <td>{{i+1}}</td>
+                 <td>{{item.ep_ay}}</td>
+                 <td>{{item.ep_yil}}</td>
+                 <td>{{item._mes_sira_no}}</td>
+                 <td>
+                     <button  type="button">GÖSTER</button>
+                 </td>
+               </tr>
+             </tbody>
+           </table>
+         </div>
+       </div>
+     </div>
+   </nb-card-body>
+ </nb-card>
+ 

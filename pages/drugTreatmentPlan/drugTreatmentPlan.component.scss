@@ -1,0 +1,72 @@
+#clrBaslik{
+    background-color: #008080; 
+    padding: 15px;
+    border-radius: 20px;
+}
+#clrEngelli{
+    background-color: #3cb371; 
+    padding: 15px;
+    border-radius: 20px;
+}
+.center { 
+    height: 50px;
+    width: auto;
+    position: relative;
+  }
+  #clrPlanlanan{
+    background-color: #C46210;
+    padding: 15px;
+    border-radius: 20px;
+}
+#clrBackGr{
+    background-color:#419cdb; 
+    padding: 15px;
+    border-radius: 20px;
+}
+#clrStop{
+    background-color: #990000;
+    padding: 15px;
+    border-radius: 20px;
+}
+#clrTamamlanan{
+    background-color: #3333FF;
+    padding: 15px;
+    border-radius: 20px;
+}
+.table th, .table td {
+    padding: 0.2rem;
+}
+.btn-group-xs > .btn, .btn-xs {
+    padding: .25rem .4rem;
+    font-size: .875rem;
+    line-height: .5;
+    border-radius: .2rem;
+  }
+ 
+.card-container{
+    display: flex;
+}
+.card-item-title{
+    flex-grow: 1;
+}
+.card{
+    margin-right: auto;
+    margin-left: auto;
+}
+.card-title-text{
+    /* color:#00FFFF; */
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+    color:rgb(48, 194, 213);
+    text-shadow: -2px -2px 5px rgba(82, 179, 218, 0.2);
+}
+.col-md-3 {
+    flex: 0 0 24%;}
+  .center h5{
+   text-align: center;
+  }
+
+
+  

@@ -1,0 +1,383 @@
+<nb-card>
+    <nb-card-header> 
+      <div id="clrFiziksel" class="center" >
+        <h5  style="color: white">FILTRELEME</h5>
+      </div>
+    </nb-card-header>
+  <nb-card-body>
+              <div style="float:left" class="col-md-2">
+                  <label style="color: black;font-weight: bold;">Engelli Adından</label>
+                  <input name="_searchText"  type="text" class="form-control" [(ngModel)]="personalModelFilter._engelliAdiSoyadi" (ngModelChange)="getPersonalHealthPlanFilterModel();" placeholder="Engelli Ara...">
+                </div>
+            <div style="float:left" class="col-md-2">
+              <label style="color: black;font-weight: bold;">Başlangıç Tarihinden</label>
+              <input type="text" name="" placeholder="Tarih Belirleyiniz.." [(ngModel)]="personalModelFilter.bbas_tar" (ngModelChange)="getPersonalHealthPlanFilterModel();" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"/>
+            </div>
+            <div style="float:left" class="col-md-2">
+              <label style="color: black;font-weight: bold;">Bitiş Tarihinden</label>
+              <input type="text" name="" [(ngModel)]="personalModelFilter.sbitis_tar" placeholder="Tarih belirleyiniz.." (ngModelChange)="getPersonalHealthPlanFilterModel();" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"/>
+            </div>
+            <div style="float:left" class="col-md-2">
+              <label style="color: black;font-weight: bold;">Faaliyet Adından</label>
+                <input name="_searchTextDrug"  [(ngModel)]="personalModelFilter._yapilacak_faaliyet" (ngModelChange)="getPersonalHealthPlanFilterModel();"  type="text" class="form-control " placeholder="Faaliyet Ara...">
+            </div>
+            <div style="float: left;"class="col-md-2" >
+              <label style="color: black;font-weight: bold;" >Durumundan</label>
+              <select #selectoption class="form-control" [(ngModel)]="personalModelFilter.durum" (ngModelChange)="getPersonalHealthPlanFilterModel();">
+                  <option value="p">Devam Eden Faaliyetler</option>
+                  <option value="s">Stoplanan Faaliyetler</option>
+                  <option value="t">Tamamlanmış Faaliyetler</option>
+              </select>
+            </div>
+            <div style="float: right;">
+              <button style="height:70px;font-size: 1rem;" class="btn btn-info btn-sm" (click)="planmodal.show();">Yeni Kişisel Sağlık Planı</button> <!--[routerLink]="['../kisisel-saglik-bakim-plani']"-->
+            </div>
+        </nb-card-body>
+        </nb-card>
+        <app-formHeader></app-formHeader>
+<nb-card>
+<nb-card-body>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel">
+      <table class="table table-striped">
+        <thead style="background: #C46210;vertical-align: top;">
+          <tr style="color: white; height: 40px;">
+              <th>Sıra No</th>
+              <th>Engelli Adı</th>
+              <th>Faaliyet</th>
+              <th>Sıklık</th>
+              <th>İlgili Kayıt Doküman</th>
+              <th>Başlama Tarihi</th>
+              <th>Bitiş Tarihi</th>
+              <th>Planlamayı Yapan Sağlık Personeli</th>
+              <th [hidden]="(selectoption.value=='p') || (selectoption.value=='s')">Değerlendirme</th>
+              <th [hidden]="(selectoption.value=='p') || (selectoption.value=='s')">Değerlendiren Sağlık Personeli</th>
+              <th [hidden]="selectoption.value=='p'">Stoplama Tarihi</th>
+              <th [hidden]="selectoption.value=='p'">Gerekçe</th>
+              <th [hidden]="selectoption.value=='p'">Stoplayan Sağlık Personeli</th>
+              <th [hidden]="selectoption.value=='t'" style="text-align: center" >İŞLEMLER</th>
+              <!-- [hidden]="(selectoption.value=='t') || (selectoption.value=='s')" -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let plan of list; let i=index"  > <!--   -->
+              <td>{{i+1}}</td>
+              <td>{{plan._engelliadisoyadi}}</td>
+              <td>{{plan.yapilacak_faaliyet}}</td>
+              <td>{{plan.siklik}}</td>
+              <td>{{plan.ilgili_dokuman}}</td>
+              <td>{{plan.bas_tar | date:'dd/MM/yyyy'}}</td>
+              <td>{{plan.bitis_tar | date:'dd/MM/yyyy'}}</td>
+              <td></td>
+              <td [hidden]="(selectoption.value=='p') || (selectoption.value=='s')">{{plan.degerlendirme}}</td>
+              <td [hidden]="(selectoption.value=='p') || (selectoption.value=='s')"></td>
+              <td [hidden]="selectoption.value=='p'"></td>
+              <td [hidden]="selectoption.value=='p'"></td>
+              <td [hidden]="selectoption.value=='p'"></td>
+              <td>
+                <div class="btn-group btn-group-xs">
+                  <button (click)="planmodal.show();"[hidden]="(selectoption.value=='t') || (selectoption.value=='s')" [routerLink]="['../kisisel-saglik-bakim-plani']" [queryParams]="{ id: plan.id }" class="btn btn-warning btn-xs">GÖSTER</button>
+                  <button style="margin-left:5px;" type="button" [hidden]="(selectoption.value=='t') || (selectoption.value=='s')" (click)="uygulamaKayd.show();" class="btn btn-success btn-xs">Uygulama Kaydı</button>
+                  <button style="margin-left:5px;" (click)="evaluationmodal.show();"[hidden]="(selectoption.value=='t') || (selectoption.value=='s')" class="btn btn-info btn-xs">Değerlendir</button>
+                  <button style="margin-left:5px;" (click)="stopTab.show();_report=plan;" [hidden]="(selectoption.value=='t') || (selectoption.value=='s')" class="btn btn-danger btn-xs">Stopla</button>
+                  <button style="margin-left:5px;" (click)="tekrarKayd.show();_report=plan;" [hidden]="(selectoption.value=='t') || (selectoption.value=='p')" class="btn btn-success btn-xs">Terkar Planla</button>
+                </div>
+              </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</nb-card-body>
+</nb-card>
+<div bsModal #stopTab="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content" id="clrModal">
+        <div class="modal-header">
+          <h5 id="dialog-sizes-name1" class="modal-title pull-left" style="color: white">Stoplama Bilgileri</h5>
+          <button type="button" class="close pull-right" (click)="stopTab.hide();" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+    <div class="form-group input-group-md">
+        <div class="row">
+            <div class="col-md-12">
+                <div>
+                    <div class="form-group row">
+                      <label class="col-3 col-form-label">Stoplama Tarihi</label>
+                      <div class="col-9">
+                        <input type="text" [(ngModel)]="_report.stoplama_tar " [ngModelOptions]="{standalone: true} "   class="form-control" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+                      </div>
+                    </div>
+                  <div class="form-group row">
+                    <label class="col-3 col-form-label">Gerekçe</label>
+                    <div class="col-9">
+                      <input type="text" [(ngModel)]="_report.stoplama_gerekce " [ngModelOptions]="{standalone: true} " class="form-control text">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-3 col-form-label">Sağlık Personeli Adı:</label>
+                    <div class="col-9">
+                        <app-searchEmployee (getEmployeeId)="getEmployeeStopId($event)" [_employeename]="_employeename" ></app-searchEmployee>
+                    </div>
+                  </div>
+                    <hr>
+                    <div style="float: right;">
+                      <a href="javascript:void(0)" style="margin-right: 20px" (click)="stopTab.hide();" class="btn btn-hero-danger  btn-tn">Vazgeç</a>
+                      <a href="javascript:void(0)"  (click)="getSuspendedPlan();stopTab.hide();"  class="btn btn-success  btn-tn">Tamam</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>         
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- değerlendirme Modal -->
+<div bsModal #evaluationmodal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content" id="clrModal">
+        <div class="modal-header">
+          <h5 id="dialog-sizes-name1" class="modal-title pull-left" style="color: white">Değerlendirme</h5>
+          <button type="button" class="close pull-right" (click)="evaluationmodal.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group row">
+            <label class="col-3 col-form-label">Değerlendirme Tarihi:</label>
+            <div class="col-9">
+              <input  type="text" class="form-control" bsDatepicker placement="right" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-3 col-form-label">Değerlendirme:</label>
+            <div class="col-9">
+              <select  class="form-control">
+                <option value="null" disabled>Seçiniz..</option>
+                <option>Stoplansın</option>
+                <option>Faaliyet Tamamlandı</option>
+                <option>Yeniden Planlansın</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+              <label class="col-3 col-form-label">Sağlık Personeli Adı:</label>
+              <div class="col-9">
+                <input type="text" class="form-control">
+              </div>
+            </div>
+  
+        </div>
+        <div class="modal-footer">
+          <a href="javascript:void(0)" (click)="evaluationmodal.hide();" class="btn btn-danger  btn-tn">Vazgeç</a>
+          <a href="javascript:void(0)" (click)="evaluationmodal.hide()" class="btn btn-success  btn-tn">Kaydet</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Uygulama Kaydı-->
+  <div bsModal #uygulamaKayd="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content" id="clrModal">
+        <div class="modal-header">
+          <h5 id="dialog-sizes-name1" class="modal-title pull-left" style="color: white">Uygulama Kaydı</h5>
+          <button type="button" class="close pull-right" (click)="uygulamaKayd.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body"  style="color: black;font-weight: bold;">
+          <div class="form-group input-group-md">
+              <div class="row">
+                  <div class="col-md-12">
+                      <div>
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="form-group input-group-md">
+                                <label>Tarih:</label>
+                                <input type="text"  class="form-control" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group input-group-md">
+                                <label>Saat:</label>
+                                <input type="text"  class="form-control" >
+                            </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                      <div class="col-sm-12">
+                          <div class="form-group input-group-md">
+                              <label>Yapılan Faaliyet Adı:</label>
+                              <input type="text"  class="form-control" >
+                          </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-12">
+                          <div class="form-group input-group-md">
+                              <label>Sonuç(Tansiyon,Sonucu,Şeker Sonucu Vs.):</label>
+                              <input type="text"  class="form-control" >
+                          </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-12">
+                          <div class="form-group input-group-md">
+                              <label>Sağlık Personelinin Adı Soyadı:</label>
+                              <input type="text"  class="form-control" >
+                          </div>
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+              </div>
+        </div>         
+  </div>
+        <div class="modal-footer">
+          <a href="javascript:void(0)" (click)="uygulamaKayd.hide();" class="btn btn-danger  btn-tn">Vazgeç</a>
+          <a href="javascript:void(0)" (click)="uygulamaKayd.hide();" class="btn btn-success btn-tn">Tamam</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Tekrar Planla-->
+  <div bsModal #tekrarKayd="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content" id="clrModal">
+          <div class="modal-header">
+            <h5 id="dialog-sizes-name1" class="modal-title pull-left" style="color: white">Planı Yenile</h5>
+            <button type="button" class="close pull-right" (click)="uygulamaKayd.hide()" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body"  style="color: black;font-weight: bold;">
+            <div class="form-group input-group-md">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div>
+                      <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group input-group-md">
+                                <label>Tekrar Planlayan Sağlık Personelinin Adı Soyadı:</label>
+                                <input type="text"  class="form-control" >
+                            </div>
+                        </div>
+                      </div>
+                      </div>
+                    </div>
+                </div>
+          </div>         
+        </div>
+          <div class="modal-footer">
+            <a href="javascript:void(0)" (click)="tekrarKayd.hide();" class="btn btn-danger  btn-tn">Vazgeç</a>
+            <a href="javascript:void(0)" (click)="tekrarKayd.hide();" class="btn btn-success btn-tn">Tamam</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Plan Bilgileri-->
+  <div bsModal #planmodal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content" id="clrModal">
+        <div class="modal-header">
+          <h5 id="dialog-sizes-name1" class="modal-title pull-left" style="color: white">Plan Bilgileri</h5>
+          <button type="button" class="close pull-right" (click)="planmodal.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group row">
+                <label class="col-3 col-form-label">Engelli Adı:</label>
+                <div class="col-9">
+                    <app-disablitySearchWithTypeHead  (getDisablitiyId)="getDisablitiyId($event)"></app-disablitySearchWithTypeHead>
+                </div>
+            </div>
+          <div class="form-group row">
+            <label class="col-3 col-form-label">Başlangıç Tarihi:</label>
+            <div class="col-9">
+              <input [(ngModel)]="_report.bas_tar " [ngModelOptions]="{standalone: true} " type="text" class="form-control" bsDatepicker
+                placement="right" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-3 col-form-label">Yapılacak Faaliyet:</label>
+            <div class="col-9">
+              <select [(ngModel)]="_report.yapilacak_faaliyet " [ngModelOptions]="{standalone: true} " class="form-control">
+                <option value="null" disabled>Seçiniz..</option>
+                <option>Ateş Takibi</option>
+                <option>Nabız Takibi</option>
+                <option>Tansiyon Takibi</option>
+                <option>Şeker Takibi (Açlık)</option>
+                <option>Şeker Takibi (Tokluk)</option>
+                <option>Solunum Takibi</option>
+                <option>SPO2 Takibi</option>
+                <option>Kilo Takibi</option>
+                <option>Aldığı-Çıkardığı Takibi</option>
+                <option>Epilepsi Takibi</option>
+                <option>Bası Yarası Oluşumunu Önleme Takibi</option>
+                <option>Düşme Riski Değerlendirme Takibi</option>
+                <option>Aspirasyon Takibi</option>
+                <option>Pansuman</option>
+                <option>Beslenme Bozukluğu olan Hastaların Yemek Takibi</option>
+                <option>Trakeostomi Bakımı</option>
+                <option>NG Bakımı</option>
+                <option>Sonda Bakımı </option>
+                <option>Kolostomi Bakımı</option>
+                <option>Regl Takibi</option>
+                <option>Stoma Takibi</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-3 col-form-label">Sıklık:</label>
+            <div class="col-9">
+              <select [(ngModel)]="_report.siklik " [ngModelOptions]="{standalone: true} " class="form-control">
+                <option value="null" disabled>Seçiniz..</option>
+                <option>Günde 1 Defa</option>
+                <option>Günde 2 Defa</option>
+                <option>Günde 3 Defa</option>
+                <option>Günde 4 Defa</option>
+                <option>2 Günde 1 Defa</option>
+                <option>3 Günde 1 Defa</option>
+                <option>Haftada 1 Defa</option>
+                <option>15 Günde 1 Defa</option>
+                <option>Ayda 1 Defa</option>
+                <option>6 Ayda 1 Defa</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-3 col-form-label">İlgili Dökümanı:</label>
+            <div class="col-9">
+              <input [(ngModel)]="_report.ilgili_dokuman " [ngModelOptions]="{standalone: true} " type="text" class="form-control">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-3 col-form-label">Değerlendirme Tarihi:</label><!---->
+            <div class="col-9">
+              <input [(ngModel)]="_report.bitis_tar" [ngModelOptions]="{standalone: true} " type="text" class="form-control" bsDatepicker
+                placement="right" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-3 col-form-label">Sağlık Personeli Adı Soyadı:</label><!---->
+            <div class="col-9">
+              <app-searchEmployee (getEmployeeId)="getEmployeeId($event)" [_employeename]="_employeename" ></app-searchEmployee>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a href="javascript:void(0)" (click)="planmodal.hide();" class="btn btn-danger  btn-tn">Vazgeç</a>
+          <a href="javascript:void(0)" (click)="addReport();planmodal.hide()" class="btn btn-success  btn-tn">Kaydet</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <toaster-container>
+  </toaster-container>

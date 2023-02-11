@@ -1,0 +1,650 @@
+<div class="row">
+  <div class="col-md-12">
+    <nb-card size="active">
+      <br>
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-12" style="text-align: center">
+              <h5>AYLIK PSİKO/SOSYAL ETKİNLİK PLANI</h5>
+            </div>
+          </div>
+          <div class="row">
+         <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-3 col-form-label">MESLEKİ KAYIT NO:</label>
+            <div class="col-5">
+              <input type="text" name="_meslekiSiraNo" [(ngModel)]="_meslekiSiraNo" class="form-control" disabled>
+            </div>
+            <div class="col-2" [hidden]="_meslekiSiraNo" >
+              <button  (click)="kayitnomodal.show();" type="button" class="btn btn-hero-info btn-tn">YENİ</button>
+            </div>
+          </div>        
+        </div>
+          <div class="col-md-6 text-right">
+            <div class="row" style="float: right;">
+                <div class="form-group row">
+                  <label class="col-2 col-form-label">AY</label>
+                  <div class="col-9">
+                    <select #selecteday [(ngModel)]="_ay" (ngModelChange)="getActivityList($event)" [ngModelOptions]="{standalone: true}" class="form-control">
+                      <option value="null" disabled>Seçiniz..</option>
+                      <option [ngValue]="1">Ocak</option>
+                      <option [ngValue]="2">Şubat</option>
+                      <option [ngValue]="3">Mart</option>
+                      <option [ngValue]="4">Nisan</option>
+                      <option [ngValue]="5">Mayıs</option>
+                      <option [ngValue]="6">Haziran</option>
+                      <option [ngValue]="7">Temmuz</option>
+                      <option [ngValue]="8">Ağustos</option>
+                      <option [ngValue]="9">Eylül</option>
+                      <option [ngValue]="10">Ekim</option>
+                      <option [ngValue]="11">Kasım</option>
+                      <option [ngValue]="12">Aralık</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-2 col-form-label">YIL</label>
+                  <div class="col-9">
+                    <select #selectedyil [(ngModel)]="_yil" (ngModelChange)="getActivityList(null,$event)" [ngModelOptions]="{standalone: true}" class="form-control">
+                        <option value="null" disabled>Seçiniz..</option>
+                        <option [ngValue]="2018">2018</option>
+                        <option [ngValue]="2019">2019</option>
+                        <option [ngValue]="2020">2020</option>
+                        <option [ngValue]="2021">2021</option>
+                        <option [ngValue]="2022">2022</option>
+                        <option [ngValue]="2023">2023</option>
+                        <option [ngValue]="2024">2024</option>
+                        <option [ngValue]="2025">2025</option>
+                        <option [ngValue]="2026">2026</option>
+                        <option [ngValue]="2027">2027</option>
+                        <option [ngValue]="2028">2028</option>
+                        <option [ngValue]="2029">2029</option>
+                        <option [ngValue]="2030">2030</option>
+                      <!--<option *ngFor="let c of [Seçiniz..,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030]" [ngValue]="c">{{c}}</option>-->
+                    </select>
+                  </div>
+                </div>
+              </div>
+          </div>
+          </div>
+      </div>
+    </nb-card>
+  </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+      <nb-card size="active">
+        <br>
+        <div class="col-md-12">
+            <div style="float:left" class="col-md-4">
+                <label>ETKİNLİK ADI:</label>
+                <input name="_searchAdi"  [(ngModel)]="filter.epAdi" (ngModelChange)="getEmployeeListByFilter()"  type="text" class="form-control " placeholder="Etkinlik Ara...">
+              </div>
+              <div style="float: left;" class="col-md-4" >
+                <label>ETKİNLİK SORUMLUSU:</label>
+                <input name="_searchSor" [(ngModel)]="filter.epSorumlusu" (ngModelChange)="getEmployeeListByFilter()" type="text" class="form-control " placeholder="Etkinlik Sorumlusu Ara...">
+              </div>
+          <div style="float:left;" class="col-md-2">
+            <label>ETKİNLİK YERİ:</label>
+            <select class="form-control form-control-sm"  [(ngModel)]="filter.epYeri" (ngModelChange)="getFilterByStaff($event)">
+                <option value="null">HEPSİ</option>
+                <option value="KurumIci">Kurum İci</option>
+                <option value="KurumDisi">Kurum Dısı</option>
+              </select>
+          </div>
+          <div style="float:left;" class="col-md-2">
+            <label>ETKİNLİK TÜRÜ:</label>
+            <select class="form-control form-control-sm" [(ngModel)]="filter.epTuru" (ngModelChange)="getFilterByCins($event)"  >
+                <option value="null">HEPSİ</option>
+                <option value="Sosyal">Sosyal</option>
+                <option value="Kültür Sanat">Kültür Sanat</option>
+                <option value="Spor">Spor</option>
+                <option value="Bireysel">Bireysel</option>
+                <option value="Aile Vasi">Aile Vasi</option>
+              </select>
+          </div>
+        </div>
+        <br>
+      </nb-card>
+    </div>
+  </div>
+<div class="row">
+  <div class="col-md-12">
+    <nb-card size="active">
+      <br>
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-10">
+            <h5>Planlanan Etkinlikler</h5><br>
+          </div>
+          <div class="col-md-2" align="right">
+            <button type="button" class="btn btn-info btn-tn" (click)="newActivty(modalPlannedActivity);">Ekle</button>
+          </div>
+        </div>
+        <br>
+        <div class="col-md-12">
+          <div class="row">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Sıra No</th>
+                  <th scope="col">Oluşturma Tarihi</th>
+                  <th scope="col">Etkinlik Adı</th>
+                  <th scope="col">Etkinlik Yeri</th>
+                  <th scope="col">Planlanan Tahmini Tarih</th>
+                  <th scope="col">Etkinlik Sorumlusu</th>
+                  <th class="text-center" scope="col">Katılacak Engelli Sayısı</th>
+                  <th scope="col">Etkinlik Türü</th>
+                  <th scope="col">Etkinlik Değerlendirmesi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- planlı etkinlik listesi > planldışı etkinlikleri gizle -->
+                <tr *ngFor="let plan of _activityList;let i=index" [hidden]="plan.ep_planli_siz=='1'">
+                  <td>{{i+1}}</td>
+                  <td>{{plan.ep_olusturma_tarihi | date:'dd/MM/yyy'}}</td>
+                  <td>{{plan.ep_adi}} </td>
+                  <td>{{plan.ep_yeri}} </td>
+                  <td>{{plan.ep_plan_tahmini_tarih | date:'dd/MM/yyy'}} </td>
+                  <td>{{plan._sorumlu_mud_ad}}</td>
+                  <td class="text-center">{{plan.ep_engelli_sayisi}}</td>
+                  <td>{{plan.ep_turu}}</td>
+                  <td> 
+                    <button type="button" (click)="open(modalEvaluation);getParticipantsToActivity(plan)">Değerlendir</button>
+                    <button style="margin-left:5px;height: 24px; width: 65px;" (click)="editPlanned(plan);open(modalPlannedActivity);"  type="button">Düzenle</button> 
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </nb-card>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <nb-card size="active">
+      <br>
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-10">
+            <h5>Plan Dışı Etkinlikler</h5>
+          </div>
+          <div class="col-md-2" align="right">
+            <input type="button" class="btn btn-info btn-sm" (click)="newActivty(modalNotplannedActivity)" value="Ekle">
+          </div>
+        </div>
+        <br>
+        <div class="col-md-12">
+          <div class="row">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Sıra No</th>
+                  <th scope="col">Oluşturma Tarihi</th>
+                  <th scope="col">Etkinlik Adı</th>
+                  <th scope="col">Etkinlik Yeri</th>
+                  <th scope="col">Plan Dışı Etkinlik Tarihi</th>
+                  <th scope="col">Etkinlik Sorumlusu</th>
+                  <th class="text-center" scope="col">Katılacak Engelli Sayısı</th>
+                  <th scope="col">Etkinlik Türü</th>
+                  <th scope="col">Etkinlik Değerlendirmesi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- plan dışı etkinlik listesi > planlı etkinlikleri gizle-->
+                <tr *ngFor="let plan of _activityList;let i=index" [hidden]="plan.ep_planli_siz=='0'">
+                  <td>{{i+1}}</td>
+                  <td>{{plan.ep_olusturma_tarihi | date:'dd/MM/yyy'}}</td>
+                  <td>{{plan.ep_adi}}</td>
+                  <td>{{plan.ep_yeri}}</td>
+                  <td>{{plan.ep_plan_tahmini_tarih | date:'dd/MM/yyy'}}</td>
+                  <td>{{plan._sorumlu_mud_ad}}</td>
+                  <td class="text-center">{{plan.ep_engelli_sayisi}}</td>
+                  <td>{{plan.ep_turu}}</td>
+                  <td> 
+                    <button type="button" (click)="open(modalEvaluation);getParticipantsToActivity(plan)">Değerlendir</button>
+                    <button style="margin-left:5px;height: 24px; width: 65px;" (click)="editPlanned(plan);open(modalNotplannedActivity);"  type="button">Düzenle</button> 
+                  </td>
+                </tr> 
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </nb-card>
+  </div>
+</div>
+<!-- Etkinlik Ekleme-düzenleme modal -->
+<ng-template #modalPlannedActivity let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4>Planlanan Etkinlik Oluştur</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group input-group-md">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group input-group-md text-right">
+                  <h5>Ay/Yıl:<strong> {{_ay}} / {{_yil}}</strong></h5>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <div class="form-group input-group-md">
+                  <label>Etkinlik Adı</label>
+                  <input [(ngModel)]="_activityView.ep_adi" [ngModelOptions]="{standalone: true}" type="text" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group input-group-md">
+                    <label>Etkinlik Türü</label>
+                    <select [(ngModel)]="_activityView.ep_turu" [ngModelOptions]="{standalone: true}" class="form-control form-control-sm"
+                      style="height: 40px;">
+                      <option value="null" disabled>Seçiniz</option>
+                      <option value="Sosyal">Sosyal</option>
+                      <option value="Kültür Sanat">Kültür Sanat</option>
+                      <option value="Spor">Spor</option>
+                      <option value="Bireysel">Bireysel</option>
+                      <option value="AileVasi">Aile Vasi</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group input-group-md">
+                  <label>Etkinlik Yeri</label>
+                  <select #selectoption  [(ngModel)]="_activityView.ep_yeri" [ngModelOptions]="{standalone: true}" class="form-control form-control-sm"
+                    style="height: 40px;">
+                    <option value="null" disabled>Seçiniz</option>
+                    <option value="KurumIci">Kurum İçi</option>
+                    <option value="KurumDisi">Kurum Dışı</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group input-group-md">
+                  <label>Etkinlik Yerini Yazınız *Kurum Dışı Etkinliklerde Yazılmalıdır.</label>
+                  <input [(ngModel)]="_activityView.ep_yeri_adi"  [disabled]="selectoption.value =='KurumIci'|| selectoption.value =='null'" [ngModelOptions]="{standalone: true}"  type="text" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group input-group-md">
+                  <label>Planlanan Tahmini Tarih</label>
+                  <input [(ngModel)]="_activityView.ep_plan_tahmini_tarih" [ngModelOptions]="{standalone: true}" type="text" class="form-control"
+                    bsDatepicker placement="right" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group input-group-md">
+                  <label>Etkinlik Sorumlusu</label>
+                  <app-searchEmployee (getEmployee)="plannedActivityResponsibility($event)"></app-searchEmployee>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group input-group-md">
+                  <label>Katılacak Engelli Sayısı</label>
+                  <input [(ngModel)]="_activityView.ep_engelli_sayisi" [ngModelOptions]="{standalone: true}" type="number" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <strong style="text-align:left;color:red" align="left">{{message}}</strong>
+    <button type="button" (click)="d('Cross click')" class="btn btn-hero-danger btn-demo input-group-text">Vazgeç</button>
+    <button type="button" (click)="saveActivity();d('Cross click')" class="btn btn-hero-success btn-demo input-group-text">Kaydet</button>
+  </div>
+</ng-template>
+<!-- Plan dışı etkinlik ekleme düzenleme modal -->
+<ng-template #modalNotplannedActivity let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4>Plan Dışı Etkinlik Oluştur</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group input-group-md">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group input-group-md text-right">
+                  <h5>Ay/Yıl:<strong> {{_ay}} / {{_yil}}</strong></h5>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group input-group-md">
+                  <label>Etkinlik Adı</label>
+                  <input [(ngModel)]="_activityView.ep_adi" [ngModelOptions]="{standalone: true}" type="text" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group input-group-md">
+                  <label>Etkinlik Türü</label>
+                  <select [(ngModel)]="_activityView.ep_turu" [ngModelOptions]="{standalone: true}" class="form-control form-control-sm"
+                    style="height: 40px;">
+                    <option value="null"disabled>Seçiniz</option>
+                    <option value="Sosyal">Sosyal</option>
+                    <option value="Kültür Sanat">Kültür Sanat</option>
+                    <option value="Spor">Spor</option>
+                    <option value="Bireysel">Bireysel</option>
+                    <option value="AileVasi">Aile Vasi</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group input-group-md">
+                  <label>Etkinlik Yeri</label>
+                  <select #selectoption [(ngModel)]="_activityView.ep_yeri" [ngModelOptions]="{standalone: true}" class="form-control form-control-sm"
+                    style="height: 40px;">
+                    <option value="null">Seçiniz</option>
+                    <option value="KurumIci">Kurum İçi</option>
+                    <option value="KurumDisi">Kurum Dışı</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group input-group-md">
+                  <label>Etkinlik Yerini Yazınız *Kurum Dışı Etkinliklerde Yazılmalıdır</label>
+                  <input [(ngModel)]="_activityView.ep_yeri_adi" [ngModelOptions]="{standalone: true}" [disabled]="selectoption.value =='KurumIci'|| selectoption.value =='null'" type="text" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group input-group-md">
+                  <label>Etkinlik Tarihi</label>
+                  <input [(ngModel)]="_activityView.ep_plan_tahmini_tarih" [ngModelOptions]="{standalone: true}" type="text" class="form-control"
+                    bsDatepicker placement="right" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group input-group-md">
+                  <label>Etkinlik Sorumlusu</label>
+                  <app-searchEmployee (getEmployee)="plannedActivityResponsibility($event)"></app-searchEmployee>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group input-group-md">
+                  <label>Katılacak Engelli Sayısı</label>
+                  <input [(ngModel)]="_activityView.ep_engelli_sayisi" [ngModelOptions]="{standalone: true}" type="number" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+      <button type="button" (click)="d('Cross click')" class="btn btn-hero-danger btn-demo input-group-text">Vazgeç</button>
+    <button type="button" (click)="saveUnplannedActivity();d('Cross click')" class="btn btn-hero-success btn-demo input-group-text">Kaydet</button>
+  </div>
+</ng-template>
+
+<div bsModal #kayitnomodal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body" >
+        <h5 style="text-align: center">Gerçekleştirilen Mesleki Çalışma Bilgileri</h5>
+        <div class="form-group row">
+        <strong class="col-3 col-form-label"><label >Sıra No:</label></strong>
+          <div class="col-3">
+              <input  type="number"  class="form-control" disabled>
+          </div>
+        </div>
+        <div class="form-group row">
+          <strong  class="col-3 col-form-label"><label>Tarih:</label></strong>
+          <div class="col-9">
+            <input [(ngModel)]="_workRecordBook.mckdtarih" [ngModelOptions]="{standalone: true}" type="text" class="form-control"  bsDatepicker placement="bottom" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+          </div>
+        </div>
+        <div class="form-group row">
+          <strong  class="col-3 col-form-label"><label>Türü:</label></strong>
+          <div class="col-9">
+              <input [(ngModel)]="_workRecordBook.mckdturu" [ngModelOptions]="{standalone: true}"  type="text"    class="form-control">
+          </div>
+        </div>
+        <div class="form-group row">
+          <strong class="col-3 col-form-label"><label >Konusu:</label></strong>
+          <div class="col-9">
+            <textarea [(ngModel)]="_workRecordBook.mckdkonusu" [ngModelOptions]="{standalone: true}" style="height: 80px" class="form-control" ></textarea>
+           </div>
+        </div>
+        <div class="form-group row">
+          <strong class="col-3 col-form-label"><label >Açıklamalar:</label></strong>
+          <div class="col-9">
+            <textarea  [(ngModel)]="_workRecordBook.mckdacklm" [ngModelOptions]="{standalone: true}" style="height: 80px" class="form-control" ></textarea>
+           </div>
+        </div>
+        <div class="form-group row">
+            <strong  class="col-3 col-form-label"><label>Meslek Elemanı Adı Soyadı:</label></strong>
+            <div class="col-9">
+                <input  [(ngModel)]="_workRecordBook.mckdmes_elm_adi" [ngModelOptions]="{standalone: true}" type="text"    class="form-control">
+            </div>
+          </div>
+        <div class="modal-footer">
+          <a href="javascript:void(0)" (click)="kayitnomodal.hide();" class="btn btn-danger  btn-tn">Vazgeç</a>
+          <a href="javascript:void(0)" (click)="kayitnomodal.hide();" class="btn btn-success  btn-tn">Kaydet</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Değerlendirme Modal -->
+<ng-template #modalEvaluation let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h5>Etkinlik Değerlendirme</h5>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-6">
+        <p>Etkinlik Adı: {{_activityView.ep_adi}} </p>
+        <p>Etkinlik Yeri: {{_activityView.ep_yeri}}</p>
+      </div>
+      <div class="col-6">
+        <p>Etkinlik Türü: {{_activityView.ep_turu}}</p>
+        <p>Etkinlik Tarihi: {{_activityView.ep_plan_tahmini_tarih | date:'dd/MM/yyyy'}}</p>
+      </div>
+    </div>
+    <hr>
+    <form>
+      <div class="form-group input-group-md">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group input-group-md">
+                  <label>Etkinliğe Katılan Personel</label>
+                  <app-searchEmployee (getEmployee)="addEmployeetoActivity($event)"></app-searchEmployee>
+                </div>
+              </div>
+            </div>
+            <div class="row" >
+              <div class="col-sm-12">
+                <div class="card">
+                    <div class="ex1">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th class="col-7">Personel Adı</th>
+                        <th class="col-3 ">İşlem</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let per of _activityView._activityPersonel" [hidden]="per._modify==3">
+                        <td>{{per._peradi}}</td>
+                        <td align="right">
+                          <button type="button" (click)="removeEmplyeeFromActivity(per)" class="btn btn-hero-danger btn-tn">Çıkar</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                </div>
+              </div>
+            </div>
+            <br>
+            <!-- Etkinliğe Katılan Engelliler -->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group input-group-md">
+                  <label>Etkinliğe Katılan Engelliler</label>
+                  <app-disablitySearchInput (getDisablitiy)="addDisablitiytoActivity($event)"></app-disablitySearchInput>
+                </div>
+              </div>
+            </div>
+            <!-- Etkinliğe Katılan Engelliler Table -->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="card">
+                  <div class="ex1">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th class="col-7">Engelli Adı</th>
+                        <th class="col-3 ">İşlem</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let d of _activityView._activityDisabled">
+                        <td>{{d._ikadi}}</td>
+                        <td align="right">
+                          <button type="button" (click)="removeDisablitiyFromActivity(d)" class="btn btn-hero-danger btn-tn">Çıkar</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              </div>
+            </div>
+            <br>
+            <!-- Yapılan Faaliyetler -->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group input-group-md">
+                  <label>Etkinlik Yapılan Faaliyetler</label>
+                  <textarea [(ngModel)]="_activityView.ep_deg_yap_faaliyet" [ngModelOptions]="{standalone:true}" name="yapilanFaaliyet"
+                    id="" cols="30" rows="10" class="form-control" style="height:100px"></textarea>
+                </div>
+              </div>
+            </div>
+            <!-- Değerlendirme ve Öneriler -->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group input-group-md">
+                  <label>Değerlendirme ve Öneriler</label>
+                  <textarea [(ngModel)]="_activityView.ep_deg_oneriler" [ngModelOptions]="{standalone:true}" name="degerlendirme"
+                    id="" cols="30" rows="10" class="form-control" style="height:100px"></textarea>
+                </div>
+              </div>
+            </div>
+            <!-- foto -->
+            <div class="row">
+            <strong><label class="col-md-12 col-form-label" style="text-align: center">Fotoğraf Seçiniz</label></strong>
+          </div>
+            <div class="row">
+            <div class="col-md-12"><input style="text-align: center" type="file" (change)="(onFileSelected$event)"></div>
+          </div>
+            <div class="row">
+            <div class="col-md-2">
+                <div class="col-3" style="text-align: center">
+                    <img src="{{url}}" width="100" height="100" alt="" srcset="">
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="col-3" style="text-align: center">
+                    <img src="{{url}}" width="100" height="100" alt="" srcset="">
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="col-3" style="text-align: center">
+                    <img src="{{url}}" width="100" height="100" alt="" srcset="">
+                </div>
+              </div>
+              <div class="col-md-2">
+                  <div class="col-3" style="text-align: center">
+                      <img src="{{url}}" width="100" height="100" alt="" srcset="">
+                  </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="col-3" style="text-align: center">
+                        <img src="{{url}}" width="100" height="100" alt="" srcset="">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                      <div class="col-3" style="text-align: center">
+                          <img src="{{url}}" width="100" height="100" alt="" srcset="">
+                      </div>
+                </div>
+            <!--
+            <div class="form-group row">
+                <div class="col-1" style="text-align: center">
+                    <img src="{{url}}" width="260" height="275" alt="" srcset="">
+                </div>
+                <label class="col-3 col-form-label">Fotoğraf Seç</label>
+                <div class="col-9">
+                    <input type="file" (change)="(onFileSelected$event)">
+                </div>
+            </div>-->
+          </div>
+            <!-- Etkinlik Sorumlusu -->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group input-group-md">
+                  <!-- <p>Etkinlik Sorumlusu: Talha Toprak</p> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" (click)="d('Cross click')" class="btn btn-hero-danger btn-tn">Vazgeç</button>
+    <button type="button" (click)="saveActivity();d('Cross click')" class="btn btn-hero-success btn-tn">Kaydet</button>
+  </div>
+</ng-template>
+<toaster-container>
+</toaster-container>

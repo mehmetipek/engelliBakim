@@ -1,0 +1,47 @@
+#clrFiziksel{
+    background-color: #6ca6cd; 
+    padding: 15px;
+    border-radius: 20px;
+}
+#clrBlue{
+    background-color: #419cdb; 
+    padding: 15px;
+    border-radius: 20px;
+}
+.center { 
+    height: 50px;
+    width: auto;
+    position: relative;
+  }
+  .form-header{
+    // padding: 5px;
+    // margin: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    &-tittle{
+        // width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+     
+    &-info{
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        // align-self:center;
+        &-item{
+            margin: auto;
+        }
+    }
+}
+.table th, .table td {
+    padding: 0.2rem;
+}
+.btn-group-xs > .btn, .btn-xs {
+  padding: .25rem .4rem;
+  font-size: .875rem;
+  line-height: .5;
+  border-radius: .2rem;
+}

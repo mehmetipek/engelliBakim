@@ -1,0 +1,92 @@
+<nb-card>
+  <nb-card-header> 
+    <div id="clrFiziksel" class="center" >
+      <h5  style="color: white">FILTRELEME</h5>
+    </div>
+  </nb-card-header>
+<nb-card-body>
+            <div style="float:left" class="col-md-2">
+                <label style="color: black;font-weight: bold;">Engelli Adından</label>
+                <input name="_searchText" [(ngModel)]="filter._ikadisoyadi" (ngModelChange)="search($event)" type="text" class="form-control " placeholder="Engelli Ara...">
+              </div>
+          <div style="float:left" class="col-md-2">
+            <label style="color: black;font-weight: bold;">Başlangıç Tarihinden</label>
+            <input type="text" [(ngModel)]="filter.planbastar" (ngModelChange)="search($event)"  name="" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" placeholder="Tarih Belirleyiniz.."/>
+          </div>
+          <div style="float:left" class="col-md-2">
+            <label style="color: black;font-weight: bold;">Bitiş Tarihinden</label>
+            <input type="text" name="" [(ngModel)]="filter.planbitistar" (ngModelChange)="search($event)" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" placeholder="Tarih Belirleyiniz.."/>
+          </div>
+          <div style="float: left;"class="col-md-2" >
+            <label style="color: black;font-weight: bold;">Filtresinden</label>
+            <select   [(ngModel)]="filter.aktif_kayit" (ngModelChange)="search($event)" class="form-control form-control-sm" >
+              <option value=true>Aktif</option>
+              <option value=false>Pasif</option>
+              <option value=null>Hepsi</option>   
+              </select>
+          </div>
+          <div style="float: right;">
+            <button  style="height:70px;font-size: 1rem;" class="btn btn-info btn-tn" [routerLink]="['../bireyselbakimplan']">Bireysel Bakım Planı Yap</button>
+          </div>
+      </nb-card-body>
+      </nb-card>
+      <app-formHeader></app-formHeader>
+<nb-card>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel">
+          <table class="table table-striped">
+            <thead style="background:#C46210;">
+              <tr style="color: white;text-align: center;height: 45px;vertical-align: top;">
+                  <th>Sıra No</th>
+                  <th>Mesleki Kayıt No</th>
+                  <th>Engelli Adı Soyadı</th>
+                  <th>Düzenleme Tarihi</th>
+                  <th>Yeniden Değerlendirme Tarihi</th>
+                  <th>Planın Uygulamaya Başlama Tarihi</th>
+                  <th>Planın Uygulama Bitiş Tarihi</th>
+                  <th style="text-align: center">İŞLEMLER</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of individualCarePlanList;let i=index" [hidden]="item.aktif_kayit==false" style="text-align: center;">
+                  <td>{{i+1}}</td>
+                  <td>{{item.mckdsirano}}</td>
+                  <td>{{item.ikadisoyadi}}</td>
+                  <td>{{item.duzenlemetar | date:'dd/MM/yyyy'}}</td>
+                  <td>{{item.yenidendegtar  | date:'dd/MM/yyyy'}}</td>
+                  <td>{{item.planbastar | date:'dd/MM/yyyy'}}</td>
+                  <td>{{item.planbitistar | date:'dd/MM/yyyy'}}</td>
+                  <td>
+                    <div class="btn-group btn-group-xs">
+                      <a href="javascript:void(0)"  class="btn btn-info btn-xs" (click)="pdfviewer.show();getPdf(item)">Göster</a>
+                      <a href="javascript:void(0)" style="margin-left:5px;width: 130px;"  class="btn btn-success btn-xs" [routerLink]="['../bireyselbakimplan']" [queryParams]="{id:item.id}" >Değerlendir</a>
+                      <a href="javascript:void(0)" [hidden]="!item.aktif_kayit" style="margin-left:5px;" class="btn btn-danger btn-xs" (click)="closeIndividualCarePlanPage(item.id);">Kapat</a>
+                    </div>
+                  </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
+<div bsModal #pdfviewer="bs-modal" class="modal fade bd-example-modal-lg" tabindex="-1 " role="dialog" aria-labelledby="dialog-sizes-name1 ">
+  <div class="modal-dialog modal-lg ">
+    <div class="modal-content ">
+      <div class="modal-header ">
+        <h5 id="dialog-sizes-name1 " class="modal-title pull-left "></h5>
+        <button type="button " class="close pull-right " (click)="pdfviewer.hide() " aria-label="Close ">
+          <span aria-hidden="true ">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body ">
+        <form>
+          <app-pdfViewer #pdfViewerCom></app-pdfViewer>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

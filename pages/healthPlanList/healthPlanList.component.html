@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <nb-card size="active">
+        <br>
+        <div class="col-md-12">
+            <h5>Sağlık Hizmetleri</h5>
+            <hr>
+        </div>
+           
+          <div class="col-md-12">
+       
+            <table class="table  table-hover">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">Döküman Kodu</th>
+                  <th scope="col">Döküman Adı</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let p of _planList" style="cursor: pointer;" [routerLink]="p.link">
+                    <th scope="row">{{p.code}}</th>
+                    <td>{{p.name}}</td>
+                  </tr>
+                </tbody>
+            </table>
+          </div>
+  
+      </nb-card>
+    </div>
+    <br>
+  </div>

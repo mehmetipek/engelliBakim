@@ -1,0 +1,457 @@
+<app-formHeader></app-formHeader>
+<app-workRegistry [_meslekiSiraNo]="plan.individualcareplan._mes_sira_no_id"></app-workRegistry>
+<div class="col-md-12" style="margin-top:-20px">
+<div class="row" >
+<nb-card size="active" style="width: 48.5%;">
+    <div class="col-md-12" style="margin-top: 8px;">
+       
+      <div class="form-group row" >
+        <label style="border-style: solid;
+        border-width: thin;font-weight:bold;background-color: #dcdcdc" class="col-7 col-form-label">Formun Düzenleme Tarihi</label>
+        <div class="col-5" style="border-style: solid;
+        border-width: thin;">
+            <input type="text" name="duzenlemetar" [(ngModel)]="plan.individualcareplan.duzenlemetar" class="form-control" bsDatepicker
+                        placement="right" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"style="border: 0px;" >
+        </div>
+      </div>
+      <div class="form-group row" >
+        <label class="col-7 col-form-label" style="border-style: solid;
+        border-width: thin;font-weight:bold;background-color: #dcdcdc">Bu Planın Yeniden Değerlendirme Tarihi</label>
+        <div class="col-5"  style="border-style: solid;
+        border-width: thin;">
+            <input type="text" name="yenidendegtar" [(ngModel)]="plan.individualcareplan.yenidendegtar" class="form-control" bsDatepicker
+                        placement="right" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"style="border: 0px;" >
+        </div>
+      </div>
+      <div class="form-group row" >
+        <label class="col-7 col-form-label"  style="border-style: solid;
+        border-width: thin;font-weight:bold;background-color: #dcdcdc">Bu Planın Uygulama Başlama Tarihi</label>
+        <div class="col-5" style="border-style: solid;
+        border-width: thin;">
+            <input type="text" name="planbastar" [(ngModel)]="plan.individualcareplan.planbastar" class="form-control" bsDatepicker placement="right"
+            [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" style="border: 0px;">
+        </div>
+      </div>
+      <div class="form-group row" >
+        <label class="col-7 col-form-label" style="border-style: solid;
+        border-width: thin;font-weight:bold;background-color: #dcdcdc">Bu Planın Uygulama Bitiş Tarihi</label>
+        <div class="col-5" style="border-style: solid;
+        border-width: thin;">
+            <input type="text" name="planbitistar" [(ngModel)]="plan.individualcareplan.planbitistar" class="form-control" bsDatepicker
+                        placement="right" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" style="border: 0px;">
+        </div>
+      </div>
+    </div>
+  
+</nb-card>
+<nb-card size="active" style="margin-left: 25px;width: 50%;">
+    <div class="col-md-12" style=" margin-top: 8px;">
+      <div class="form-group row">
+        <label class="col-7 col-form-label" style="border-style: solid;
+        border-width: thin;font-weight:bold;background-color: #dcdcdc">Bakım Merkezi Adı</label>
+        <div class="col-5" style="border-style: solid;
+        border-width: thin;">
+            <input name="_careCenterName" [(ngModel)]="_careCenterName" type="text" disabled class="form-control"style="border: 0px;">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-7 col-form-label" style="border-style: solid;
+        border-width: thin;font-weight:bold;background-color: #dcdcdc">Bakım Merkezinin Adresi</label>
+        <div class="col-5" style="border-style: solid;
+        border-width: thin;">
+            <textarea name="careCenterAdress" [(ngModel)]="plan.individualcareplan.bmadres" class="form-control" style="border: 0px;" disabled></textarea>
+            <!-- <input  type="text" disabled class="form-control"> -->
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-7 col-form-label" style="border-style: solid;
+        border-width: thin;font-weight:bold;background-color: #dcdcdc">Bakım Merkez Kurucusunun Adı</label>
+        <div class="col-5" style="border-style: solid;
+        border-width: thin;">
+            <input name="kurucuAdiSoyadi" [(ngModel)]="plan.kurucuAdiSoyadi" disabled type="text" class="form-control" style="border: 0px;">
+        </div>
+      </div>
+      <div class="form-group row" >
+        <label class="col-7 col-form-label" style="border-style: solid;
+        border-width: thin;font-weight:bold;background-color: #dcdcdc">Engelliye Verilecek Hizmet Türü</label>
+        <div class="col-5" style="border-style: solid;
+        border-width: thin;">
+            <select style="width: 66%;margin-top: 2px;"  name="engellihiztur" [(ngModel)]="plan.individualcareplan.engellihiztur" class="form-control-sm">
+                <option value="null" disabled>Seçiniz..</option>
+                <option value="Yatılı">Yatılı</option>
+                <option value="Gündüzlü">Gündüzlü</option>
+                <option value="Tam Gün">Tam Gün</option>
+                <option value="Yarım Gün">Yarım Gün</option>
+                <option value="Evde Bakım">Evde Bakım</option>
+              </select>
+        </div>
+      </div>
+    </div>
+  </nb-card>
+  </div>
+</div>
+<app-disabilitySearch [disability]="_disability" (getDisabledId)="getDisabledId($event)"></app-disabilitySearch>
+<!-- Bakım Hizmetleri analizi -->
+<div class="row">
+  <div class="col-md-12">
+    <nb-card size="active">
+      <div class="col-md-12">
+        <!-- <div class="row">
+          <div class="col-md-12">
+            <h5>Bakım Hizmetleri Analizi</h5>
+            <hr>
+          </div>
+        </div> -->
+        <div class="row" id="clrFiziksel">
+          <div class="col-md-12" style="height: 25px">
+              <div style="float:left" class="col-md-4">
+                  <h5 style="color: white;">Bakım Hizmetleri Analizi</h5>
+              </div>
+           <!-- <div style="float:right;margin-right: 20px;margin-top: 5px;">
+            <strong style="margin-right: 25px;color: white;">ID: #0001</strong>
+          </div> -->
+        </div>
+      </div>
+        <div class="row">
+          <div class="col-md-12 ">
+            <table class="table table-hover ">
+              <thead>
+                <tr>
+                  <!-- <th scope="col">#</th> -->
+                  <th scope="col">Kişisel Bakım Hizmetleri</th>
+                  <th scope="col">Başkasının Yardımına <br> İhtiyaç Durumu</th>
+                  <th scope="col">Hizmetin Asgari Sunulma Sıklığı</th>
+                  <th scope="col">Hizmetin Verilme Şekli/Nasıl <br> Verileceği</th>
+                  <th scope="col" [hidden]="plan.individualcareplan.id ==0 || !plan.individualcareplan.id">İşlemler</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let s of plan.maintenanceservicesanalysis">
+                  <!-- <th scope="row">{{s.kisiselbakimhizadi_id}}</th> -->
+                  <td>{{s._kisiselbakimadi}}</td>
+                  <td>
+                    <select [(ngModel)]="s.yardimihtiyac" [ngModelOptions]="{standalone: true}" class=" form-control-sm ">
+                      <option value="null" disabled>Seçiniz..</option>
+                      <option value="var">Var</option>
+                      <option value="yok">Yok</option>
+                      <option value="kismenVar">Kısmen Var</option>
+                    </select>
+                  </td>
+                  <!--  Sıklık -->
+                  <td>
+                    <div class="input-group-sm ">
+                      <select [(ngModel)]="s.hizmetsikligi " [ngModelOptions]="{standalone: true} " class="form-control-sm ">
+                        <option value="null" disabled>Seçiniz..</option>
+                        <option value="Hergün">Hergün </option>
+                        <option value="2 Günde 1">2 Günde 1 </option>
+                        <option value="3 Günde 1">3 Günde 1 </option>
+                        <option value="Haftada 1 defa">Haftada 1 defa </option>
+                        <option value="Haftada 2 defa">Haftada 2 defa </option>
+                        <option value="10 Günde 1">10 Günde 1 </option>
+                        <option value="15 Günde 1">15 Günde 1 </option>
+                        <option value="Ayda 1">Ayda 1 </option>
+                      </select>
+                    </div>
+                  </td>
+                  <td>
+                    BSD....
+                  </td>
+                  <td><!--
+                    <div class="row">
+                    <button class="btn btn-info btn-tn " (click)="openOndividualCarePlanEvaluation(s)">Değerlendir</button>
+                    <button class="btn btn-danger btn-tn ">SİL</button>
+                    </div>-->
+                    <div class="btn-group btn-group-xs" [hidden]="plan.individualcareplan.id ==0 || !plan.individualcareplan.id" >
+                      <a href="javascript:void(0)" (click)="openOndividualCarePlanEvaluation(s)" class="btn btn-info btn-xs">Değerlendir</a>
+                      <!-- <a href="javascript:void(0)" style="margin-left:5px;width: 130px;" class="btn btn-danger btn-xs">Sil</a> -->
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </nb-card>
+  </div>
+</div>
+<!-- Psiko-Sosyal Destek Hizmetleri Analizi -->
+<div class="row ">
+  <div class="col-md-12 ">
+    <nb-card size="active ">
+      <div class="col-md-12 ">
+        <!-- <div class="row ">
+          <div class="col-md-12 ">
+            <h5>Psiko-Sosyal Destek Hizmetleri Analizi</h5>
+            <hr>
+          </div>
+        </div> -->
+        <div class="row" id="clrFiziksel">
+          <div class="col-md-12" style="height: 25px">
+              <div style="float:left" class="col-md-4">
+                  <h5 style="color: white;">Psiko-Sosyal Destek Hizmetleri Analizi</h5>
+              </div>
+           <!-- <div style="float:right;margin-right: 20px;margin-top: 5px;">
+            <strong style="margin-right: 25px;color: white;">ID: #0001</strong>
+          </div> -->
+        </div>
+      </div>
+        <div class="row ">
+
+          <div class="col-md-12 ">
+            <table class="table table-hover ">
+              <thead>
+                <tr>
+                  <!-- <th scope="col ">#</th> -->
+                  <th scope="col ">Psiko-Sosyal Destek Hizmetleri</th>
+                  <th scope="col ">Başkasının Yardımına İhtiyaç Durumu</th>
+                  <th scope="col ">Amaç/Hedef</th>
+                  <th scope="col ">Amaca/Hedefe Yönelik Ön Görülen Çalışmalar</th>
+                  <th scope="col " [hidden]="plan.individualcareplan.id ==0 || !plan.individualcareplan.id">İşlemler</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of plan.psychosocialanalysis " >
+                  <!-- <th scope="row ">{{item.id}}</th> -->
+                  <td style="width: 38.5%;">{{item.psikohizadi}} {{item._psikososdestekadi}}</td>
+                  <td>
+                    <select [(ngModel)]="item.basyarihtiyacdrm" [ngModelOptions]="{standalone: true}" class="form-control-sm ">
+                      <option value="null" disabled>Seçiniz..</option>
+                      <option value="var ">Var</option>
+                      <option value="yok ">Yok</option>
+                      <option value="Kısmen Var ">Kısmen Var</option>
+                    </select>
+                  </td>
+                  <td>
+                    <div class="input-group-sm ">
+                      <!-- <input [(ngModel)]="item.amachedef" [ngModelOptions]="{standalone: true}" type="text " class="form-control "> -->
+                      <textarea  [(ngModel)]="item.amachedef" [ngModelOptions]="{standalone: true}"  class="form-control "></textarea>
+                    </div>
+                  </td>
+
+                  <td>
+                    <div class="input-group-sm ">
+
+                      <!-- <input [(ngModel)]="item.ongorulencalismalar" [ngModelOptions]="{standalone: true}" type="text " class="form-control "> -->
+                      <textarea [(ngModel)]="item.ongorulencalismalar" [ngModelOptions]="{standalone: true}"class="form-control "></textarea>
+                    </div>
+                  </td>
+                  <td><!--
+                    <div class="row">
+                        <button class="btn btn-info btn-tn " (click)="openHizmetAnaliziDegerlendirme(item)">Değerlendir</button>
+                        <button class="btn btn-danger btn-tn ">SİL</button>
+                    </div>-->
+                    <div class="btn-group btn-group-xs" [hidden]="plan.individualcareplan.id ==0 || !plan.individualcareplan.id"> 
+                      <a href="javascript:void(0)" (click)="openHizmetAnaliziDegerlendirme(item)" class="btn btn-info btn-xs">Değerlendir</a>
+                      <!-- <a href="javascript:void(0)" style="margin-left:5px;width: 130px;" class="btn btn-danger btn-xs">Sil</a> -->
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </nb-card>
+  </div>
+</div>
+<!-- Bireysel Bakım Hizmeti Değerlendirme -->
+<div bsModal #modalIndividualCareServiceEvaluation="bs-modal" class="modal fade " tabindex="-1 " role="dialog
+                      " aria-labelledby="dialog-sizes-name1 ">
+  <div class="modal-dialog modal-lg ">
+    <div class="modal-content ">
+      <div class="modal-header ">
+        <h5 id="dialog-sizes-name1 " class="modal-title pull-left ">Bireysel Bakım Planı Değerlendirme</h5>
+        <button type="button " class="close pull-right " (click)="CareServiceEvaluationModal.hide() " aria-label="Close ">
+          <span aria-hidden="true ">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body ">
+        <form>
+          <div class="form-group input-group-md ">
+              <div class="row ">
+                  <div class="col-sm-12 ">
+                    <div class="form-group input-group-md ">
+                      <label>Değerlendirilen İşlem:</label>
+                      <div>
+                        <p>
+                          <b>{{_maintenanceServicesEvaluation._service_text}}</b>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+            <div class="row ">
+              <div class="col-md-12 ">
+                <div class="row ">
+
+                  <div class="col-sm-12 ">
+                    <div class="form-group input-group-md ">
+                      <label>Tarih</label>
+                      <input [(ngModel)]="_maintenanceServicesEvaluation.bhandegtarih" [ngModelOptions]="{standalone: true}" type="text " class="form-control "
+                        bsDatepicker placement="right " [bsConfig]="{ dateInputFormat:
+                      'DD/MM/YYYY' } ">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row ">
+                  <div class="col-sm-12 ">
+                    <div class="form-group input-group-md ">
+                      <label>Değerlendirme</label>
+                      <input [(ngModel)]="_maintenanceServicesEvaluation.bhandegdegerlendirme" [ngModelOptions]="{standalone: true}" type="text "
+                        class="form-control ">
+                    </div>
+                  </div>
+                </div>
+              
+                <br>
+                <div class="row ">
+                    <div class="col-md-6 pull-left">
+                      <label>Engelli: <b>{{_disability.ikadisoyadi | uppercase}}</b></label>
+                    </div>
+  
+                    <div class="col-6 text-right">
+                      <button (click)="saveMaintenanceServicesEvaluation()" class="btn btn-success btn-tn ">Ekle</button>
+                    </div>
+                  </div>
+                <div class="row ">
+                  <div class="col-sm-12 ">
+                    <table class="table table-bordered ">
+                      <thead>
+                        <tr>
+                          <th>Tarih</th>
+                          <th>Değerlendirme</th>
+                          <th>Değerlendiren</th>
+                          <th>İşlemler</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let e of _maintenanceServicesEvaluationList">
+                          <td>{{e.bhandegtarih |date:'dd/MM/yyyy'}} </td>
+                          <td>{{e.bhandegdegerlendirme}} </td>
+                          <td>{{e._useradsoyad}} </td>
+                          <td><button class="btn btn-danger btn-tn" (click)="deleteMaintenanceServicesEvaluation(e)" >Sil </button> </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Psiko-sosyal Hizmet Analizi Değerlendirme -->
+<div bsModal #modalHizmetAnalizi="bs-modal" class="modal fade " tabindex="-1 " role="dialog " aria-labelledby="dialog-sizes-name1 ">
+  <div class="modal-dialog modal-lg ">
+    <div class="modal-content ">
+      <div class="modal-header ">
+        <h5 id="dialog-sizes-name1 " class="modal-title pull-left ">Psiko-sosyal Hizmet Analizi Değerlendirme</h5>
+        <button type="button " class="close pull-right " (click)="modalHizmetAnalizi.hide() " aria-label="Close ">
+          <span aria-hidden="true ">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body ">
+
+        <form>
+          <div class="form-group input-group-md ">
+            <div class="row ">
+              <div class="col-md-12 ">
+                <div class="row ">
+                  <div class="col-sm-12 ">
+                    <div class="form-group input-group-md ">
+                      <label>Değerlendirilen İşlem:</label>
+                      <div>
+                        <p>
+                          <b>{{_psychoSocialAnalysisEvaluation._service_text}}</b>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row ">
+
+                  <div class="col-sm-12 ">
+                    <div class="form-group input-group-md ">
+                      <label>Tarih</label>
+                      <input [(ngModel)]="_psychoSocialAnalysisEvaluation.psandegtarih" [ngModelOptions]="{standalone: true}" type="text " class="form-control "
+                        bsDatepicker placement="right " [bsConfig]="{ dateInputFormat:
+                      'DD/MM/YYYY' } ">
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <div class="row ">
+                  <div class="col-sm-12 ">
+                    <div class="form-group input-group-md ">
+                      <label>Değerlendirme</label>
+                      <input [(ngModel)]="_psychoSocialAnalysisEvaluation.psandegdegerlendirme" [ngModelOptions]="{standalone: true}" type="text "
+                        class="form-control ">
+                    </div>
+                  </div>
+                </div>
+                <div class="row ">
+                  <div class="col-md-6 pull-left">
+                    <label>Engelli: <b>{{_disability.ikadisoyadi | uppercase}}</b></label>
+                  </div>
+
+                  <div class="col-6 text-right">
+                    <button (click)="savePsychoSocialAnalysisEvaluation()" class="btn btn-success btn-tn ">Ekle</button>
+                  </div>
+                </div>
+                <br>
+                <div class="row ">
+                  <div class="col-sm-12 ">
+                    <table class="table table-bordered ">
+                      <thead>
+                        <tr>
+                          <th>Tarih</th>
+                          <th>Değerlendirme</th>
+                          <th>Değerlendiren</th>
+                          <th>İşlemler</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let e of _psychoSocialAnalysisEvaluationList">
+                          <td> {{e.psandegtarih | date:'dd/MM/yyyy'}} </td>
+                          <td> {{e.psandegdegerlendirme}} </td>
+                          <td> {{e._useradsoyad}} </td>
+                          <td> <button type="button" (click)="deletePsychoSocialAnalysisEvaluation(e)" class="btn btn-danger btn-tn">Sil</button> </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="modal-footer">
+    <button class="btn btn-danger btn-round btn-demo btn-tn">SİL</button>
+      <button class="btn btn-info btn-round btn-demo btn-tn">ÖNİZLEME</button>
+      <button class="btn btn-warning btn-round btn-demo btn-tn">KALICI KAYDET</button>
+      <button class="btn btn-success btn-round btn-demo btn-tn" (click)="savePlan()">KAYDET</button>
+  </div>
+<!--
+<div class="modal-footer">
+    <a href="javascript:void(0)" (click)="savePlan()"  class="btn btn-success  btn-tn">KAYDET</a>
+    <a href="javascript:void(0)" (click)="savePlan()"  class="btn btn-info  btn-tn">ÖNİZLEME</a>
+    <a href="javascript:void(0)" (click)="savePlan()" class="btn btn-danger  btn-tn">KALICI KAYDET</a>
+    <a href="javascript:void(0)" (click)="savePlan()" class="btn btn-danger  btn-tn">SİL</a>
+  </div>-->
+<toaster-container>
+</toaster-container>

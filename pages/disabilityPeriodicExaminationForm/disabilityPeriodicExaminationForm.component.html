@@ -1,0 +1,199 @@
+<div class="row">
+  <div class="col-md-12">
+    <nb-card size="active">
+      <br>
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-9">
+            <h5>Engelli Periyodik Muayene Formu</h5>
+          </div>
+          <div class="col-md-3" align="right">
+            <strong style="margin-right: 25px">ID: #0001</strong>
+          </div>
+        </div>
+        <hr>
+
+        <!-- <div class="row">
+
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="col-md-12">
+                  <div class="form-group row">
+                    <span class="col-md-4">Düzenleme Tarihi:</span>
+                    <div class="col-sm-8 input-group-sm">
+                      <input type="text" name="duzenlemetar" class="form-control" bsDatepicker placement="right" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-sm-6">
+                <div class="col-md-12">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group row">
+                        <span class="col-md-4">Bakım Merkezi Adı:</span>
+                        <div class="col-sm-8 input-group-sm">
+                          <input name="careCenterName" type="text" class="form-control">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+
+        </div> -->
+
+      </div>
+    </nb-card>
+  </div>
+</div>
+<app-disabilitySearch (getDisabledId)="getDisabledId($event)"></app-disabilitySearch>
+<!-- Muayene Listesi -->
+<div class="row">
+  <div class="col-md-12">
+    <nb-card>
+      <br>
+
+      <div class="col-md-12">
+
+        <button class="btn btn-hero-info btn-tn " (click)="newReport();examinationmodal.show()" style="margin-bottom: 10px">Yeni Rapor
+          Ekle
+        </button>
+        <div class="custom-control custom-checkbox pull-right">
+          <input #showAll class="custom-control-input" id="showAll" type="checkbox">
+          <label class="custom-control-label" for="showAll">
+            <b>Hepsini Göster</b>
+          </label>
+        </div>
+        <div class="table-responsive">
+          <!-- Rapor Listesi -->
+          <table class="table table-bordered ">
+            <thead>
+              <tr>
+                <th>Periyodik Muayene Tarihi</th>
+                <th>Periyodik Kontrol</th>
+                <th>Bir Sonraki Muayene Tarihi</th>
+                <th>Kaydı Oluşturan Sağlık Sorumlusu</th>
+                <th>İşlemler</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let r of _reportList" [hidden]="!r.aktif && !showAll.checked">
+
+                <td scope="row">
+                  <div class="form-check form-check-inline">
+                    {{r.p_muayene_tarihi | date:'dd/MM/yyyy'}}
+                  </div>
+
+                </td>
+                <td>
+                  <div class="input-group-prepend">
+                    {{r.p_kontrol}}
+                  </div>
+                </td>
+                <td scope="row">
+                  <div class="form-check form-check-inline">
+                    {{r.sonraki_muayene_ay}} / {{r.sonraki_muayene_yil}}
+                  </div>
+
+                </td>
+                <td>
+                  <div class="col-md-12">
+                    {{r._username}}
+                  </div>
+                </td>
+                
+                <td>
+                  <div class="col-md-12">
+                    <button class="btn btn-hero-info btn-demo btn-tn" (click)="editReport(r);examinationmodal.show();">Göster
+                      ve Düzenle</button>
+                  </div>
+                </td>
+              </tr>
+
+
+
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <br>
+    </nb-card>
+  </div>
+
+</div>
+
+<!-- Muayene Modal -->
+<div bsModal #examinationmodal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="dialog-sizes-name1" class="modal-title pull-left">Genel Bilgiler</h5>
+        <button type="button" class="close pull-right" (click)="examinationmodal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Tarih:</label>
+          <div class="col-9">
+            <input type="text" [(ngModel)]="_report.p_muayene_tarihi" [ngModelOptions]="{standalone: true}" class="form-control" bsDatepicker
+              placement="right" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Periyodik Kontrol</label>
+          <div class="col-9">
+            <select class="form-control" [(ngModel)]="_report.p_kontrol" [ngModelOptions]="{standalone: true}">
+              <option value="null" disabled>Seçiniz..</option>
+              <option value="Akciğer Kontrolü">Akciğer Kontrolü</option>
+              <option value="Ağız ve Diş Sağlığı">Ağız ve Diş Sağlığı</option>
+              <option value="Genel Sağlık Kontolü">Genel Sağlık Kontolü</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Bir Sonraki Muayane Tarihi</label>
+          <div class="col-9">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="row">
+                  <label class="col-3 col-form-label">Ay</label>
+                  <div class="col-9">
+                    <input [(ngModel)]="_report.sonraki_muayene_ay" [ngModelOptions]="{standalone: true}" type="number" class="form-control">
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="row">
+                  <label class="col-3 col-form-label">Yıl</label>
+                  <div class="col-9">
+                    <input [(ngModel)]="_report.sonraki_muayene_yil" [ngModelOptions]="{standalone: true}" type="number" class="form-control">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <div [hidden]="!_report.id || !_report.aktif">
+            <a href="javascript:void(0)" (click)="closeDisabilityPeriodicExaminationForm();examinationmodal.hide(); " class="btn btn-danger  btn-tn">Kaydı Kapat</a>
+        </div>
+        <a href="javascript:void(0)" (click)="examinationmodal.hide(); " class="btn btn-warning  btn-tn">Vazgeç</a>
+        <a href="javascript:void(0)" (click)="examinationmodal.hide();saveReport();" class="btn btn-success  btn-tn">Kaydet</a>
+      </div>
+    </div>
+  </div>
+</div>
