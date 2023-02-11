@@ -1,0 +1,249 @@
+<nb-card>
+  <nb-card-header> 
+    <div id="clrFiziksel" class="center" >
+      <h5  style="color: white">FILTRELEME</h5>
+    </div>
+  </nb-card-header>
+<nb-card-body>
+    <div style="float: left;"class="col-md-2" >
+        <label style="color: black;font-weight: bold;" >Birime Göre</label>
+        <select  class="form-control" >
+          <option value="HEPSİ">HEPSİ</option>
+          <option value="Bakım Hizmetleri">Bakım Hizmetleri</option>
+          <option value="Sağlık Hizmetleri">Sağlık Hizmetleri</option>
+          <option value="Psiko-Sosyal Destek Hizmetleri">Psiko-Sosyal Destek Hizmetleri</option>
+        </select>
+      </div>
+          <div style="float:left" class="col-md-2">
+            <label style="color: black;font-weight: bold;">Başlangıç Tarihinden</label>
+            <input type="text" name="" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" placeholder="Tarih Belirleyiniz.."/>
+          </div>
+          <div style="float:left" class="col-md-2">
+            <label style="color: black;font-weight: bold;">Bitiş Tarihinden</label>
+            <input type="text" name="" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" placeholder="Tarih Belirleyiniz.."/>
+          </div>
+          <div style="float:left" class="col-md-2">
+              <label style="color: black;font-weight: bold;">İş Emirini Verene Göre</label>
+              <input name="_searchText"  type="text" class="form-control " placeholder="İş Veren Ara...">
+            </div>
+          <div style="float: left;"class="col-md-2" >
+            <label style="color: black;font-weight: bold;" >Durumuna Göre</label>
+            <select #selectoption class="form-control" >
+              <option value="HEPSİ">HEPSİ</option>
+              <option value="Devam Eden İş Emirleri">Devam Eden İş Emirleri</option>
+              <option value="Biten İş Emirleri">Biten İş Emirleri</option>
+            </select>
+          </div>
+          <div style="float: right;">
+            <button  style="height:70px;font-size: 1rem;" (click)="isemirleri.show();" class="btn btn-info btn-tn">Yeni İş Emri Ekle</button><!-- [routerLink]="['../ilactedaviplanı']"-->
+          </div>
+      </nb-card-body>
+      </nb-card>
+<!--------------Filtreleme Metodumuz Yukarda------------------>
+<nb-card>
+<nb-card-body>
+<div class="row">
+  <h5>Bakım Hizmetleri İş Emirleri</h5>
+  <div class="col-md-12">
+    <div class="panel">
+      <table class="table table-striped">
+        <thead style="background: red;vertical-align: top;">
+          <tr style="color: white; height: 40px;">
+             <th>Sıra No</th>
+             <th>Tarih</th>
+             <th>Yapılacak İş</th>
+             <th>Başlama Tarihi</th>
+             <th>Bitiş Tarihi</th>
+             <th>İş Emirin Veren Adı Soyadı</th>
+             <th>İşlemler</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr > <!--  *ngFor="let plan of list" [routerLink]="['../ilactedaviplanı']" [queryParams]="{ id: plan.id }"  -->
+              <td>Yapım aşaması.</td>
+              <td>Yapım aşaması.</td>
+              <td>Yapım aşaması.</td>
+              <td>Yapım aşaması.</td>
+              <td>Yapım aşaması.</td>
+              <td>Yapım aşaması.</td>
+              <td>
+                <div class="btn-group">
+                  <button style="max-height: 24px;" >Göster</button>
+                  <button style="margin-left:5px;height: 24px; width: 130px;" type="button" >Uygulama Kaydı</button>
+                  <button style="max-height: 24px;margin-left:5px" >Sonlandır</button>
+                </div>
+              </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
+</nb-card-body>
+</nb-card>
+<nb-card>
+    <nb-card-body>
+    <div class="row">
+      <h5>Psiko-Sosyal Destek Hizmetleri İş Emirler</h5>
+      <div class="col-md-12">
+        <div class="panel">
+          <table class="table table-striped">
+            <thead style="background: red;vertical-align: top;">
+              <tr style="color: white; height: 40px;">
+                 <th>Sıra No</th>
+                 <th>Tarih</th>
+                 <th>Yapılacak İş</th>
+                 <th>Başlama Tarihi</th>
+                 <th>Bitiş Tarihi</th>
+                 <th>İş Emirin Veren Adı Soyadı</th>
+                 <th>İşlemler</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr > <!--  *ngFor="let plan of list" [routerLink]="['../ilactedaviplanı']" [queryParams]="{ id: plan.id }"  -->
+                  <td>Yapım aşaması.</td>
+                  <td>Yapım aşaması.</td>
+                  <td>Yapım aşaması.</td>
+                  <td>Yapım aşaması.</td>
+                  <td>Yapım aşaması.</td>
+                  <td>Yapım aşaması.</td>
+                  <td>
+                    <div class="btn-group">
+                      <button style="max-height: 24px;" >Göster</button>
+                      <button style="margin-left:5px;height: 24px; width: 130px;" type="button" >Uygulama Kaydı</button>
+                      <button style="max-height: 24px;margin-left:5px" >Sonlandır</button>
+                    </div>
+                  </td>
+              </tr>
+            </tbody>
+          </table>
+    
+        </div>
+      </div>
+    </div>
+    </nb-card-body>
+    </nb-card>
+    <nb-card>
+        <nb-card-body>
+        <div class="row">
+          <h5>Sağlık Hizmetleri İş Emirleri</h5>
+          <div class="col-md-12">
+            <div class="panel">
+              <table class="table table-striped">
+                <thead style="background: red;vertical-align: top;">
+                  <tr style="color: white; height: 40px;">
+                     <th>Sıra No</th>
+                     <th>Tarih</th>
+                     <th>Yapılacak İş</th>
+                     <th>Başlama Tarihi</th>
+                     <th>Bitiş Tarihi</th>
+                     <th>İş Emirin Veren Adı Soyadı</th>
+                     <th>İşlemler</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr > <!--  *ngFor="let plan of list" [routerLink]="['../ilactedaviplanı']" [queryParams]="{ id: plan.id }"  -->
+                      <td>Yapım aşaması.</td>
+                      <td>Yapım aşaması.</td>
+                      <td>Yapım aşaması.</td>
+                      <td>Yapım aşaması.</td>
+                      <td>Yapım aşaması.</td>
+                      <td>Yapım aşaması.</td>
+                      <td>
+                        <div class="btn-group">
+                          <button style="max-height: 24px;" >Göster</button>
+                          <button style="margin-left:5px;height: 24px; width: 130px;" type="button" >Uygulama Kaydı</button>
+                          <button style="max-height: 24px;margin-left:5px">Sonlandır</button>
+                        </div>
+                      </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        </nb-card-body>
+        </nb-card>
+
+        <!---------------------------------------->
+        <div bsModal #isemirleri="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content" style="background-color: #419cdb" ><!--id="clrFiziksel"-->
+                    <div class="modal-header">
+                        <h5 id="dialog-sizes-name1" class="modal-title pull-left" style="color: white">Yeni İŞ EMİRLERİ</h5>
+                        <button type="button" class="close pull-right" (click)="isemirleri.hide()" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="color: black;font-weight: bold;">
+                        <div class="form-group input-group-md">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group input-group-md">
+                                                    <label>İş Emri Verilen Birim</label>
+                                                    <select 
+                                                    class="form-control" class="form-control">
+                                                    <option value="null" disabled>Seçiniz..</option>
+                                                    <option value="Bakım Hizmetleri">Bakım Hizmetleri</option>
+                                                    <option value="Sağlık Hizmetleri">Sağlık Hizmetleri</option>
+                                                    <option value="Psiko-Sosyal Hizmetler">Psiko-Sosyal Hizmetler</option>
+                                                </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group input-group-md">
+                                                    <label>İş Emri Açıklaması</label>
+                                                    <div class="input-group-append">
+                                                        <textarea style="height: 80px" class="form-control" ></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group input-group-md">
+                                                    <label>Başlama Tarihi</label>
+                                                    <div class="input-group-append">
+                                                        <input type="text" name="" class="form-control"  bsDatepicker placement="bottom" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+                                                      </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group input-group-md">
+                                                    <label>Bitiş Tarihi</label>
+                                                    <div class="input-group-append">
+                                                        <input type="text" name="" class="form-control"  bsDatepicker placement="bottom" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+                                                      </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group input-group-md">
+                                                    <label>İş Emri Veren</label>
+                                                    <div class="input-group-append">
+                                                        <input  type="text"    class="form-control">
+                                                      </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                      </div>         
+                </div>
+                    <div class="modal-footer">
+                        <a href="javascript:void(0)" (click)="isemirleri.hide()" class="btn btn-danger  btn-tn">Vazgeç</a>
+                        <a href="javascript:void(0)" (click)="isemirleri.hide()" class="btn btn-success  btn-tn">Kaydet</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <toaster-container>
+          </toaster-container>

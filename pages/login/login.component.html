@@ -1,0 +1,81 @@
+<nb-card>
+  <nb-card-body >
+      <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-6 col-md-offset-3">
+              <div id="iosBlurBg">
+                
+              </div>
+              <div id="bottomEnter"></div>
+              <div id="bottomBlurBg"></div>
+              <!-- Login Form -->
+              <div class="loginForm">
+                <div class="title">
+                  <p><span style="color: white">Lütfen Giriş Yapınız..</span></p>
+                  <hr>
+                  <hr class="short">
+                  <br>
+                </div>
+                <form>
+                    <div class="input-group mb-3">
+                        <div class="input-group-append">
+                          <span class="input-group-text"><i class="fas fa-building"></i></span>
+                        </div>
+                        <input type="text" name="firmaKod" id="firmaKod" class="form-control" placeholder="Bakım Merkezi Kodu" [(ngModel)]="giris.firmaKod" [ngModelOptions]="{standalone: true}"
+                      (keydown.tab)="getCompanyName()" (keyup.enter)="getCompanyName()">
+                    </div>
+                    
+                    <div class="row" style="padding-left: 15px;height: 30px;color: white">
+                      <strong>{{giris.firmaAd}}</strong>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-append">
+                          <span class="input-group-text"><i class="fas fa-user-friends"></i></span>
+                        </div>
+                        <input type="text" name="username" id="username" #username name="username" class="form-control" placeholder="Kullanıcı Kodu" [(ngModel)]="giris.kulKod"
+                        [ngModelOptions]="{standalone: true}" (keydown.tab)="getUserName()" (keyup.enter)="getUserName()">
+                    </div>
+              
+                      <div class="row" style="padding-left: 15px;height: 30px;color: white">
+                        <strong >{{giris.kulAd}}</strong>
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-append">
+                          <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        <input #password name="password" type="password" class="form-control" placeholder="Şifre" [(ngModel)]="giris.sifre" [ngModelOptions]="{standalone: true}"
+                        (keyup.enter)="login()">
+                    </div>
+                 <br>
+                    <div class="forget">
+                      <button class="btn btn-info btn-sm" type="submit" (click)="login()">GİRİŞ</button>
+                    </div>
+      
+                </form>
+              </div>
+          </div>
+          <div class="col-md-6 banner-sec">
+            <div class="md-macbook-pro md-glare" style="margin-top: 250px;margin-left: -200px;">
+                <div class="md-lid">
+                    <div class="md-camera"></div>
+                    <div class="md-screen">
+                        <div class="tab-featured-image">
+                            <div class="tab-content">
+                                <div class="tab-pane  in active" id="tab1">
+                                        <img src="https://pbs.twimg.com/profile_images/455651994938511360/XE7wytI0.jpeg" style="height: 350px;" alt="tab1" class="img img-responsive">
+                                </div>
+                                <div class="tab-pane " id="tab2">
+                                        <img src="https://steamuserimages-a.akamaihd.net/ugc/920289262426022155/2469C35811474CF8659E90B2EED3F718A3F042B9/">
+                                </div>
+                                <div class="tab-pane fade" id="tab3">
+                                        <img src="https://steamuserimages-a.akamaihd.net/ugc/920289262426022155/2469C35811474CF8659E90B2EED3F718A3F042B9/" alt="tab1" class="img img-responsive">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md-base"></div>
+            </div> 
+           </div>
+        </div>
+  </nb-card-body>
+</nb-card>
