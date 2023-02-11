@@ -1,0 +1,81 @@
+<div class="row">
+  <div class="col-md-12">
+      <nb-card size="active">
+          <br>
+          <div class="col-md-12">
+                  <div class="row" id="clrFiziksel">
+                      <div class="col-md-12" style="height: 25px">
+                          <div style="float:left" class="col-md-4">
+                              <h5 style="margin-top:2px;color: white;">KULLANICI LİSTESİ</h5>
+                          </div>
+                       <div style="float:right;margin-right: 20px">
+                          <button class="btn btn-hero-success btn-tn " [routerLink]="['../defineUser']" style="margin-top: -4px">Yeni Kullanıcı Ekle</button>
+                      </div>
+                    </div>
+                  </div>
+              <div class="col-md-12">
+                  <div class="card">
+                      <div class="card-body">
+                        
+                          <div class="table-responsive">
+                              <table class="table table-bordered">
+                                  <thead style="background:#C46210;">
+                                      <tr style="color: white;text-align: center;height: 45px;vertical-align: top;">
+                                          <th style="width:12%;">Adı Soyadı</th>
+                                          <th style="width:12%;">TC No</th>
+                                          <th style="width: 12%">Kodu</th>
+                                          <th style="width:12%;">Telefon No</th>
+                                          <th style="width:12%;">Kadro</th>
+                                          <th style="width:12%;">Meslek</th>
+                                          <th style="width:12%;">İşlemler</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody style="text-align: center">
+                                      <tr  *ngFor="let u of _userList" style="text-align: center;">
+                                          <td scope="row">
+                                              <div class="form-check form-check-inline">
+                                                {{u.peradi}} {{u.persoyadi}}
+                                              </div>
+                                          </td>
+                                          <td scope="row">
+                                              <div class="form-check form-check-inline">
+                                                {{u.pertcno}}
+                                              </div>
+                                          </td>
+                                          <td scope="row">
+                                              <div class="form-check form-check-inline">
+                                                {{u.userkodu}}
+                                              </div>
+                                          </td>
+                                          <td scope="row">
+                                              <div class="form-check form-check-inline">
+                                                {{u.pertel1}}
+                                              </div>
+                                          </td>
+                                          <td scope="row">
+                                              <div class="form-check form-check-inline"style="font-size: 1.5rem;font-weight: bold">
+                                                {{u.perkadro}}
+                                              </div>
+                                          </td>
+                                          <td scope="row">
+                                              <div class="form-check form-check-inline">
+                                                {{u.permeslek}}
+                                              </div>
+                                          </td>
+                                          <td scope="row">
+                                              <div class="col-md-12">
+                                                  <button class="btn btn-hero-info btn-demo btn-tn" [routerLink]="['../defineUser']" [queryParams]="{ id: u.pertcno}">Göster ve Düzenle</button>
+                                              </div>
+                                          </td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <br>
+      </nb-card>
+  </div>
+</div>

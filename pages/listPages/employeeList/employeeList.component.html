@@ -1,0 +1,170 @@
+<nb-card>
+  <br>
+  <div class="col-md-12">
+        <div id="clrFiziksel" class="center" >
+            <h5  style="color: white">FILTRELEME</h5>
+          </div>
+        </div><br>
+        <div class="col-md-12">
+            <div class="row">
+              <div style="float:left" class="col-md-2">
+                  <label style="color: black;font-weight: bold;">Personel Adından</label>
+                  <input name="_searchText" style="height: 40px" [(ngModel)]="filter._name" (ngModelChange)="getEmployeeListByFilter();"  type="text" class="form-control " placeholder="Personel Ara...">
+                </div>
+            <div style="float:left" class="col-md-2">
+              <label style="color: black;font-weight: bold;">Kadrosundan</label>
+              <select class="form-control form-control-sm" (ngModelChange)="getFilterByStaff($event);" [(ngModel)]="filter.kadro" >
+                  <option value="null">HEPSİ</option>
+                  <option value="KURUCU MÜDÜR">Kurucu Müdür</option>
+                  <option value="SORUMLU MÜDÜR">Sorumlu Müdür</option>
+                  <option value="SORUMLU MÜDÜR + Mesleki Personel">Sorumlu Müdür + Mesleki Personel</option>
+                  <option value="MESLEKİ PERSONEL">Mesleki Personel</option>
+                  <option value="SAĞLIK PERSONELI">Sağlık Personeli</option>
+                  <option value="BAKICI PERSONELİ">Bakıcı Personeli</option>
+                  <option value="TEMİZLİK PERSONELİ">Temizlik Personeli</option>
+                  <option value="TEKNİK SERVİS">Teknik Servis</option>
+                  <option value="SATIN ALMA SORUMLUSU">Satın Alma Sorumlusu</option>
+                  <option value="BÜRO PERSONELI">Büro Personeli</option>
+                  <option value="AŞÇI">Aşçı</option>
+                  <option value="AŞÇI YARDIMCISI">Aşçı Yardımcısı</option>
+                  <option value="GÜVENLİK GÖREVLİSİ">Güvenlik Görevlisi</option>
+                  <option value="ŞOFÖR">Şoför</option>
+                </select>
+            </div>
+            <div style="float:left" class="col-md-2">
+              <label style="color: black;font-weight: bold;">Cinsiyetten</label>
+              <select class="form-control form-control-sm"  [(ngModel)]="filter.cinsiyet" (ngModelChange)="getFilterByCins($event);">
+                  <option value="null">HEPSİ</option>
+                  <option value="Erkek">ERKEK</option>
+                  <option value="Kadın">KADIN</option>
+                </select>
+            </div>
+            <div style="float:left" class="col-md-2">
+                <label style="color: black;font-weight: bold;">Sigara Kullanımından</label>
+                <select class="form-control form-control-sm"  [(ngModel)]="filter.persigarakul" (ngModelChange)="getFilterByPer($event);">
+                    <option value="null">HEPSİ</option>
+                    <option value="Sigara Kullanıyor">Sigara Kullanıyor</option>
+                    <option value="Sigara Kullanmıyor">Sigara Kullanmıyor</option>
+                  </select>
+              </div>
+            <div style="float: left;" class="col-md-2" >
+              <label style="color: black;font-weight: bold;">Durumundan</label>
+              <select #selectoption [(ngModel)]="filter.kayitaktif"  (ngModelChange)="getEmployeeListByFilter();" [ngModelOptions]="{standalone: true}" class="form-control form-control-sm" >
+                  <option value=true>Aktif(Çalışanlar)</option>
+                  <option value=false>Pasif(İşten Çıkmış Olanlar)</option>
+                  <option value=null>Hepsi</option>
+                </select>
+            </div>
+            <div style="float: right;">
+                <button style="height:65px;font-size: 1rem;" [routerLink]="['../employee']" class="btn btn-info btn-tn pull-right">Yeni Personel Ekle</button>
+              </div>
+          </div>
+        </div>
+        <br>
+        </nb-card>
+        <div style="margin-top: -18px">
+            <app-formHeader></app-formHeader>
+          </div>
+<nb-card style="margin-top:-18px">
+<nb-card-body>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel">
+          <table class="table table-striped" >
+            <thead  style="background: #C46210;vertical-align: top;">
+              <tr style="color: white; height: 40px;">
+                <th>Sıra No</th>
+                <th style="margin-right: 60px">Adı Soyadı</th>
+                <th>TC</th>
+                <th>Cinsiyet</th>
+                <th>GSM</th>
+                <th>Kadro</th>
+                <th>Meslek</th>
+                <th>Sigara Kullanımı</th>
+                <th>ASCHİM Onay Tarihi</th>
+                <th>ASCHİM Onay No</th>
+                <th >Giriş Tarihi</th>
+                <th  [hidden]="selectoption.value =='true'">Çıkış Tarihi</th>
+                <th>İşlemler</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let e of _employeeList; let i=index " >
+                <td>{{i+1}}</td>
+                <td>{{e.peradi}} {{e.persoyadi}}</td> 
+                <td>{{e.pertcno}}</td>
+                <td>{{e.percinsiyet}}</td>
+                <td>{{e.pertel2}}</td>
+                <td>{{e.perkadro}}</td>
+                <td>{{e.permeslek}}</td>
+                <td>{{e.persigarakul}}</td>
+                <td style="color:green;">{{e.pergiraspimonaytar | date:'dd/MM/yyyy'}}</td>
+                <td style="color:green;">{{e.pergiraspimonayno}}</td>
+                <td style="color:green;">{{e.pergiristar | date:'dd/MM/yyyy'}}</td>
+                <td style="color:red;" [hidden]="selectoption.value =='true'">{{e.percikistar | date:'dd/MM/yyyy'}}</td>
+                <td>
+                    <div class="btn-group btn-group-xs">
+                        <a href="javascript:void(0)" style="max-height: 24px;margin-left:5px;" [routerLink]="['../employee']" [queryParams]="{ id: e.perid }" class="btn btn-info btn-xs">Düzenle</a>
+                        <a href="javascript:void(0)" style="max-height: 24px;margin-left:5px;"  [hidden]="selectoption.value =='true'|| selectoption.value=='null'"
+                        (click)="girisTab.show();getEmployee(e.perid)" class="btn btn-success btn-xs">Tekrarla</a>
+                      </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
+<div bsModal #girisTab="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" id="clrModelBlue">
+      <div class="modal-header">
+        <h5 id="dialog-sizes-name1" class="modal-title pull-left" style="color: white">Yeni Giriş Bilgileri</h5>
+        <button type="button" class="close pull-right" (click)="girisTab.hide();" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+  <div class="form-group input-group-md">
+      <div class="row">
+          <div class="col-md-12">
+              <div>
+                  <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group input-group-md">
+                            <label>İşe Giriş Tarihi</label>
+                            <input type="text" [(ngModel)]="mudurPersonel.pergiristar"   class="form-control" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group input-group-md">
+                          <label>ASPİM İşe Giriş Onay Tarihi</label>
+                          <input type="text" [(ngModel)]="mudurPersonel.pergiraspimonaytar"   class="form-control" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+                      </div>
+                  </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-sm-6">
+                          <div class="form-group input-group-md">
+                              <label>ASPİM İşe Giriş Onay No</label>
+                              <input type="text" [(ngModel)]="mudurPersonel.pergiraspimonayno"  [ngModelOptions]="{standalone: true}" class="form-control text">
+                          </div>
+                      </div>
+                  </div>
+                  <hr>
+                  <div style="float: right;">
+                    <a href="javascript:void(0)" style="margin-right: 20px" (click)="girisTab.hide();" class="btn btn-danger  btn-tn">Vazgeç</a>
+                    <a href="javascript:void(0)"  (click)="reLoginEmployee();girisTab.hide();"  class="btn btn-success  btn-tn">Tamam</a><!--reLoginEmployee();-->
+                  </div>
+              </div>
+          </div>
+      </div>
+</div>         
+      </div>
+    </div>
+  </div>
+</div>
+<toaster-container>
+</toaster-container>

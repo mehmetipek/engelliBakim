@@ -1,0 +1,126 @@
+<app-formHeader></app-formHeader>
+<div class="row" style="margin-top: -18px;">
+    <div class="col-md-12">
+      <nb-card size="active">
+        <br>
+        <div class="col-md-12">
+                <div class="table table-striped">
+                  <table class="tblborder">
+                      <thead>
+                          <tr>
+                            <th colspan=9>Nüfus Kütük Kaydı</th>
+                            <th colspan=5>Korunma/Vasi Kararı (İlk Kabuldeki durum tanımlarıdır)</th>
+                            <th colspan=4>Yerleştirme Onayı</th>
+                            <th colspan=4>Yerleştirme Bilgileri</th>
+                            <th colspan=6>Ayrılış Bilgileri</th>
+                          </tr>
+                        </thead>
+                    <tr class="rt">
+                      <th ><div style="margin-left: 15px;" class="rotated nowidth">Sıra No</div></th><!-- Bu uygulanarak yazılar texte ortalanacak.-->
+                      <th><div style="margin-left: 15px;" class="rotated nowidth">Adı Soyadı</div></th>
+                      <th><div style="margin-left: 15px;" class="rotated nowidth">TC No</div></th>
+                      <th><div style="margin-left: 15px;" class="rotated nowidth">Baba Adı</div></th>
+                      <th><div style="margin-left: 15px;" class="rotated nowidth">Anne Adı</div></th>
+                      <th><div style="margin-left: 15px;" class="rotated nowidth">Doğum Tarihi</div></th>
+                      <th><div style="margin-left: 15px;" class="rotated nowidth">Cinsiyeti</div></th>
+                      <th><div style="margin-left: 15px;" class="rotated nowidth">Uyruğu</div></th>
+                      <th><div style="margin-left: 15px;" class="rotated nowidth">Seri No</div></th>
+                      <th><div style="margin-left: 15px;" class="rotated nowidth">Alındığı Mahkeme</div></th>
+                      <th><div style="margin-left: 15px;" class="rotated nowidth">Nedeni</div></th>
+                      <th><div style="margin-left: 15px;" class="rotated nowidth">Tarih</div></th>
+                      <th>
+                        <div style="margin-left: 15px;" class="rotated nowidth">No</div>
+                      </th>
+                      <th>
+                        <div style="margin-left: 15px;" class="rotated nowidth">Velayet Vesayetin<br> Kimde Olduğu</div>
+                      </th>
+                      <th>
+                        <div style="margin-left: 15px;" class="rotated nowidth">Acil Valilik<br> Onayı Tarih</div>
+                      </th>
+                      <th>
+                        <div style="margin-left: 15px;" class="rotated nowidth">Acil Valilik Onayı No</div>
+                      </th>
+                      <th>
+                        <div style="margin-left: 15px;" class="rotated nowidth">ASPİM Tarih</div>
+                      </th>
+                      <th>
+                        <div style="margin-left: 15px;" class="rotated nowidth">ASPİM No</div>
+                      </th>
+                      <th>
+                        <div style="margin-left: 15px;" class="rotated nowidth">Geldiği Yer</div>
+                      </th>
+                      <th>
+                        <div style="margin-left: 15px;" class="rotated nowidth">Yakın Vasi Adresi</div>
+                      </th>
+                      <th>
+                        <div style="margin-left: 15px;" class="rotated nowidth">Yakın Vasi Telefonu</div>
+                      </th>
+                      <th>
+                        <div style="margin-left: 15px;" class="rotated nowidth">Kabul Tarihi</div>
+                      </th>
+                      <th>
+                        <div style="margin-left: 15px;" class="rotated nowidth">Ayrılış Tarihi</div>
+                      </th>
+                      <th>
+                        <div style="margin-left: 15px;" class="rotated nowidth">Ayrılış Nedeni</div>
+                      </th>
+                      <th>
+                        <div style="margin-left: 15px;" class="rotated nowidth">Gittiği Yer</div>
+                      </th>
+                      <th>
+                        <div style="margin-left: 15px;" class="rotated nowidth">Onay İptal Tarihi</div>
+                      </th>
+                      <th>
+                        <div style="margin-left: 15px;" class="rotated nowidth">Onay İptal No</div>
+                      </th>
+                      <th>
+                        <div style="margin-left: 15px;" class="rotated nowidth">Açıklamalar</div>
+                      </th>
+                      <th>
+                        <div style="margin-left: 15px;" class="rotated nowidth">Fotoğraf</div>
+                      </th>
+                      <th>
+                        <div style="margin-left: 15px;" class="rotated nowidth">İşlemler</div>
+                      </th>
+                    </tr>
+                    <tr class="rt" *ngFor="let item of getLogList;let i=index" style="font-weight: bold">
+                      <td><div style="text-align: center;margin-top: 62px;">{{i+1}}</div></td>
+                      <td><div class="rotated nowidth">{{item.ikadi}}</div></td>
+                      <td><div class="rotated nowidth">{{item.iktcno}}</div></td>
+                      <td><div class="rotated nowidth">{{item.ikbabaad}}i</div></td>
+                      <td><div class="rotated nowidth">{{item.ikanneadi}}</div></td>
+                      <td><div class="rotated nowidth">{{item.ikdogtar | date:'dd/MM/yyyy'}}</div></td>
+                      <td><div class="rotated nowidth">{{item.ikcinsiyet}}</div></td>
+                      <td><div class="rotated nowidth">{{item.ikuyruk}}</div></td>
+                      <td><div class="rotated nowidth">{{item.ikserino}}</div></td>
+                      <td><div class="rotated nowidth">{{item.mahkemeadi}}</div></td>
+                      <td><div class="rotated nowidth"></div></td>
+                      <td><div class="rotated nowidth">{{item.karartarihi | date:'dd/MM/yyyy'}}</div></td>
+                      <td><div class="rotated nowidth">{{item.kararnumarasi}}</div></td>
+                      <td><div class="rotated nowidth">{{item.vasiadi}}</div></td>
+                      <td><div class="rotated nowidth"></div></td>
+                      <td><div class="rotated nowidth"></div></td>
+                      <td><div class="rotated nowidth">{{item.ikaspimonaytar | date:'dd/MM/yyyy'}}</div></td>
+                      <td><div class="rotated nowidth">{{item.ikaspimonayno}}</div></td>
+                      <td><div class="rotated nowidth">{{item.ikgeldigiyer}}</div></td>
+                      <td><div class="rotated nowidth">{{item.adres}}</div></td>
+                      <td><div class="rotated nowidth">{{item.telefon}}</div></td>
+                      <td><div class="rotated nowidth">{{item.ikkabultarihi | date:'dd/MM/yyyy'}}</div></td>
+                      <td><div class="rotated nowidth">{{item.ikayrilistar | date:'dd/MM/yyyy'}}</div></td>
+                      <td><div class="rotated nowidth"></div></td>
+                      <td><div class="rotated nowidth">{{item.ikgittigiyer}}</div></td>
+                      <td><div class="rotated nowidth">{{item.ikaspimonayiptaltar | date:'dd/MM/yyyy'}}</div></td>
+                      <td><div class="rotated nowidth">{{item.ikaspimonayiptalno}}</div></td>
+                      <td><div class="rotated nowidth">{{item.ikaciklamalar}}</div></td>
+                      <td><div class="rotated nowidth"> <img class="card-img-top" width="45" height="55" src="{{item.ikfoto}}" alt="image"></div></td>
+                      <td><div class="rotated nowidth"> <button class="btn btn-info btn-block btn-tn" height="55" [routerLink]="['../firstAcceptance']" [queryParams]="{ id: item.ikid }">DETAY</button></div></td>
+                    </tr>
+                  </table>
+                </div>
+        </div>
+        <br>
+      </nb-card>
+    </div>
+  </div>
+    <toaster-container>
+    </toaster-container>

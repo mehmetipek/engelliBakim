@@ -1,0 +1,140 @@
+<nb-card>
+  <br>
+  <div class="col-md-12">
+      <div id="clrFiziksel" class="center" >
+        <h5  style="color: white">FILTRELEME</h5>
+      </div>
+    </div>
+    <br>
+     <div class="col-md-12">
+      <div class="row">
+          <div style="float:left" class="col-md-2">
+              <label style="color: black;font-weight: bold;">Dökümandan</label>
+              <select  style="width: 80%;" class="form-control form-control-sm" >
+                  <option value="null">HEPSİ</option>
+                  <option value="PROSEDÜRLER">PROSEDÜRLER</option>
+                  <option value="GENEL PROSEDÜRLER">GENEL PROSEDÜRLER</option>
+                  <option value="GENEL PLANLAR">GENEL PLANLAR</option>
+                  <option value="PSİKO SOSYAL PLANLAR">PSİKO SOSYAL PLANLAR</option>
+                  <option value="SAĞLIK PLANLARI">SAĞLIK PLANLARI</option>
+                  <option value="GENEL LİSTELER">GENEL LİSTELER</option>
+                  <option value="GÖREV TANIMLARI">GÖREV TANIMLARI</option>
+                  <option value="GENEL TALİMATLAR">GENEL TALİMATLAR</option>
+                  <option value="BAKIM HİZMETLERİ TALİMATLARI">BAKIM HİZMETLERİ TALİMATLARI</option>
+                  <option value="SAĞLIK HİZMETLERİ TALİMATLARI">SAĞLIK HİZMETLERİ TALİMATLARI</option>
+                  <option value="PSİKO-SOSYAL DESTEK HİZMETLERİ TALİMATLARI">PSİKO-SOSYAL DESTEK HİZMETLERİ TALİMATLARI</option>
+                  <option value="GENEL FORMLAR">GENEL FORMLAR</option>
+                  <option value="BAKIM HİZMETLERİ FORMLARI">BAKIM HİZMETLERİ FORMLARI</option>
+                  <option value="SAĞLIK HİZMETLERİ FORMLARI">SAĞLIK HİZMETLERİ FORMLARI</option>
+                  <option value="PSİKO-SOSYAL DESTEK HİZMETLERİ FORMLARI">PSİKO-SOSYAL DESTEK HİZMETLERİ FORMLARI</option>
+                  <option value="ŞEMALAR">ŞEMALAR</option>
+                </select>
+            </div>
+              <!-- <div style="float:left" class="col-md-2">
+                  <label style="color: black;font-weight: bold;">Engelli Adından</label>
+                  <input name="_searchText" style="height: 40px;" [(ngModel)]="filter._ikadi" (ngModelChange)="getDisabledListFilter()" type="text" class="form-control form-control-sm" placeholder="Engelli Ara...">
+                </div>
+            <div style="float:left" class="col-md-2" style="margin-left: -15px;">
+              <label style="color: black;font-weight: bold;">Engelli Grubundan</label>
+              <select  style="width: 48%;" class="form-control form-control-sm" [(ngModel)]="filter.ikengelligrubu" (ngModelChange)="getFilterByName($event)">
+                  <option value="null">HEPSİ</option>
+                  <option value="ZİHİNSEL">ZİHİNSEL</option>
+                  <option value="RUHSAL">RUHSAL</option>
+                  <option value="BEDENSEL">BEDENSEL</option>
+                </select>
+            </div>
+            <div style="float:left" class="col-md-2" style="margin-left: -160px;">
+              <label style="color: black;font-weight: bold;">Cinsiyetinden</label>
+              <select  style="width: 48%;" class="form-control form-control-sm"  [(ngModel)]="filter.ikcinsiyet" (ngModelChange)="getFilterByCins($event)">
+                  <option value="null">HEPSİ</option>
+                  <option value="Erkek">ERKEK</option>
+                  <option value="Kadın">KADIN</option>
+                </select>
+            </div>
+            <div style="float:left" class="col-md-2" style="margin-left: -160px;">
+              <label style="color: black;font-weight: bold;">Sigara Kullanımından</label>
+              <select style="width: 53%;" class="form-control form-control-sm"  [(ngModel)]="filter.iksigarakul" (ngModelChange)="getFilterBySigara($event)">
+                  <option value="null">HEPSİ</option>
+                  <option value="Sigara Kullanıyor">Sigara Kullanıyor</option>
+                  <option value="Sigara Kullanmıyor">Sigara Kullanmıyor</option>
+                </select>
+            </div>
+            
+            <div style="float: left;"class="col-md-2" [hidden]="(selectoption.value=='false')||(selectoption.value=='null')" style="margin-left: -145px;">
+              <label style="color: black;font-weight: bold;">Giriş Başlangıç Tarihinden</label>
+              <input type="text" style="height: 40px;width: 66%;" class="form-control form-control-sm" [(ngModel)]="filter.ikkabultarihibas"  (ngModelChange)="getDisabledListFilter()" [ngModelOptions]="{standalone: true}" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" placeholder="Tarih belirleyiniz.">
+            </div>
+            <div style="float: left;"class="col-md-2" [hidden]="(selectoption.value=='false')||(selectoption.value=='null')" style="margin-left: -110px;">
+              <label style="color: black;font-weight: bold;">Giriş Bitiş Tarihinden</label>
+              <input type="text" style="height: 40px;width: 66%;" class="form-control form-control-sm" [(ngModel)]="filter.ikkabultarihibit"  (ngModelChange)="getDisabledListFilter()" [ngModelOptions]="{standalone: true}" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" placeholder="Tarih belirleyiniz.">
+            </div>
+            <div style="float: left;"class="col-md-2" [hidden]="(selectoption.value=='null') || (selectoption.value=='true')" style="margin-left: -145px;">
+              <label style="color: black;font-weight: bold;">Çıkış Başlangıç Tarihinden</label>
+              <input type="text" style="height: 40px;width: 66%;" class="form-control form-control-sm"  [(ngModel)]="filter.ikayrilistarbas"  (ngModelChange)="getDisabledListFilter()" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" placeholder="Tarih belirleyiniz.">
+            </div>
+            <div style="float: left;"class="col-md-2" [hidden]="(selectoption.value=='null')||(selectoption.value=='true')" style="margin-left: -110px;">
+              <label style="color: black;font-weight: bold;">Çıkış Bitiş Tarihinden</label>
+              <input type="text" style="height: 40px;width: 66%;" class="form-control form-control-sm" [(ngModel)]="filter.ikayrilistarbit"  (ngModelChange)="getDisabledListFilter()" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" placeholder="Tarih belirleyiniz.">
+            </div>
+            <div style="float: left;"class="col-md-2" style="margin-left: -110px;">
+                <label style="color: black;font-weight: bold;">Durumundan</label>
+                  <select style="width: 48%;" #selectoption [(ngModel)]="filter.kayitaktif"  (ngModelChange)="getDisabledListFilter()" [ngModelOptions]="{standalone: true}" class="form-control form-control-sm" >
+                    <option value=true>Aktif</option>
+                    <option value=false>Pasif</option>
+                    <option value=null>Hepsi</option>
+                  </select>
+              </div>
+            <div style="float: right;">
+                <button style="height:65px;font-size: 1rem;margin-left: 145px;"  [routerLink]="['../firstAcceptance']"  class="btn btn-info btn-tn pull-right">Yeni Engelli Ekle</button>
+              </div> -->
+          </div>
+        </div>
+        <br>
+        </nb-card>
+        <div style="margin-top: -18px">
+          <app-formHeader></app-formHeader>
+        </div>
+<nb-card style="margin-top:-18px">
+ <nb-card-body >
+    <div class="row">
+      <div class="col-md-12">
+          <div class="col-md-12">
+              <p>*Sağlık Birimi: SAĞ, Pisiko Sosyal Destek Birimi: PSD, Bakım Birimi: BKM, Tüm Birimler için: GNL olarak tanımlanmıştır</p>
+            </div>
+        <div class="panel">
+          <table class="table table-striped">
+            <thead style="background: #C46210;vertical-align: top;">
+              <tr style="color: white; height: 40px;text-align: center">
+                <th style="width: 12%">Döküman Kodu</th>
+                <th style="width: 12%">Döküman Adı</th>
+                <th style="width: 12%">Yayın Tarihi</th>
+                <th style="width: 12%">Son Revizyon Tarihi</th>
+                <th style="width: 12%">Kullanımda olan Revizyon No</th>
+                <th style="width: 12%">Dağıtım Yapılacak Olan Birim*</th>
+                <th style="width: 12%">İşlemler</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr >
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>             
+                <!-- <td>
+                        <div class="btn-group btn-group-xs">
+                            <a href="javascript:void(0)" style="margin-left:5px;" [routerLink]="['../firstAcceptance']" [queryParams]="{ id: e.ikid }" class="btn btn-info btn-xs">Düzenle</a>
+                            <a href="javascript:void(0)" style="margin-left:5px;"  [hidden]="selectoption.value =='true'|| selectoption.value=='null'"
+                            (click)="girisTab.show();getDisablee(e.ikid)" class="btn btn-success btn-xs">Tekrarla</a>
+                          </div>
+                </td> -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

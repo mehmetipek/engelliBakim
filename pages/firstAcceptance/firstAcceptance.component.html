@@ -1,0 +1,929 @@
+<!-- Engelli Bilgileri -->
+<div class="row" [ngClass]="{'blur': isBlur}">
+        <div class="col-md-12">
+            <nb-card size="active">
+                <br>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <!-- Resim İsim -->
+                                <div class="card col-md-2" style="margin-top:20px;margin-left:20px;margin-right: 40px;">
+                                    <div class="row">
+                                        <img class="card-img-top" width="260" height="275" src="{{disabilityImageUrl}}"
+                                            alt="image">
+                                    </div>
+                                    <div class="card-body" style="text-align: center">
+                                        <h4 class="card-title">{{engelli.ikadi}} {{engelli.iksoyadi}}</h4>
+                                        <hr>
+                                        <b class="card-text">
+                                            <strong style="color: red">TC Kimlik Numarası</strong>
+                                            <h5>{{engelli.iktcno}}</h5>
+                                        </b>
+                                        <hr>
+                                        <div class="col-md-12">
+                                            <a href="javascript:void(0)" (click)="editModal.show()"
+                                                class="btn btn-info btn-tn">
+                                            {{(engelli.ikid>0 ? 'Düzenle' : 'Tanımla')}}    
+                                            </a>
+                                        </div>
+                                        <div class="col-md-12" style="margin-top: 10px">
+                                            <button class="btn btn-danger btn-tn" [hidden]="!(engelli.ikid>0)"  (click)="openModal(true);disabledExit.show();">Ayrılış
+                                                Yap</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Kişisel Bilgiler -->
+                                <div class="card col-md-3 " style="margin-top:20px; margin-right: 40px">
+    
+                                    <div class="card-body">
+                                        <div id="clrFiziksel" class="center">
+                                            <h5 style="color: white">KİŞİSEL BİLGİLER</h5>
+                                        </div>
+                                        <hr>
+                                        <table>
+                                            <colgroup>
+                                                <col span="1" style="width: 49%;">
+                                                <col span="1" style="width: 1%;">
+                                                <col span="1" style="width: 50%;">
+                                            </colgroup>
+    
+                                            <tbody>
+                                                <tr>
+                                                    <td style="color: black;"><strong>Doğum Tarihi</strong></td>
+                                                    <td>:</td>
+                                                    <td>{{engelli.ikdogtar | date: 'dd/MM/yyyy'}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="color: black;"><strong>Cinsiyet</strong></td>
+                                                    <td>:</td>
+                                                    <td>{{engelli.ikcinsiyet}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="color: black;"><strong>Öğrenim Durumu</strong></td>
+                                                    <td>:</td>
+                                                    <td>{{engelli.ikogrenimdurumu}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="color: black;"><strong>Kan Grubu</strong></td>
+                                                    <td>:</td>
+                                                    <td>{{engelli.ikkangrubu}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="color: black;"><strong>Medeni Durum</strong></td>
+                                                    <td>:</td>
+                                                    <td>{{engelli.ikmedenihali}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="color: black;"><strong>Çocuk Sayısı</strong></td>
+                                                    <td>:</td>
+                                                    <td>{{engelli.ikcocuksayisi}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="color: black;"><strong>Sosyal Güvenlik Durumu</strong></td>
+                                                    <td>:</td>
+                                                    <td>{{engelli.iksosyalguvdurumu}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+    
+                                    </div>
+                                    <div class="card-footer">
+                                        <!-- <div style="width: 200px;margin: auto;">
+                                            <a href="javascript:void(0)" (click)="editModal.show()"
+                                                class="btn btn-info btn-block btn-tn">Tanımla
+                                                / Düzenle</a>
+                                        </div> -->
+                                    </div>
+                                </div>
+                                <!-- İletişim Bilgiler -->
+                                <div class="card col-md-3 " style="margin-top:20px; margin-right: 40px">
+    
+                                    <div class="card-body">
+                                        <div id="clrFiziksel" class="center">
+                                            <h5 style="color: white">ACSHİM Ve İKAMETGAH BİLGİLERİ</h5>
+                                        </div>
+                                        <hr>
+                                        <table>
+                                            <colgroup>
+                                                <col span="1" style="width: 39%;">
+                                                <col span="1" style="width: 1%;">
+                                                <col span="1" style="width: 60%;">
+                                            </colgroup>
+    
+                                            <tbody>
+                                                <tr>
+                                                    <td style="color: black;"><strong>ACSHİM Onay Tarihi</strong></td>
+                                                    <td>:</td>
+                                                    <td style="color: green">
+                                                        <strong>{{engelli.ikaspimonaytar | date: 'dd/MM/yyyy'}}</strong>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="color: black;"><strong>ACSHİM Onay No</strong></td>
+                                                    <td>:</td>
+                                                    <td>{{engelli.ikaspimonayno}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="color: black;"><strong>Kabul Tarihi</strong></td>
+                                                    <td>:</td>
+                                                    <td style="color: green">
+                                                        <strong>{{engelli.ikkabultarihi | date:'dd/MM/yyyy'}}</strong></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="color: black;"><strong>Maaş Durumu</strong></td>
+                                                    <td>:</td>
+                                                    <td>{{engelli.ikmaasdurumu}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="color: black;"><strong>Ücreti Karşılayan</strong></td>
+                                                    <td>:</td>
+                                                    <td>{{engelli.ikucretikarsilayan}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="color: black;"><strong>Ücret</strong></td>
+                                                    <td>:</td>
+                                                    <td>{{engelli.ikucret | currency:'₺'}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="color: black;"><strong>İl / İlçe</strong></td>
+                                                    <td>:</td>
+                                                    <td>{{engelli.ikadril}} / {{engelli.ikadrilce}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="color: black;"><strong>Adres</strong></td>
+                                                    <td>:</td>
+                                                    <td>{{engelli.ikadres}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="card-footer">
+                                        <!-- <div style="width: 200px;margin: auto;">
+                                            <a href="javascript:void(0)" (click)="aspimAdressInfomodal.show();"
+                                                class="btn btn-info btn-block btn-tn">Tanımla
+                                                / Düzenle</a>
+                                        </div> -->
+                                    </div>
+                                </div>
+                                <!-- Eğitim Bilgileri -->
+                                <div class="card col-md-3 " style="margin-top:20px; margin-right: 40px">
+                                    <div class="card-body">
+                                        <div id="clrFiziksel" class="center">
+                                            <h5 style="color: white">AİLE BİLGİLERİ</h5>
+                                        </div>
+                                        <hr>
+                                        <table>
+                                            <colgroup>
+                                                <col span="1" style="width: 49%;">
+                                                <col span="1" style="width: 1%;">
+                                                <col span="1" style="width: 50%;">
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td style="color: black;"><strong>Baba Adı</strong></td>
+                                                    <td>:</td>
+                                                    <td>{{engelli.ikbabaadi}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="color: black;"><strong>Öz Baba Durumu</strong></td>
+                                                    <td>:</td>
+                                                    <td>{{engelli.ikozbabadurumu}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="color: black;"><strong>Anne Adı</strong></td>
+                                                    <td>:</td>
+                                                    <td>{{engelli.ikanneadi}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="color: black;"><strong>Öz Anne Durumu</strong></td>
+                                                    <td>:</td>
+                                                    <td>{{engelli.ikozannedurumu}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="color: black;"><strong>Ailedeki Başka Engelli Sayısı</strong>
+                                                    </td>
+                                                    <td>:</td>
+                                                    <td>{{engelli.ikailedebaskaengsayi}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="color: black;"><strong>Engellinin Kardeş Sayısı</strong></td>
+                                                    <td>:</td>
+                                                    <td>{{engelli.ikkardessayisi}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+    
+                                    </div>
+                                    <div class="card-footer">
+                                        <!-- <div style="width: 200px;margin: auto;">
+                                            <a href="javascript:void(0)" (click)="familyInfomodal.show()"
+                                                class="btn btn-info btn-block btn-tn">Tanımla
+                                                / Düzenle</a>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nb-card>
+        </div>
+    </div>
+    <!-- Çıkış Bilgileri -->
+    <div class="row" [hidden]="!engelli.ikayrilistar">
+        <div class="col-md-12">
+            <nb-card size="active">
+                <br>
+                <div class="col-md-12">
+                    <div class="row" id="clrFizikselcks">
+                        <div class="col-md-12" style="height: 25px">
+                            <h5 style="margin-top:2px;color: white;">ÇIKIŞ BİLGİLERİ</h5>
+                            <div style="float:right;margin-right: 20px">
+                                <button class="btn btn-hero-info btn-tn " (click)="disabledExit.show()"
+                                    style="margin-top: -60px;">
+                                    Düzenle</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="col-md-12">
+                                    <table class="table table-bordered">
+                                        <thead style="background:#419cdb;">
+                                            <tr style="color: white;text-align: center;height: 45px;vertical-align: top;">
+                                                <th style="width:12%;">Ayrılış Tarihi </th>
+                                                <th style="width:12%;">Ayrılış Nedeni </th>
+                                                <th style="width:12%;">Gittiği Yer </th>
+                                                <th style="width:12%;">Onay İptal Tarihi </th>
+                                                <th style="width:12%;">Onap İptal No </th>
+                                                <th style="width:12%;">Açıklama </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody style="text-align: center">
+                                            <tr>
+                                                <td style="font-size: 1.5rem;font-weight: bold">
+                                                    {{engelli.ikayrilistar | date: 'dd/MM/yyyy'}}</td>
+                                                <td>{{engelli.ikayrilisneden}}</td>
+                                                <td>{{engelli.ikgittigiyer}}</td>
+                                                <td style="font-size: 1.5rem;font-weight: bold">
+                                                    {{engelli.ikaspimonayiptaltar | date: 'dd/MM/yyyy'}}</td>
+                                                <td>{{engelli.ikaspimonayiptalno}}</td>
+                                                <td>{{engelli.ikaciklamalar}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </nb-card>
+        </div>
+    </div>
+    <!-- edit Modal -->
+    <app-modal #edit [title]="'İLK KABUL İŞLEMİ'">
+    
+    
+        <form #editForm="ngForm" (ngSubmit)="saveFirstAcceptance()">
+            <div class="row">
+                <div class="col-md-4" style="border-right: 2px solid #00c996;">
+                    <div class="col-md-12" class="modal-sub-header">
+                        <h5 style="color:#fff">KİŞİSEL BİLGİLER</h5>
+                    </div>
+                    
+                    <div class="col-md-12">
+                        <div class="form-group input-group-md">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group input-group-md">
+                                                    <label>TC Kimlik No</label>
+                                                    <input [(ngModel)]="engelli.iktcno"
+                                                        [ngModelOptions]="{standalone: true}"
+                                                        (keyup.enter)="getFirstAcceptance();" type="text" class="form-control textbox"
+                                                        #tc="ngModel" [textMask]="{mask: tc_mask}" required>
+                                                    <div [hidden]="(tc.valid || tc.pristine)" class="alert alert-danger">
+                                                        TC Kimlik Numarası Girilmesi Ve 11 Karakter Olması Zorunludur!
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- adı soyadı -->
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group input-group-md">
+                                                    <label>Adı</label>
+                                                    <input [(ngModel)]="engelli.ikadi" [ngModelOptions]="{standalone: true}"
+                                                        type="text" class="form-control textbox" required #disablityName="ngModel">
+                                                        <div [hidden]="(disablityName.valid || disablityName.pristine)" class="alert alert-danger">
+                                                                Engelli Adı Girilmesi Olması Zorunludur!
+                                                            </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group input-group-md">
+                                                    <label>Soyadı</label>
+                                                    <input [(ngModel)]="engelli.iksoyadi"
+                                                        [ngModelOptions]="{standalone: true}" type="text"
+                                                        class="form-control textbox">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group input-group-md">
+                                                    <label>Uyruğu</label>
+                                                    <select #selectuyruk [(ngModel)]="engelli.ikuyruk"
+                                                        [ngModelOptions]="{standalone: true}" class="form-control">
+                                                        <option value="null" disabled>Seçiniz..</option>
+                                                        <option value="Türk">Türk</option>
+                                                        <option value="Suriye">Suriye</option>
+                                                        <option value="Alman">Alman</option>
+                                                        <option value="İngiliz">İngiliz</option>
+                                                        <option value="Diğer">Diğer</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group input-group-md">
+                                                    <label>Kimlik Seri No</label>
+                                                    <input type="text" [(ngModel)]="engelli.ikserino"
+                                                        [ngModelOptions]="{standalone: true}" class="form-control textbox">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12"
+                                                [hidden]="selectuyruk.value!='Diğer' || selectuyruk.value=='null'">
+                                                <div class="form-group input-group-md">
+                                                    <label>Diğer</label>
+                                                    <input type="text" class="form-control textbox">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group input-group-md">
+                                                    <label>Doğum Tarihi</label>
+                                                    <input type="text" class="form-control" bsDatepicker placement="right"
+                                                        [(ngModel)]="engelli.ikdogtar" [ngModelOptions]="{standalone: true}" 
+                                                        [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group input-group-md">
+                                                    <label>Cinsiyet</label>
+                                                    <select [(ngModel)]="engelli.ikcinsiyet"
+                                                    required #disablitySex="ngModel"
+                                                        [ngModelOptions]="{standalone: true}" class="form-control">
+                                                        <option value="null" disabled>Seçiniz..</option>
+                                                        <option value="Erkek">Erkek</option>
+                                                        <option value="Kadın">Kadın</option>
+                                                    </select>
+                                                    <div [hidden]="(disablitySex.valid || disablitySex.pristine) || !isEditFormSubmit" class="alert alert-danger">
+                                                            Engelli Adı Girilmesi Olması Zorunludur!
+                                                        </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group input-group-md">
+                                                    <label>Kan Grubu</label>
+                                                    <select [(ngModel)]="engelli.ikkangrubu"
+                                                        [ngModelOptions]="{standalone: true}" class="form-control">
+                                                        <option value="null" disabled>Seçiniz..</option>
+                                                        <option value="Bilinmiyor">Bilinmiyor</option>
+                                                        <option value="0 Rh-">0 Rh-</option>
+                                                        <option value="0 Rh+">0 Rh+</option>
+                                                        <option value="A Rh-">A Rh-</option>
+                                                        <option value="A Rh+">A Rh+</option>
+                                                        <option value="B Rh-">B Rh-</option>
+                                                        <option value="B Rh+">B Rh+</option>
+                                                        <option value="AB Rh-">AB Rh-</option>
+                                                        <option value="AB Rh+">AB Rh+</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group input-group-md">
+                                                    <label>Öğrenim Durumu</label>
+                                                    <select [(ngModel)]="engelli.ikogrenimdurumu"
+                                                        [ngModelOptions]="{standalone: true}" class="form-control">
+                                                        <option value="null" disabled>Seçiniz..</option>
+                                                        <option>Bilinmiyor</option>
+                                                        <option>İlkokul</option>
+                                                        <option>Ortaokul</option>
+                                                        <option>Lise</option>
+                                                        <option>Önlisans</option>
+                                                        <option>Lisans</option>
+                                                        <option>Yükseklisans</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group input-group-md">
+                                                    <label>Medeni Durumu</label>
+                                                    <select [(ngModel)]="engelli.ikmedenihali"
+                                                        [ngModelOptions]="{standalone: true}" class="form-control ">
+                                                        <option value="null" disabled>Seçiniz..</option>
+                                                        <option>Bilinmiyor</option>
+                                                        <option>Evli</option>
+                                                        <option>Bekar</option>
+                                                        <option>Boşanmış</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group input-group-md">
+                                                    <label>Çocuk Sayısı</label>
+                                                    <input [(ngModel)]="engelli.ikcocuksayisi"
+                                                        [ngModelOptions]="{standalone: true}" type="text"
+                                                        (keypress)="validate($event)" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group input-group-md">
+                                                    <label>Bedeni</label>
+                                                    <select class="form-control" [(ngModel)]="engelli.ikbeden"
+                                                        [ngModelOptions]="{standalone: true}">
+                                                        <option value="null" disabled>Seçiniz..</option>
+                                                        <option value="XS">XS</option>
+                                                        <option value="S">S</option>
+                                                        <option value="M">M</option>
+                                                        <option value="L">L</option>
+                                                        <option value="XL">XL</option>
+                                                        <option value="2XL">2XL</option>
+                                                        <option value="3XL">3XL</option>
+                                                        <option value="4XL">4XL</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group input-group-md">
+                                                    <label>Sosyal Güvenlik Durumu</label>
+                                                    <select #selectedsos [(ngModel)]="engelli.iksosyalguvdurumu"
+                                                        [ngModelOptions]="{standalone: true}" class="form-control">
+                                                        <option value="null" disabled>Seçiniz..</option>
+                                                        <option value="SGK">SGK</option>
+                                                        <option value="GSS">GSS</option>
+                                                        <option value="ACSHİM">ACSHİM</option>
+                                                        <option value="Yurtdışı">Yurtdışı</option>
+                                                        <option value="Yeşilkart">Yeşilkart</option>
+                                                        <option value="Diğer">Diğer</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+    
+                                        <div class="row"
+                                            [hidden]="(selectedsos.value !='Diğer')|| (selectedsos.value=='null')">
+                                            <div class="col-sm-12">
+                                                <div class="form-group input-group-md">
+                                                    <label>Diğer Sosyal Güvenlik Durumu..</label>
+                                                    <input type="text" [(ngModel)]="engelli.ikdigersosguvdur"
+                                                        [ngModelOptions]="{standalone: true}" class="form-control text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group input-group-md">
+                                                    <label>Boy(cm)</label>
+                                                    <input type="text" (keypress)="validate($event)"
+                                                        [(ngModel)]="engelli.ikboy" [ngModelOptions]="{standalone: true}"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group input-group-md">
+                                                    <label>Kilo</label>
+                                                    <input type="text" (keypress)="validate($event)"
+                                                        [(ngModel)]="engelli.ikkilo" [ngModelOptions]="{standalone: true}"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group input-group-md">
+                                                    <label>Ayakkabı No</label>
+                                                    <select [(ngModel)]="engelli.ikayakkabino"
+                                                        [ngModelOptions]="{standalone: true}" class="form-control">
+                                                        <option value="null" disabled>Seçiniz..</option>
+                                                        <option value="35">35</option>
+                                                        <option value="36">36</option>
+                                                        <option value="37">37</option>
+                                                        <option value="38">38</option>
+                                                        <option value="39">39</option>
+                                                        <option value="40">40</option>
+                                                        <option value="41">41</option>
+                                                        <option value="42">42</option>
+                                                        <option value="43">43</option>
+                                                        <option value="44">44</option>
+                                                        <option value="45+">45+</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group input-group-md">
+                                                    <label>Sigara Kullanımı</label>
+                                                    <select class="form-control" [(ngModel)]="engelli.iksigarakul"
+                                                        [ngModelOptions]="{standalone: true}">
+                                                        <option value="null" disabled>Seçiniz..</option>
+                                                        <option value="Sigara Kullanıyor">Sigara Kullanıyor</option>
+                                                        <option value="Sigara Kullanmıyor">Sigara Kullanmıyor</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" style="border-right: 2px solid #00c996;">
+                    <div class="col-md-12" class="modal-sub-header">
+                        <h5 style="color:#fff">ACSHİM VE İKAMETGAH BİLGİLERİ</h5>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group input-group-md">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group input-group-md">
+                                                    <label>ACSHİM Onay Tarihi:</label>
+                                                    <input type="text" class="form-control" bsDatepicker placement="right"
+                                                        [(ngModel)]="engelli.ikaspimonaytar" [ngModelOptions]="{standalone: true}" 
+                                                        [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group input-group-md">
+                                                    <label>ACSHİM Onay No</label>
+                                                    <input [(ngModel)]="engelli.ikaspimonayno"
+                                                        [ngModelOptions]="{standalone: true}" type="text"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- adı soyadı -->
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group input-group-md">
+                                                    <label>Engel Grubu</label>
+                                                    <select class="form-control" [(ngModel)]="engelli.ikengelligrubu" 
+                                                    #disabilityGroup="ngModel" required
+                                                        [ngModelOptions]="{standalone: true}">
+                                                        <!-- [(ngModel)]="engelli.ikengelligrubu" [ngModelOptions]="{standalone: true}" -->
+                                                        <option value="null" disabled>Seçiniz..</option>
+                                                        <option value="ZİHİNSEL">ZİHİNSEL</option>
+                                                        <option value="BEDENSEL">BEDENSEL</option>
+                                                        <option value="RUHSAL">RUHSAL</option>
+                                                    </select>
+                                                    <div [hidden]="(disabilityGroup.valid || disabilityGroup.pristine) || !isEditFormSubmit" class="alert alert-danger">
+                                                        Engel Grubu Girilmesi Zorunludur!
+                                                        </div>
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group input-group-md">
+                                                    <label>Kabul Tarihi</label>
+                                                    <input type="text" class="form-control" bsDatepicker placement="left"
+                                                        [(ngModel)]="engelli.ikkabultarihi" [ngModelOptions]="{standalone: true}" 
+                                                        [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group input-group-md">
+                                                    <label>Maaş Durumu</label>
+                                                    <select #selectedMaasD [(ngModel)]="engelli.ikmaasdurumu"
+                                                        [ngModelOptions]="{standalone: true}" class="form-control">
+                                                        <option value="null" disabled>Seçiniz..</option>
+                                                        <option>Yok</option>
+                                                        <option>Kendisi</option>
+                                                        <option>Eşinden</option>
+                                                        <option>Babasından</option>
+                                                        <option>Diğer</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group input-group-md">
+                                                    <label>Geldiği Yer</label>
+                                                    <input [(ngModel)]="engelli.ikgeldigiyer"
+                                                        [ngModelOptions]="{standalone: true}" type="text"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row"
+                                            [hidden]="(selectedMaasD.value !='Diğer')|| (selectedMaasD.value=='null')">
+                                            <div class="col-sm-12">
+                                                <div class="form-group input-group-md">
+                                                    <label>Diğer Maaş Durumu..</label>
+                                                    <input type="text" class="form-control text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group input-group-md">
+                                                    <label>Ücreti Karşılayan</label>
+                                                    <select [(ngModel)]="engelli.ikucretikarsilayan"
+                                                        [ngModelOptions]="{standalone: true}" class="form-control">
+                                                        <option value="null" disabled>Seçiniz..</option>
+                                                        <option value="ACSHİM">ACSHİM</option>
+                                                        <option value="Kendisi">Kendisi/Yakını Tarafından Karşılanan
+                                                        </option>
+                                                        <option value="Kontenjan">Kontenjan</option>
+                                                        <option value="Misafir">Misafir</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+    
+    
+                                            <div class="col-sm-6">
+                                                <div class="form-group input-group-md">
+                                                    <label>Ücret</label>
+                                                    <input currencyMask [(ngModel)]="engelli.ikucret"
+                                                        [ngModelOptions]="{standalone: true}" type="text"
+                                                        [options]="{ prefix:'', suffix: ' TL', thousands: '.', decimal: ',', align: 'left' }"
+                                                        class="form-control textbox">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <h5>İkametgah Bilgileri</h5>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group input-group-md">
+                                                    <label>İl</label>
+                                                    <select [(ngModel)]="engelli.ikadril"
+                                                        [ngModelOptions]="{standalone: true}"
+                                                        (ngModelChange)="CityonChange_ikametgah($event)"
+                                                        class="form-control">
+                                                        <option value="null" disabled>Seçiniz..</option>
+                                                        <option *ngFor="let c of cityList" [ngValue]="c.iladi">{{c.iladi}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group input-group-md">
+                                                    <label>İlçe</label>
+                                                    <select [(ngModel)]="engelli.ikadrilce"
+                                                        [ngModelOptions]="{standalone: true}" class="form-control">
+                                                        <option value="null" disabled>Seçiniz..</option>
+                                                        <option *ngFor="let c of countyList" [ngValue]="c.ilceadi">
+                                                            {{c.ilceadi}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group input-group-md">
+                                                    <label>Adres</label>
+                                                    <textarea [(ngModel)]="engelli.ikadres"
+                                                        [ngModelOptions]="{standalone: true}" style="height: 60px"
+                                                        class="form-control"></textarea>
+                                                    <!--<input [(ngModel)]="engelli.ikadres" [ngModelOptions]="{standalone: true}" type="text" class="form-control">-->
+                                                </div>
+                                            </div>
+    
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                </div>
+                <div class="col-md-4">
+                    <div class="col-md-12" class="modal-sub-header">
+                        <h5 style="color:#fff">AİLE BİLGİLERİ</h5>
+                    </div>
+    
+                    <div class="col-md-12">
+                        <div class="form-group input-group-md">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group input-group-md">
+                                                    <label>Baba Adı:</label>
+                                                    <input [(ngModel)]="engelli.ikbabaadi"
+                                                        [ngModelOptions]="{standalone: true}" type="text"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group input-group-md">
+                                                    <label>Öz Baba Durumu</label>
+                                                    <select [(ngModel)]="engelli.ikozbabadurumu"
+                                                        [ngModelOptions]="{standalone: true}" class="form-control">
+                                                        <option value="null" disabled>Seçiniz..</option>
+                                                        <option>Yaşıyor</option>
+                                                        <option>Ölmüş</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- adı soyadı -->
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group input-group-md">
+                                                    <label>Anne Adı</label>
+                                                    <input [(ngModel)]="engelli.ikanneadi"
+                                                        [ngModelOptions]="{standalone: true}" type="text"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group input-group-md">
+                                                    <label>Öz Anne Durumu</label>
+                                                    <select [(ngModel)]="engelli.ikozannedurumu"
+                                                        [ngModelOptions]="{standalone: true}" class="form-control">
+                                                        <option value="null" disabled>Seçiniz..</option>
+                                                        <option>Yaşıyor</option>
+                                                        <option>Ölmüş</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group input-group-md">
+                                                    <label>Engellinin Kardeş Sayısı</label>
+                                                    <input [(ngModel)]="engelli.ikkardessayisi"
+                                                        [ngModelOptions]="{standalone: true}" type="text"
+                                                        (keypress)="validate($event)" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group input-group-md">
+                                                    <label>Ailedeki Başka Engelli Sayısı</label>
+                                                    <input [(ngModel)]="engelli.ikailedebaskaengsayi"
+                                                        [ngModelOptions]="{standalone: true}" type="text"
+                                                        (keypress)="validate($event)" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <app-imageOperation #lisansFirst id="lisansFirst" [editable]="true" [tableNick]="'ik'"
+                                [id]="engelli.ikid"></app-imageOperation>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="margin-top: 5px;">   
+                            <button type="submit" class="btn btn-success  btn-tn" style="margin-left: 10px;float:right;">Kaydet</button>
+                        <a href="javascript:void(0)" (click)=" cancelFirst();" style="float: right" class="btn btn-danger  btn-tn">Vazgeç</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    
+    </app-modal>
+    
+    <div  [ngClass]="{'blur': isBlur}">
+        <!--Engelli Vasi Raporu-->
+    <div style="margin-top: -18px;">
+            <app-engelli-vasi #engelVasi></app-engelli-vasi>
+    </div>
+    <!-- Engelli Raporu -->
+    <div style="margin-top: -18px;">
+            <app-engelli-raporlari #engelRapor></app-engelli-raporlari>
+    </div>
+    <!-- Engelli İlaç Raporu -->
+    <div style="margin-top: -18px;">
+            <app-engelli-Ilac-Rapor #ilacRaporu></app-engelli-Ilac-Rapor>
+    </div>
+        <!--Engelli Bez Raporu-->
+    <div style="margin-top: -18px;">
+            <app-engelli-bez-raporlari #engelBez></app-engelli-bez-raporlari>
+    </div>
+        <!--Engelli Mama Raporu-->
+    <div style="margin-top: -18px;">
+            <app-engelli-mama-rapor #mamaRapor></app-engelli-mama-rapor>
+    </div>
+    </div>
+    <!-- Engelli Çıkış Modal -->
+    <div bsModal #disabledExit="bs-modal" class="modal fade" tabindex="-1" role="dialog" [config]="{ignoreBackdropClick: true, keyboard: false}"
+        aria-labelledby="dialog-sizes-name1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" id="clrFiziksel">
+                <div class="modal-header">
+                    <h5 id="dialog-sizes-name1" class="modal-title pull-left" style="color:#fff">ENGELLİ ÇIKIŞ BİLGİLERİ
+                    </h5>
+                    <button type="button" class="close pull-right" (click)="openModal(false);disabledExit.hide();" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group input-group-md">
+                            <!-- Ayrılış Tarihi-->
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group input-group-md">
+                                        <label>Ayrılış Tarihi</label>
+                                        <div class="input-group-append">
+                                            <input type="text" [(ngModel)]="engelli.ikayrilistar" class="form-control"
+                                                bsDatepicker placement="right"
+                                                [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"
+                                                [ngModelOptions]="{standalone: true}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Ayrılış Nedeni  -->
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group input-group-md">
+                                        <label>Ayrılış Nedeni</label>
+                                        <input type="text" [(ngModel)]="engelli.ikayrilisneden"
+                                            [ngModelOptions]="{standalone: true}" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Gittiği Yer  -->
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group input-group-md">
+                                        <label>Gittiği Yer</label>
+                                        <input type="text" [(ngModel)]="engelli.ikgittigiyer"
+                                            [ngModelOptions]="{standalone: true}" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- onay iptal Tarihi-->
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group input-group-md">
+                                        <label>ASCHİM Onay İptal Tarihi</label>
+                                        <div class="input-group-append">
+                                            <input type="text" [(ngModel)]="engelli.ikaspimonayiptaltar"
+                                                [ngModelOptions]="{standalone: true}" class="form-control" bsDatepicker
+                                                placement="right" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Onay iptal no-->
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group input-group-md">
+                                        <label>ASCHİM Onay İptal No</label>
+                                        <input type="text" [(ngModel)]="engelli.ikaspimonayiptalno"
+                                            [ngModelOptions]="{standalone: true}" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- açıklama  -->
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group input-group-md">
+                                        <label>Açıklama</label>
+                                        <input type="text" [(ngModel)]="engelli.ikaciklamalar"
+                                            [ngModelOptions]="{standalone: true}" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a href="javascript:void(0)" (click)="disabilityExitCancel();disabledExit.hide();openModal(false);"
+                        class="btn btn-danger  btn-tn">Vazgeç</a>
+                    <a href="javascript:void(0)" (click)="exitFirstAcceptences();disabledExit.hide();"
+                        class="btn btn-success  btn-tn">Tamam</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <toaster-container>
+    </toaster-container>

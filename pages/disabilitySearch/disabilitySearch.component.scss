@@ -1,0 +1,46 @@
+
+#clrEngelli{
+    background-color: #00c996; 
+    padding: 15px;
+    border-radius: 20px;
+}
+#clrFiziksel{
+    background-color:#419cdb; 
+    padding: 15px;
+    border-radius: 20px;
+}
+.center { 
+    height: 50px;
+    width: auto;
+    position: relative;
+  }
+  
+  .center h5{
+   text-align: center;
+  }
+  .card-container{
+    display: flex;
+}
+.card-item-title{
+    flex-grow: 1;
+}
+.col-md-6{
+    max-width: 99% !important;
+  }
+// .card{
+//     margin-right: auto;
+//     margin-left: auto;
+// }
+.card-title-text{
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+    color:rgb(48, 194, 213);
+    text-shadow: -2px -2px 5px rgba(82, 179, 218, 0.2);
+}
+.col-md-3 {
+    flex: 0 0 24%;}
+  .center h5{
+   text-align: center;
+  }

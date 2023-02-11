@@ -1,0 +1,131 @@
+<div class="row">
+
+
+  <div class="col-md-1"></div>
+<div class="col-md-10">
+  <nb-card size="active">
+    <br>
+<div class="col-12" style="text-align: center">
+  <h5 style="text-align: center"> Döküman Tanımla</h5></div>
+    <br>
+      <div class="modal-body">
+         <!--<div class="row">
+            <div class="form-group input-group-md col-md-4">
+                <label>Döküman Kodu</label>
+                <input  type="text"   class="form-control">
+             <div *ngIf='showDropDown' class="autosearch-container-dropdown">
+                <div *ngFor='let user of _userlist' class="autosearch-item">
+                  <div class="row" (click)="selectUser(user)" style="width:100%;">
+                    <div class="col-sm-12">{{user.peradi}} {{user.persoyadi}}</div>
+                  </div>
+                </div>
+              </div>
+              </div>
+              <div class="form-group input-group-md col-md-8">
+                  <label>Döküman Adı</label>
+                  <input  type="text" class="form-control">
+                </div>
+        </div>-->
+        <div class="col-sm-12">
+
+            <div class="row">
+              <div class="form-group input-group-md col-md-4">
+                <label>Döküman Kodu</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="form-group input-group-md col-md-8">
+                <label>Döküman Adı</label>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group input-group-md col-md-4">
+                <label>Yayın Tarihi</label>
+                <input  type="text" class="form-control">
+              </div>
+              <div class="form-group input-group-md col-md-4">
+                <label>Revizyon Tarihi</label>
+                <input  type="text" class="form-control">
+              </div>
+              <div class="form-group input-group-md col-md-4">
+                <label>Revizyon No</label>
+                <input  type="text" class="form-control">
+              </div>
+              <div class="form-group input-group-md col-md-2">
+                  <label>Ana Grup</label>
+                  <select class="form-control" >
+                      <option value="null" disabled>Seçiniz..</option>
+                      <option value="Saatlik">Formlar</option>
+                      <option value="Yatılı">Görev Tanımları</option>
+                      <option value="Yatılı">Kalite El Kitabı</option>
+                      <option value="Yatılı">Listeler</option>
+                      <option value="Yatılı">Planlar</option>
+                      <option value="Yatılı">Prosesler</option>
+                      <option value="Yatılı">Şemalar</option>
+                      <option value="Yatılı">Talimatlar</option>
+                    </select>
+                </div>
+                <div class="form-group input-group-md col-md-2">
+                    <label>Alt Grup</label>
+                    <select class="form-control">
+                        <option value="null" disabled>Seçiniz..</option>
+                        <option value="Saatlik">Psiko Sosyal</option>
+                        <option value="Yatılı">Sağlık Hizmetleri</option>
+                        <option value="Yatılı">Bakım Hizmetleri</option>
+                        <option value="Yatılı">Genel</option>
+                      </select>   
+                  </div>
+            </div>
+          </div>
+        <div class="col-md-12" align="right" style="margin-top:10px">
+          <button type="submit" class="btn btn-success btn-sm">Kaydet</button>
+        </div>
+      </div>
+      </nb-card>
+      <nb-card size="active">
+        <!--
+        <div class="row">
+            <div class="form-group input-group-md col-md-12">
+            <label>Döküman Yerleşkesi</label>
+            <input  type="text" class="form-control">
+          </div>
+        </div>
+        -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-bordered ">
+                    <thead>
+                      <tr>
+                        <th>Döküman Kodu</th>
+                        <th>Yayın Tarihi</th>
+                        <th>Revizyon Tarihi</th>
+                        <th>Revizyon No</th>
+                        <th>Döküman Yerleşkesi</th>
+                        <th>İşlemler</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Yapım Aşamasında...</td>
+                        <td>Yapım Aşamasında...</td>
+                        <td>Yapım Aşamasında...</td>
+                        <td>Yapım Aşamasında...</td>
+                        <td>Yapım Aşamasında...</td>
+                        <td>
+                        <button class="btn btn-hero-info btn-demo btn-tn">Düzelt</button> 
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    <br>
+  </nb-card>
+</div>
+</div>

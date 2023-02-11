@@ -1,0 +1,822 @@
+<!-- Personel Bilgileri -->
+<div class="row">
+    <div class="col-md-12">
+      <nb-card size="active">
+        <br>
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="row">
+                <!-- Resim İsim -->
+                <div class="card col-md-2" style="margin-top:20px;margin-left:20px;margin-right: 40px;">
+                  <div class="row">
+                    <img class="card-img-top" width='260' height="275" src="{{employeeImage}}" alt="image">
+                  </div>
+                  <div class="card-body" style="text-align: center">
+                    <h4 class="card-title">{{mudurPersonel.peradi}} {{mudurPersonel.persoyadi}} </h4>
+                    <hr>
+                    <b style="color: black;font-weight: bold;">{{mudurPersonel.perkadro}}</b>
+                    <hr>
+                    <a href="javascript:void(0)" (click)="editModal.show()" class="btn btn-info btn-block btn-tn">{{(mudurPersonel.perid>0) ? "Düzenle" : "Tanımla" }} </a>
+                    <a href="javascript:void(0)" [hidden]="!(mudurPersonel.perid>0)" (click)="exitFromWork.show();" class="btn btn-danger btn-block  btn-tn">PERSONEL ONAY İPTAL <br> İŞLEMİ İÇİN TIKLAYINIZ</a>
+                    <!--<p class="card-text">GSM: {{mudurPersonel.pertel2}} </p>-->
+                  </div>
+                </div>
+                <!-- Kişisel Bilgiler -->
+                <div class="card col-md-3 " style="margin-top:20px; margin-right: 40px">
+                  <div class="card-body" >
+                      <div id="clrFiziksel" class="center">
+                          <h5  style="color: white">KİŞİSEL BİLGİLER</h5>
+                        </div>
+                    <hr>
+                    <table>
+                      <colgroup>
+                        <col span="1" style="width: 34%;">
+                        <col span="1" style="width: 1%;">
+                        <col span="1" style="width: 65%;">
+                      </colgroup>
+  
+                      <tbody>
+                        <tr>
+                          <td style="color: black;"><strong>TC Kimlik No</strong></td>
+                          <td>:</td>
+                          <td>{{mudurPersonel.pertcno}}</td>
+                        </tr>
+                        <tr>
+                          <td style="color: black;"><strong>Adı</strong></td>
+                          <td>:</td>
+                          <td>{{mudurPersonel.peradi}}</td>
+                        </tr>
+                        <tr>
+                          <td style="color: black;"><strong>Soyadı</strong></td>
+                          <td>:</td>
+                          <td>{{mudurPersonel.persoyadi}}</td>
+                        </tr>
+                        <tr>
+                          <td style="color: black;"><strong>Doğum Tarihi</strong></td>
+                          <td>:</td>
+                          <td>{{mudurPersonel.perdogtar | date: 'dd/MM/yyyy'}}</td>
+                        </tr>
+                        <tr>
+                          <td style="color: black;"><strong>Doğum Yeri İl/İlçe</strong></td>
+                          <td>:</td>
+                          <td>{{mudurPersonel.perdogyeril}}/{{mudurPersonel.perdogyerilce}}</td>
+                        </tr>
+                        <tr>
+                          <td style="color: black;"><strong>Cinsiyet</strong></td>
+                          <td>:</td>
+                          <td>{{mudurPersonel.percinsiyet}}</td>
+                        </tr>
+                        <tr>
+                          <td style="color: black;"><strong>Medeni Hal</strong></td>
+                          <td>:</td>
+                          <td>{{mudurPersonel.permedenihali}}</td>
+                        </tr>
+                        <tr>
+                            <td style="color: black;"><strong>Kadro</strong></td>
+                            <td>:</td>
+                            <td>{{mudurPersonel.perkadro}}</td>
+                          </tr>
+                          <tr>
+                              <td style="color: black;"><strong>Meslek</strong></td>
+                              <td>:</td>
+                              <td>{{mudurPersonel.permeslek}}</td>
+                            </tr>
+                      </tbody>
+                    </table>
+  
+                  </div>
+                  <div class="card-footer">
+                      <!-- <div style="width: 200px;margin: auto;">
+                    <a href="javascript:void(0)" (click)="generalInfomodal.show()" class="btn btn-info btn-block btn-tn">Tanımla
+                      / Düzenle</a>
+                  </div> -->
+                </div>
+                </div>
+                <!-- İletişim Bilgiler -->
+                <div class="card col-md-3 " style="margin-top:20px; margin-right: 40px">
+  
+                  <div class="card-body" >
+                      <div id="clrFiziksel" class="center">
+                          <h5  style="color: white">İLETİŞİM ve EĞİTİM BİLGİLERİ</h5>
+                        </div>
+                    <hr>
+                    <table>
+                      <colgroup>
+                        <col span="1" style="width: 34%;">
+                        <col span="1" style="width: 1%;">
+                        <col span="1" style="width: 65%;">
+                      </colgroup>
+  
+                      <tbody>
+                        <tr>
+                          <td style="color: black;"><strong>GSM</strong></td>
+                          <td>:</td>
+                          <td>{{mudurPersonel.pertel2}}</td>
+                        </tr>
+                        <tr>
+                          <td style="color: black;"><strong>İl/İlçe</strong></td>
+                          <td>:</td>
+                          <td>{{mudurPersonel.peradril}} / {{mudurPersonel.peradrilce}}</td>
+                        </tr>
+                        <tr>
+                          <td style="color: black;"><strong>Adres</strong></td>
+                          <td>:</td>
+                          <td>{{mudurPersonel.peradres}}</td>
+                        </tr>
+                        <tr>
+                          <td style="color: black;"><strong>E-posta</strong></td>
+                          <td>:</td>
+                          <td>{{mudurPersonel.peremail}}</td>
+                        </tr>
+                        <tr>
+                          <td style="color: black;"><strong>Öğrenim Durumu</strong></td>
+                          <td>:</td>
+                          <td>{{mudurPersonel.perogrenimdurumu}}</td>
+                        </tr>
+                        <tr>
+                          <td style="color: black;"><strong>En Son Mezun Olduğu Okul Adı</strong></td>
+                          <td>:</td>
+                          <td>{{mudurPersonel.personmezunolokul}}</td>
+                        </tr>
+                        <tr>
+                          <td style="color: black;"><strong>Mezun Olduğu Bölümü</strong></td>
+                          <td>:</td>
+                          <td>{{mudurPersonel.personmezunokulbolum}}</td>
+                        </tr>
+                        <tr>
+                          <td style="color: black;"><strong>Mezuniyet Yılı</strong></td>
+                          <td>:</td>
+                          <td>{{mudurPersonel.personmezuntar}}</td>
+                        </tr>
+                        <tr>
+                          <td style="color: black;"><strong>Diplomo No</strong></td>
+                          <td>:</td>
+                          <td>{{mudurPersonel.personmezunokuldiplomano }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="card-footer">
+                      <!-- <div style="width: 200px;margin: auto;">
+                    <a href="javascript:void(0)" (click)="contactInfomodal.show()" class="btn btn-info btn-block btn-tn">Tanımla
+                      / Düzenle</a>
+                  </div> -->
+                </div>
+                </div>
+                <!-- Eğitim Bilgileri -->
+                <div class="card col-md-3 " style="margin-top:20px; margin-right: 40px">
+                  <div class="card-body" style="color: black;font-weight: bold;">
+                      <div id="clrFiziksel" class="center">
+                          <h5  style="color: white">ONAY/ONAY İPTAL BİLGİLERİ</h5>
+                        </div>
+                    <hr>
+                    <h5 style="color: green;font-weight: bold;text-align: center;">Onay Bilgileri</h5>
+                    <hr>
+                    <table>
+                      <colgroup>
+                        <col span="1" style="width: 50%;">
+                        <col span="1" style="width: 40px;">
+                        <col span="1" style="width: 49%;">
+                      </colgroup>
+                      <tbody >
+                        <tr>
+                          <td style="color: black;"><strong>Giriş Tarihi</strong></td>
+                          <td>:</td>
+                          <td style="color: green">{{mudurPersonel.pergiristar | date:'dd/MM/yyyy'}}</td>
+                        </tr>
+                        <tr>
+                          <td style="color: black;"><strong>ACSHİM Onay Tarihi</strong></td>
+                          <td>:</td>
+                          <td style="color: green;">{{mudurPersonel.pergiraspimonaytar |
+                            date:'dd/MM/yyyy'}}</td>
+                        </tr>
+                        <tr>
+                          <td style="color: black;"><strong>ACSHİM Onay No</strong></td>
+                          <td>:</td>
+                          <td style="color: green;">{{mudurPersonel.pergiraspimonayno }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <hr>
+                    <div [hidden]="!mudurPersonel.percikistar">
+                        <h5 style="color: red;font-weight: bold;text-align: center;">Onay İptal Bilgileri</h5>
+                        <hr>
+                      <table>
+                        <colgroup>
+                          <col span="1" style="width: 50%;">
+                          <col span="1" style="width: 1%;">
+                          <col span="1" style="width: 49%;">
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <td style="color: black;"><strong>Ayrılış Tarihi</strong></td>
+                                <td>:</td>
+                                <td style="color: red;">{{mudurPersonel.percikistar | date:'dd/MM/yyyy'}}</td>
+                              </tr>
+                          <tr>
+                            <td style="color: black;"><strong>ACSHİM Onay İptal Tarihi</strong></td>
+                            <td>:</td>
+                            <td style="color: red;">{{mudurPersonel.percikaspimonaytar |
+                              date:'dd/MM/yyyy'}}</td>
+                          </tr>
+                          <tr>
+                            <td style="color: black;"><strong>ACSHİM Onay İptal No</strong></td>
+                            <td>:</td>
+                            <td style="color: red;">{{mudurPersonel.percikaspimonayno}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="card-footer">
+                      <!-- <div style="width: 200px;margin: auto;">
+                    <a href="javascript:void(0)" (click)="educationStaffInfomodal.show()" class="btn btn-info btn-block btn-tn">Tanımla
+                      / Düzenle</a>
+                  </div> -->
+                </div>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nb-card>
+    </div>
+  </div>
+  <app-modal #editModal [title]="'PERSONEL TANIMLAMA'">
+    <div class="row">
+      <!-- kisisel bigiler -->
+      <div class="col-md-4" style="border-right: 2px solid #00c996;">
+          <div class="col-md-12" class="modal-sub-header">
+              <h5 style="color:#fff">KİŞİSEL BİLGİLER</h5>
+          </div>
+           <div class="col-md-12">
+                          <div class="row">
+                              <div class="col-sm-12">
+                                  <div class="form-group input-group-md">
+                                      <label>TC Kimlik No</label>
+                                      <input type="text" [(ngModel)]="mudurPersonel.pertcno" (keyup.enter)="searchByTC()" [ngModelOptions]="{standalone: true}" [textMask]="{mask: tc_mask}"
+                class="form-control ">
+                                  </div>
+                              </div>
+                          </div>
+                          <!-- adı soyadı -->
+                          <div class="row">
+                              <div class="col-sm-6">
+                                  <div class="form-group input-group-md">
+                                      <label>Adı</label>
+                                      <input type="text" [(ngModel)]="mudurPersonel.peradi" [ngModelOptions]="{standalone: true}"
+                class="form-control ">
+                                  </div>
+                              </div>
+                              <div class="col-sm-6">
+                                  <div class="form-group input-group-md">
+                                      <label>Soyadı</label>
+                                      <input type="text" [(ngModel)]="mudurPersonel.persoyadi" [ngModelOptions]="{standalone: true}"
+                class="form-control ">
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-sm-6">
+                                  <div class="form-group input-group-md">
+                                      <label>Doğum Tarihi</label>
+                                      <input type="text" [(ngModel)]="mudurPersonel.perdogtar" class="form-control" bsDatepicker
+                placeholder="gg/aa/yyyy" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', locale: 'tr' }">
+                                  </div>
+                              </div>
+                              <div class="col-sm-6">
+                                <div class="form-group input-group-md">
+                                    <label>Cinsiyet</label>
+                                    <select #section [(ngModel)]="mudurPersonel.percinsiyet" [ngModelOptions]="{standalone: true}" class="form-control">
+                                      <option value="null" disabled>Seçiniz..</option>
+                                      <option value="Kadın">Kadın</option>
+                                      <option value="Erkek">Erkek</option>
+                                    </select>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-sm-6">
+                                  <div class="form-group input-group-md">
+                                      <label>Doğum Yeri İl</label>
+                                      <div class="input-group-append">
+                                        <select class="form-control" [(ngModel)]="mudurPersonel.perdogyeril" (ngModelChange)="cityOnChange_kisisel($event)" [ngModelOptions]="{standalone: true}">
+                                        <option value="null">Seçiniz..</option>
+                                        <option *ngFor="let c of cityList_kisisel" [ngValue]="c.iladi">{{c.iladi}}</option>
+                                      </select>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-sm-6">
+                                  <div class="form-group input-group-md">
+                                      <label>Doğum Yeri İlçe</label>
+                                      <select [(ngModel)]="mudurPersonel.perdogyerilce" [ngModelOptions]="{standalone: true}" class="form-control">
+                                        <option value="null" disabled>Seçiniz..</option>
+                                        <option *ngFor="let c of countyList_kisisel" [ngValue]="c.ilceadi">{{c.ilceadi}}</option>
+                                      </select>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-sm-6">
+                                  <div class="form-group input-group-md">
+                                      <label>Medeni Hali</label>
+                                      <select [(ngModel)]="mudurPersonel.permedenihali" [ngModelOptions]="{standalone: true}" class="form-control">
+                                        <option value="null" disabled>Seçiniz..</option>
+                                        <option value="Bekar">Bekar</option>
+                                        <option value="Evli">Evli</option>
+                                        <option value="Boşanmış">Boşanmış</option>
+                                      </select>
+                                  </div>
+                              </div>
+                              <div class="col-sm-6">
+                                  <div class="form-group input-group-md">
+                                      <label>Ehliyet</label>
+                                      <select [(ngModel)]="mudurPersonel.perehliyet" [ngModelOptions]="{standalone: true}" class="form-control">
+                                        <option value="null" disabled>Seçiniz..</option>
+                                        <option *ngFor="let e of _licenses" [ngValue]="e">{{e}}</option>
+                                      </select>
+                                  </div>
+                              </div>
+
+                          </div>
+                          <div class="row">
+                              <div class="col-sm-6" [hidden]="section.value =='Kadın'" >
+                                  <label>Askerlik Durumu</label>
+                                  <div class="input-group-append" >
+                                    <select [(ngModel)]="mudurPersonel.peraskerdurum" [ngModelOptions]="{standalone: true}" 
+                                    [disabled]="!isMale()" class="form-control">
+                                    <option value="null" disabled>Seçiniz..</option>
+                                    <option value="Yaptı">Yaptı</option>
+                                    <option value="Tecilli">Tecilli</option>
+                                    <option value="Muaf">Muaf</option>
+                                  </select>
+                                  </div>
+                              </div>
+                              <div class="col-sm-6" [hidden]="section.value =='Kadın'">
+                                  <div class="form-group input-group-md">
+                                      <label >Tecil Tarihi</label>
+                                      <input type="text" [(ngModel)]="mudurPersonel.perasteciltar" [disabled]="!isDone()" class="form-control" 
+                                    bsDatepicker placeholder="gg/aa/yyyy" placement="left" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" 
+                                    [ngModelOptions]="{standalone: true}">
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-sm-6">
+                                  <div class="form-group input-group-md">
+                                      <label>Boy(cm)</label>
+                                      <input [(ngModel)]="mudurPersonel.perboy" [ngModelOptions]="{standalone: true}" type="text" (keypress)="validate($event)"
+                                      class="form-control">
+                                  </div>
+
+                              </div>
+                              <div class="col-sm-6">
+                                <div class="form-group input-group-md">
+                                    <label>Ayakkabı No</label>
+                                    <select [(ngModel)]="mudurPersonel.perayakkabino" [ngModelOptions]="{standalone: true}" class="form-control">
+                                        <option value="null" disabled>Seçiniz..</option>
+                                        <option value="35">35</option>
+                                        <option value="36">36</option>
+                                        <option value="37">37</option>
+                                        <option value="38">38</option>
+                                        <option value="39">39</option>
+                                        <option value="40">40</option>
+                                        <option value="41">41</option>
+                                        <option value="42">42</option>
+                                        <option value="43">43</option>
+                                        <option value="44">44</option>
+                                        <option value="45+">45+</option>
+                                    </select>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-sm-6">
+                                  <div class="form-group input-group-md">
+                                      <label>Bedeni</label>
+                                      <select [(ngModel)]="mudurPersonel.perbeden" [ngModelOptions]="{standalone: true}" class="form-control">
+                                        <option value="null" disabled>Seçiniz..</option>
+                                        <option value=1>XS</option>
+                                        <option value=2>S</option>
+                                        <option value=3>M</option>
+                                        <option value=4>L</option>
+                                        <option value=5>XL</option>
+                                        <option value=6>2XL</option>
+                                        <option value=7>3XL</option>
+                                        <option value=8>4XL</option>
+                                      </select>
+                                  </div>
+                              </div>
+                              <div class="col-sm-6">
+                                  <div class="form-group input-group-md">
+                                      <label>Sigara Kullanımı</label>
+                                      <select [(ngModel)]="mudurPersonel.persigarakul" [ngModelOptions]="{standalone: true}" class="form-control">
+                                          <option value="null" disabled>Seçiniz..</option>
+                                          <option value="Sigara Kullanıyor">Sigara Kullanıyor</option>
+                                          <option value="Sigara Kullanmıyor">Sigara Kullanmıyor</option>
+                                      </select>
+                                  </div>
+                              </div>
+                              
+                          </div>
+                         <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group input-group-md">
+                                    <label>Meslek</label>
+                                    <select #selectMeslek [(ngModel)]="mudurPersonel.permeslek" [ngModelOptions]="{standalone: true}" class="form-control">
+                                        <option value="null" disabled>Seçiniz..</option>
+                                        <!--<option *ngFor="let j of _jobs" [ngValue]="j">{{j}}</option>-->
+                                        <option value="Sosyal Hizmet Uzmanı (SHU)">Sosyal Hizmet Uzmanı (SHU)</option>
+                                        <option value="Psikolojik Danışmanlık ve Rehberlik (PDR)">Psikolojik Danışmanlık ve Rehberlik (PDR)</option>
+                                        <option value="Psikolog">Psikolog</option>
+                                        <option value="Fizyoterapist">Fizyoterapist</option>
+                                        <option value="ATT">ATT</option>
+                                        <option value="Hemşire">Hemşire</option>
+                                        <option value="Hasta Yaşlı Bakım">Hasta Yaşlı Bakım</option>
+                                        <option value="Aşçı">Aşçı</option>
+                                        <option value="Diğer">Diğer</option>
+                                      </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group input-group-md">
+                                    <label>Kadro</label>
+                                    <select [(ngModel)]="mudurPersonel.perkadro" [ngModelOptions]="{standalone: true}" class="form-control">
+                                      <option value="null" disabled>Seçiniz..</option>
+                                      <option value="KURUCU MÜDÜR">Kurucu Müdür</option>
+                                      <option value="SORUMLU MÜDÜR">Sorumlu Müdür</option>
+                                      <option value="SORUMLU MÜDÜR + MESLEKİ PERSONEL">Sorumlu Müdür + Mesleki Personel</option>
+                                      <option value="MESLEKİ PERSONEL">Mesleki Personel</option>
+                                      <option value="SAĞLIK PERSONELİ">Sağlık Personeli</option>
+                                      <option value="BAKICI PERSONELİ">Bakıcı Personeli</option>
+                                      <option value="TEMİZLİK PERSONELİ">Temizlik Personeli</option>
+                                      <option value="TEKNİK SERVİS">Teknik Servis</option>
+                                      <option value="SATIN ALMA SORUMLUSU">Satın Alma Sorumlusu</option>
+                                      <option value="BÜRO PERSONELİ">Büro Personeli</option>
+                                      <option value="AŞÇI">Aşçı</option>
+                                      <option value="AŞÇI YARDIMCISI">Aşçı Yardımcısı</option>
+                                      <option value="GÜVENLİK GÖREVLİSİ">Güvenlik Görevlisi</option>
+                                      <option value="ŞOFÖR">Şoför</option>
+                                    </select>
+                                </div>
+                            </div>
+                           </div>
+                           <div class="row"  [hidden]="selectMeslek.value !='Diğer'|| selectMeslek.value=='null'" >
+                             <div class="col-sm-12">
+                                 <div class="form-group input-group-md">
+                                     <label>Diğer Mesleğinizi Yazınız</label>
+                                     <input  type="text" [(ngModel)]="mudurPersonel.perdigermeslek" [ngModelOptions]="{standalone: true}" class="form-control text">
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="row">
+                            <!-- <div class="col-sm-6">
+                                <div class="form-group input-group-md" >
+                                    <label >Resim Seç</label>
+                                    <input type="file" class="form-control" style="padding: 0.01rem 0rem;" (change)="onFileSelected($event)" >     
+                                </div>
+                            </div> -->
+                         
+                         </div> 
+           </div>
+
+      </div>
+      <div class="col-md-4" style="border-right: 2px solid #00c996;">
+          <div class="col-md-12" class="modal-sub-header">
+              <h5 style="color:#fff">İLETİŞİM VE EĞİTİM BİLGİLERİ</h5>
+          </div>
+          <div class="col-md-12">
+              <div>
+                  <div class="row">
+                      <div class="col-sm-6">
+                          <div class="form-group input-group-md">
+                              <label>Telefon</label>
+                              <input [textMask]="{mask: mask}" [(ngModel)]="mudurPersonel.pertel1" class="form-control textbox" type="text"
+                              placeholder="0 (xxx) xxx xxxx" [ngModelOptions]="{standalone: true}" />
+                          </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group input-group-md">
+                            <label>GSM</label>
+                            <input [textMask]="{mask: mask}" [(ngModel)]="mudurPersonel.pertel2" class="form-control textbox" type="text"
+                            placeholder="0 (xxx) xxx xxxx" [ngModelOptions]="{standalone: true}" />
+                        </div>
+                    </div>
+                  </div>
+                  <!-- adı soyadı -->
+                  <div class="row">
+                      <div class="col-sm-6">
+                          <div class="form-group input-group-md">
+                              <label>İl</label>
+                              <select class="form-control" [(ngModel)]="mudurPersonel.peradril" (ngModelChange)="cityOnChange_iletisim($event)"
+          [ngModelOptions]="{standalone: true}">
+          <option value="null" disabled>Seçiniz..</option>
+          <option *ngFor="let c of cityList_iletisim" [ngValue]="c.iladi">{{c.iladi}}</option>
+        </select>
+                          </div>
+                      </div>
+                      <div class="col-sm-6">
+                          <div class="form-group input-group-md">
+                              <label>İlçe</label>
+                              <select [(ngModel)]="mudurPersonel.peradrilce" [ngModelOptions]="{standalone: true}" class="form-control">
+                                <option value="null" disabled>Seçiniz..</option>
+                                <option *ngFor="let c of countyList_iletisim" [ngValue]="c.ilceadi">{{c.ilceadi}}</option>
+                              </select>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-sm-6">
+                          <div class="form-group input-group-md">
+                              <label>Adres</label>
+                             <!-- <input [(ngModel)]="mudurPersonel.peradres" [ngModelOptions]="{standalone: true}" type="text" class="form-control textbox">-->
+                              <textarea   [(ngModel)]="mudurPersonel.peradres" [ngModelOptions]="{standalone: true}" style="height: 80px" class="form-control"></textarea>
+                          </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group input-group-md">
+                            <label>E-posta</label>
+                            <input [(ngModel)]="mudurPersonel.peremail" [ngModelOptions]="{standalone: true}" type="text" class="form-control textbox">
+                        </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-sm-6">
+                          <div class="form-group input-group-md">
+                              <label>Öğrenim Durumu</label>
+                              <select [(ngModel)]="mudurPersonel.perogrenimdurumu" [ngModelOptions]="{standalone: true}" class="form-control">
+                                <option value="null" disabled>Seçiniz..</option>
+                                <option>İlk Okul</option>
+                                <option>Ortaokul</option>
+                                <option>Lise</option>
+                                <option>Önlisans</option>
+                                <option>Lisans</option>
+                                <option>Yükseklisans</option>
+                              </select>
+                          </div>
+                      </div>
+                      <div class="col-sm-6">
+                          <div class="form-group input-group-md">
+                              <label>En Son Mezun Olduğu Okul Adı</label>
+                              <input [(ngModel)]="mudurPersonel.personmezunolokul" [ngModelOptions]="{standalone: true}" type="text"
+                              class="form-control textbox">
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-sm-6">
+                          <div class="form-group input-group-md">
+                              <label>Mezun Olduğu Bölüm</label>
+                              <input [(ngModel)]="mudurPersonel.personmezunokulbolum" [ngModelOptions]="{standalone: true}" type="text"
+                              class="form-control textbox">
+                          </div>
+                      </div>
+                      <div class="col-sm-6" >
+                          <div class="form-group input-group-md">
+                          <label>Mezuniyet Yılı</label>
+                            <input [(ngModel)]="mudurPersonel.personmezuntar" [ngModelOptions]="{standalone: true}" type="text" (keypress)="validate($event)" class="form-control date" >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-sm-6">
+                          <div class="form-group input-group-md">
+                              <label>Diploma No</label>
+                              <input [(ngModel)]="mudurPersonel.personmezunokuldiplomano" [ngModelOptions]="{standalone: true}" type="text" 
+        class="form-control textbox">
+                          </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group input-group-md">
+                            <label></label>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-4">
+          <div class="col-md-12" class="modal-sub-header">
+              <h5 style="color:#fff">ONAY/ONAY İPTAL BİLGİLERİ</h5>
+          </div>
+          <div class="col-md-12">
+              <div>
+                  <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group input-group-md">
+                            <label>İşe Giriş Tarihi</label>
+                            <input type="text" [(ngModel)]="mudurPersonel.pergiristar" class="form-control" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group input-group-md">
+                            <label>ACSHİM İşe Giriş Onay Tarihi</label>
+                            <input type="text" [(ngModel)]="mudurPersonel.pergiraspimonaytar" class="form-control" bsDatepicker
+                            [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+                        </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-sm-6">
+                          <div class="form-group input-group-md">
+                              <label>ACSHİM İşe Giriş Onay No</label>
+                              <input [(ngModel)]="mudurPersonel.pergiraspimonayno" [ngModelOptions]="{standalone: true}" type="text"
+              class="form-control text">
+                          </div>
+                      </div>
+                  </div>
+                  <hr>
+                  <div class="col-md-12">
+                      <app-imageOperation #lisansEmploye id="lisansEmploye" [editable]="true" [tableNick]="'per'" [id]="mudurPersonel.perid" ></app-imageOperation>
+                  </div>
+                  
+                  <div style="float: right;margin-top: 5px;">
+                      <a href="javascript:void(0)" style="margin-right: 10px" (click)="cancelPersonelity();" class="btn btn-hero-danger  btn-tn">Vazgeç</a>
+
+                      <a href="javascript:void(0)" (click)="saveEmployee();"
+                      class="btn btn-success  btn-tn">Kaydet</a>
+                    
+                  </div>
+              </div>
+          </div>
+
+      </div>
+    </div>
+  </app-modal>
+  <!-- Tecrübe -->
+  <div class="row">
+    <div class="col-md-12">
+      <nb-card size="active">
+        <br>
+        <div class="col-md-12">
+            <div class="row" id="clrFiziksel">
+                <div class="col-md-12" style="height: 42px">
+                    <div style="float:left" class="col-md-4">
+                        <h5 style="margin-top:8px;color: white;">MESLEKİ TECRÜBELER(İŞ DENEYİMİ)</h5>
+                    </div>
+                 <div style="float:right;margin-right: 20px">
+                    <button class="btn btn-hero-success btn-tn " (click)="experienceNull();employeExprience.show();" style="margin-top: 4px">Yeni Tecrübe Ekle</button>
+                </div>
+              </div>
+            </div>
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered ">
+                        <thead style="background:#C46210">
+                          <tr style="color: white;text-align: center;height: 45px;vertical-align: top;" >
+                            <th>Çalışılan Kurum</th>
+                            <th>Görevi</th>
+                            <th >Giriş Tarihi</th>
+                            <th >Çıkış Tarihi</th>
+                            <th>İşlemler</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr style="text-align: center" *ngFor="let t of mudurPersonel.perTecrube" [hidden]="t._modify==3">
+                            <td scope="row">
+                              <div class="form-check form-check-inline">
+                                  {{t.percalisilankurum}}
+                              </div>
+            
+                            </td>
+                            <td>
+                              <div>
+                                  {{t.pergorevi}}
+                              </div>
+                            </td>
+                            <td>
+                              <div class="capacity-number-text">
+                                <b>{{t.pergiristar | date: 'dd/MM/yyyy'}}</b>
+                              </div>
+                            </td>
+                            <td>
+                              <div class="capacity-number-text">
+                                <b>{{t.percikistar | date: 'dd/MM/yyyy'}}</b>
+                              </div>
+                            </td>
+                            <td>
+                              <button class="btn btn-hero-danger btn-demo btn-tn" (click)="deleteExperience(t)">SİL</button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+      </nb-card>
+    </div>
+  </div>
+  <!-- Yeni Tecrübe Ekle Modal -->
+  <div bsModal #employeExprience="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content" id="clrFiziksel">
+        <div class="modal-header">
+          <h5 id="dialog-sizes-name1" class="modal-title pull-left" style="color: white">Yeni Tecrübe Ekle</h5>
+          <button type="button" class="close pull-right" (click)="employeExprience.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body"  style="color: black;font-weight: bold;">
+          <div class="form-group input-group-md">
+              <div class="row">
+                  <div class="col-md-12">
+                      <div>
+                        <div class="row">
+                          <div class="col-sm-6">
+                              <div class="form-group input-group-md">
+                                  <label>Çalışılan Kurum/Kuruluş Adı</label>
+                                  <input [(ngModel)]="experience.percalisilankurum" [ngModelOptions]="{standalone: true}" type="text" class="form-control textbox">
+                              </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="form-group input-group-md">
+                                <label>Görevi</label>
+                                <input [(ngModel)]="experience.pergorevi" [ngModelOptions]="{standalone: true}" type="text" class="form-control textbox">
+                             </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-sm-6">
+                              <div class="form-group input-group-md">
+                                  <label>Giriş Tarihi</label>
+                                  <input type="text" [(ngModel)]="experience.pergiristar" class="form-control" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"
+                [ngModelOptions]="{standalone: true}">
+                              </div>
+                          </div>
+                          <div class="col-sm-6">
+                              <div class="form-group input-group-md">
+                                  <label>Ayrılış Tarihi</label>
+                                  <input type="text" [(ngModel)]="experience.percikistar" class="form-control" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"
+                [ngModelOptions]="{standalone: true}">
+                              </div>
+                          </div>
+                      </div>
+                      </div>
+                  </div>
+              </div>
+        </div>         
+  </div>
+        <div class="modal-footer">
+          <a href="javascript:void(0)" (click)="employeExprience.hide();" class="btn btn-danger  btn-tn">Vazgeç</a>
+          <a href="javascript:void(0)" (click)="newExperience();employeExprience.hide();" class="btn btn-success btn-tn">Ekle</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+    <!-- İşten çıkış Bilgileri -->
+    <div bsModal #exitFromWork="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content" id="clrFizikselPopup">
+            <div class="modal-header">
+              <h5 id="dialog-sizes-name1" class="modal-title pull-left" style="color:red;font-weight: bold;">ONAY İPTAL BİLGİLERİ</h5>
+              <button type="button" class="close pull-right" (click)="exitFromWork.hide()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" >
+                <table>
+                    <colgroup>
+                      <col span="1" style="width: 29%;">
+                      <col span="1" style="width: 1%;">
+                      <col span="1" style="width: 70%;">
+                    </colgroup>
+                    <tbody style="color: black">
+                      <tr>
+                        <td ><strong>ACSHİM Onay İptal Tarihi</strong></td>
+                        <td>:</td>
+                        <td><input style="margin-top: -6px;" type="text" [(ngModel)]="mudurPersonel.percikaspimonaytar" class="form-control" bsDatepicker
+                          [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"></td>
+                      </tr>
+                      <tr>
+                      <td ><strong>ACSHİM Onay İptal No</strong></td>
+                        <td>:</td>
+                        <td ><input style="margin-top: -6px;" [(ngModel)]="mudurPersonel.percikaspimonayno" [ngModelOptions]="{standalone: true}" type="text"
+                            class="form-control text">
+                        </td>
+                      </tr>
+                      <tr>
+                        <td ><strong>Ayrılış Tarihi</strong></td>
+                          <td>:</td>
+                          <td><input style="margin-top: -6px;" type="text" [(ngModel)]="mudurPersonel.percikistar" class="form-control" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+                          </td>
+                        </tr>
+                    </tbody>
+                  </table>
+            </div>
+            <div class="modal-footer">
+              <a href="javascript:void(0)" (click)="cancelPersonelity();exitFromWork.hide();" class="btn btn-danger  btn-tn">Vazgeç</a>
+              <a href="javascript:void(0)" (click)="saveEmployeeCikis();exitFromWork.hide();educationStaffInfomodal.hide();" class="btn btn-success  btn-tn">Tamam</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    <toaster-container>
+    </toaster-container>

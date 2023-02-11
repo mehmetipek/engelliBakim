@@ -1,0 +1,266 @@
+<nb-card style=" zoom: 100% !important;height: 100%;">
+  <nb-card-body>
+    <nb-tabset>
+      <nb-tab tabTitle="Bakım Merkezine Göre" style="padding:30px">
+        <div class="row">
+          <div style="float:left" class="col-md-3">
+            <label style="color: black;font-weight: bold;">1.Parametre</label>
+            <select class="form-control form-control-sm" [(ngModel)]="filterBm.kolonadi">
+              <option value="null" disabled>Seçiniz..</option>
+              <option value="bmegengelgrubu">Bakım Merkezi Sayısına Göre </option>
+              <option value="bmegkpst">Engel Grubuna Göre </option>
+              <option value="bmegkpst">Kapasitesine Göre </option>
+              <option value="bm_binasahipdur">Bina Sahiplik Durumuna Göre </option>
+              <option value="bm_katsayisi">Kat Sayısına Göre</option>
+              <option value="bmasansorrenk">Asansör Etiketine Göre </option>
+              <option value="bm_jeneratorguc">Jeneratör Durumuna Göre</option>
+              <option value="bm_sdkapasite">Su Deposuna Durumuna Göre</option>
+              <option value="">Dolu/Boş Yatak Durumuna Göre</option>
+              <option value="">Kurucu Müdür Eğitim Durumuna Göre</option>
+            </select>
+          </div>
+          <!-- Bölge Seçimi -->
+          <div style="float:left" class="col-md-2" [hidden]="filterBm.kolonadi ==null">
+            <label style="color: black;font-weight: bold;">2.Parametre</label>
+            <select #sectBm class="form-control form-control-sm" [(ngModel)]="genelFilterBm">
+                <option value="null" disabled>Seçiniz..</option>
+                <option value="1">Tüm TÜRKİYE</option>
+                <option value="2">İline Göre</option>
+                <option value="3">Bölgeye Göre</option>
+            </select>
+          </div>
+          <div style="float:left" class="col-md-2" [hidden]="sectBm.value !='3'">
+            <label style="color: black;font-weight: bold;">3.Parametre</label>
+            <select class="form-control form-control-sm" [(ngModel)]="filterBm.bolgeid">
+              <option value=0 disabled>Seçiniz..</option>
+              <option value=1>Karadeniz Bölgesi</option>
+              <option value=2>Marmara Bölgesi</option>
+              <option value=3>Ege Bölgesi</option>
+              <option value=4>Akdeniz Bölgesi</option>
+              <option value=5>İç Anadolu Bölgesi</option>
+              <option value=6>Doğu Anadolu Bölgesi</option>
+              <option value=7>Güney Doğu Anadolu Bölgesi</option>
+            </select>
+          </div>
+          <div style="float:left" class="col-md-2" [hidden]="sectBm.value!='2'">
+            <label style="color: black;font-weight: bold;">3.Parametre</label>
+            <select class="form-control form-control-sm" [(ngModel)]="filterBm.iladi">
+              <option value="null" disabled>Seçiniz..</option>
+              <option *ngFor="let c of cityList" [ngValue]="c.iladi">{{c.iladi}}</option>
+            </select>
+          </div>
+         
+          <div style="float:left" class="col-md-2" >
+            <label style="color: black;font-weight: bold;">Grafikler</label>
+            <select #sctionGrafkBm class="form-control form-control-sm" [(ngModel)]="grafBm" >
+              <option value="null" disabled>Seçiniz..</option>
+              <option value="barCharts">Çubuk Grafiği</option>
+              <option value="pieCharts">Pasta Grafiği</option>
+            </select>
+          </div>
+          <button type="button" class="btn btn-info btn-xs" (click)="bmBtnCare();" style="margin-top: 20px;">Ara</button>
+          <div style="margin-left:5px" [hidden]="filterBm.kolonadi==null">
+            <button type="button" class="btn btn-info btn-xs" (click)="cleanSystems();" style="margin-top: 20px;">Temizle</button>
+          </div>
+      </div>
+      <br>
+      <div class="row">
+        <div style="float:left" class="col-md-2">
+          <label style="color: black;font-weight: bold;">Başlangıç Tarihinden</label>
+          <input type="text"  class="form-control" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+        </div>
+        <div style="float:left" class="col-md-2">
+          <label style="color: black;font-weight: bold;">Bitiş Tarihinden</label>
+          <input type="text"  class="form-control" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+        </div>
+      </div>
+        <div class="row" style="margin-top:30px">
+          <div class="col-md-10" [hidden]="firstGster==true|| sctionGrafkBm.value!='barCharts'|| sctionGrafkBm.value=='null'|| filterBm.kolonadi==null" style="margin:auto" >
+            <div style="display: block">
+              <canvas baseChart [datasets]="barChartDataBm" [labels]="barChartLabelsBm" [options]="barChartOptions" [legend]="barChartLegend" [colors]="colors"
+                [chartType]="barChartType" ></canvas><!--(chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"-->
+            </div>
+          </div>
+          <div class="col-md-10" [hidden]="sctionGrafkBm.value!='pieCharts'|| sctionGrafkBm.value=='null'" style="margin:auto" >
+                <div style="display: block">
+                  <canvas baseChart [data]="pieChartDataBm" [labels]="pieChartLabelsBm" [chartType]="pieChartType" [options]="pieChartOptionsBm" [legend]="pieChartLegend"  [plugins]="pieChartPlugins"
+                    [colors]="donutColors" ></canvas><!--(chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"-->
+                </div>
+          </div>  
+        </div>
+      </nb-tab>
+      <nb-tab tabTitle="Engelliye Göre" style="padding:30px">
+        <div class="row">
+            <div style="float:left" class="col-md-3">
+                <label style="color: black;font-weight: bold;">1.Parametre</label>
+                <select class="form-control form-control-sm" [(ngModel)]="filterFirst.kolonadi" >
+                  <!-- (ngModelChange)="getDataByFilterType($event)" -->
+                  <option value=null disabled>Seçiniz..</option>
+                  <option value="ikuyruk">Uyruğuna Göre </option>
+                  <option value="ikcinsiyet">Cinsiyetine Göre </option>
+                  <option value="ikkangrubu">Kan Grubuna Göre </option>
+                  <option value="ikogrenimdurumu">Öğrenim Durumuna Göre </option>
+                  <option value="ikmedenihali">Medeni Haline Göre </option>
+                  <option value="ikbeden">Bedenine Göre </option>
+                  <option value="iksosyalguvdurumu">Sosyal Güvenlik Durumuna Göre </option>
+                  <option value="ikayakkabino">Ayakkabı No'ya Göre </option>
+                  <option value="iksigarakul">Sigara Durumuna Göre </option>
+                  <option value="ikmaasdurumu">Maas Durumuna Göre </option>
+                  <option value="ikucretikarsilayan">Ücreti Karşılayan Durumuna Göre </option>
+                  <option value="ikozannedurumu">Öz Anne Durumuna Göre </option>
+                  <option value="ikozbabadurumu">Öz Baba Durumuna Göre </option>
+                </select>
+              </div>
+          <div style="float:left" class="col-md-2" [hidden]="filterFirst.kolonadi ==null">
+            <label style="color: black;font-weight: bold;">2.Parametre</label>
+            <select #sectFab [(ngModel)]="genelFilterFirst" class="form-control form-control-sm">
+              <option value="null" disabled>Seçiniz..</option>
+              <option value="1">Tüm TÜRKİYE</option>
+              <option value="2">İline Göre</option>
+              <option value="3">Bölgeye Göre</option>
+            </select>
+          </div>
+          <div style="float:left" class="col-md-2" [hidden]="sectFab.value !='3' || sectFab.value=='0'">
+            <label style="color: black;font-weight: bold;">3.Parametre</label>
+            <select class="form-control form-control-sm" [(ngModel)]="filterFirst.bolgeid">
+              <option value=0 disabled>Seçiniz..</option>
+              <option value=1>Karadeniz Bölgesi</option>
+              <option value=2>Marmara Bölgesi</option>
+              <option value=3>Ege Bölgesi</option>
+              <option value=4>Akdeniz Bölgesi</option>
+              <option value=5>İç Anadolu Bölgesi</option>
+              <option value=6>Doğu Anadolu Bölgesi</option>
+              <option value=7>Güney Doğu Anadolu Bölgesi</option>
+            </select>
+          </div>
+          <div style="float:left" class="col-md-2" [hidden]="sectFab.value!='2' || sectFab.value=='0'">
+            <label style="color: black;font-weight: bold;">3.Parametre</label>
+            <select [(ngModel)]="filterFirst.iladi" class="form-control form-control-sm">
+              <option value="null" disabled>Seçiniz..</option>
+              <option *ngFor="let c of cityList" [ngValue]="c.iladi">{{c.iladi}}</option>
+            </select>
+          </div>
+          <div style="float:left" class="col-md-2" >
+            <label style="color: black;font-weight: bold;">Grafikler</label>
+            <select #sctionGrafkFirst class="form-control form-control-sm" [(ngModel)]="grafFirst">
+              <option value="null" disabled>Seçiniz..</option>
+              <option value="barCharts">Çubuk Grafiği</option>
+              <option value="pieCharts">Pasta Grafiği</option>
+            </select>
+          </div>
+          <button type="button" class="btn btn-info btn-xs" (click)="firstBtnCare();" style="margin-top: 20px;">Ara</button>
+          <div style="margin-left:5px" [hidden]="filterFirst.kolonadi==null">
+            <button type="button" class="btn btn-info btn-xs" (click)="cleanSystems();" style="margin-top: 20px;">Temizle</button>
+          </div>
+        </div>
+        <br>
+      <div class="row">
+        <div style="float:left" class="col-md-2">
+          <label style="color: black;font-weight: bold;">Başlangıç Tarihinden</label>
+          <input type="text"  class="form-control" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+        </div>
+        <div style="float:left" class="col-md-2">
+          <label style="color: black;font-weight: bold;">Bitiş Tarihinden</label>
+          <input type="text"  class="form-control" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+        </div>
+      </div>
+        <div class="row" style="margin-top:30px">
+          <div class="col-md-10"  [hidden]="sctionGrafkFirst.value!='barCharts'|| sctionGrafkFirst.value=='null' || filterFirst.kolonadi==null" style="margin:auto">
+            <div style="display: block" [hidden]="firstGster==true">
+              <canvas baseChart [datasets]="barChartDataFirst" [colors]="colors" [legend]="true" [labels]="barChartLabelsFirst" [options]="barChartOptions" [plugins]="barChartPlugins"
+               [chartType]="barChartType" ></canvas><!--  (chartClick)="chartClicked($event)"(chartHover)="chartHovered($event)"-->
+            </div><!-- [legend]="barChartLegend" -->
+          </div>
+          <div class="col-md-10"  [hidden]="sctionGrafkFirst.value!='pieCharts'|| sctionGrafkFirst.value=='null'" style="margin:auto">
+                <div style="display: block">
+                  <canvas baseChart [data]="pieChartData" [plugins]="pieChartPlugins" [labels]="pieChartLabels" [options]="pieChartOptionsFirst" [chartType]="pieChartType" [colors]="donutColors" [legend]="pieChartLegend"></canvas> <!-- (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"-->
+                </div> 
+          </div>
+         
+        </div>
+      </nb-tab>
+      <nb-tab tabTitle="Personele Göre" style="padding:30px">
+        <div class="row">
+            <div style="float:left" class="col-md-3">
+                <label style="color: black;font-weight: bold;">1.Parametre</label>
+                <select class="form-control form-control-sm" [(ngModel)]="filterPer.kolonadi" >
+                  <option value="null" disabled>Seçiniz..</option>
+                  <option value="percinsiyet">Cinsiyetine Göre</option>
+                  <option value="permedenihali">Medeni Haline Göre</option>
+                  <option value="perehliyet">Ehliyetine Göre</option>
+                  <option value="permeslek">Meslek Durumuna Göre</option>
+                  <option value="perkadro">Kadrosuna Göre</option>
+                  <option value="perogrenimdurumu">Eğitim Durumuna Göre</option>
+                </select>
+              </div>
+          <div style="float:left" class="col-md-2" [hidden]="filterPer.kolonadi ==null">
+            <label style="color: black;font-weight: bold;">2.Parametre</label>
+            <select #sectPer class="form-control form-control-sm" [(ngModel)]="genelFilterPer">
+              <option value="null" disabled>Seçiniz..</option>
+              <option value="1">Tüm TÜRKİYE</option>
+              <option value="2">İline Göre</option>
+              <option value="3">Bölgeye Göre</option>
+            </select>
+          </div>
+          <div style="float:left" class="col-md-2" [hidden]="sectPer.value !='3' || sectPer.value=='0'">
+            <label style="color: black;font-weight: bold;">3.Parametre</label>
+            <select class="form-control form-control-sm" [(ngModel)]="filterPer.bolgeid">
+              <option value=0 disabled>Seçiniz..</option>
+              <option value=1>Karadeniz Bölgesi</option>
+              <option value=2>Marmara Bölgesi</option>
+              <option value=3>Ege Bölgesi</option>
+              <option value=4>Akdeniz Bölgesi</option>
+              <option value=5>İç Anadolu Bölgesi</option>
+              <option value=6>Doğu Anadolu Bölgesi</option>
+              <option value=7>Güney Doğu Anadolu Bölgesi</option>
+            </select>
+          </div>
+          <div style="float:left" class="col-md-2" [hidden]="sectPer.value!='2' || sectPer.value=='0'">
+            <label style="color: black;font-weight: bold;">3.Parametre</label>
+            <select [(ngModel)]="filterPer.iladi" class="form-control form-control-sm" >
+              <option value="null" disabled>Seçiniz..</option>
+              <option *ngFor="let c of cityList" [ngValue]="c.iladi">{{c.iladi}}</option>
+            </select>
+          </div>
+          <div style="float:left" class="col-md-2" >
+            <label style="color: black;font-weight: bold;">Grafikler</label>
+            <select #sctionGrafkPer class="form-control form-control-sm" [(ngModel)]="grafPer">
+              <option value="null" disabled>Seçiniz..</option>
+              <option value="barCharts">Çubuk Grafiği</option>
+              <option value="pieCharts">Pasta Grafiği</option>
+            </select>
+          </div>
+          <button type="button" class="btn btn-info btn-xs" (click)="perBtnCare();" style="margin-top: 20px;">Ara</button>
+          <div style="margin-left:5px" [hidden]="filterPer.kolonadi==null">
+            <button type="button" class="btn btn-info btn-xs" (click)="cleanSystems();" style="margin-top: 20px;">Temizle</button>
+          </div>
+        </div>
+        <br>
+      <div class="row">
+        <div style="float:left" class="col-md-2">
+          <label style="color: black;font-weight: bold;">Başlangıç Tarihinden</label>
+          <input type="text"  class="form-control" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+        </div>
+        <div style="float:left" class="col-md-2">
+          <label style="color: black;font-weight: bold;">Bitiş Tarihinden</label>
+          <input type="text"  class="form-control" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+        </div>
+      </div>
+        <div class="row" style="margin-top:30px;">
+          <div class="col-md-10" [hidden]="sctionGrafkPer.value!='barCharts'|| sctionGrafkPer.value=='null' || filterPer.kolonadi==null" style="margin:auto;">
+            <div style="display: block" [hidden]="firstGster==true">
+              <canvas baseChart [datasets]="barChartDataPer" [labels]="barChartLabelsPer" [options]="barChartOptions" [colors]="colors"
+                [legend]="barChartLegend" [chartType]="barChartType" ></canvas>
+            </div>
+          </div>
+          <div class="col-md-10" [hidden]="sctionGrafkPer.value!='pieCharts'|| sctionGrafkPer.value=='null'" style="margin:auto">
+                <div style="display: block" >
+                  <canvas baseChart [data]="pieChartDataPer"  [plugins]="pieChartPlugins" [labels]="pieChartLabelsPer" [chartType]="pieChartType" [options]="pieChartOptionsPer" [legend]="pieChartLegend"
+                    [colors]="donutColors"></canvas><!-- (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"-->
+                </div>
+          </div>
+        </div>
+      </nb-tab>
+    </nb-tabset>
+  </nb-card-body>
+</nb-card >

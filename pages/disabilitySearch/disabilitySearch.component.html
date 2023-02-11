@@ -1,0 +1,143 @@
+  
+  <div class="col-md-12" style="margin-top:-20px">
+    
+      <nb-card size="active">
+        <div class="col-md-12" style="text-align: center;border-style: solid;
+        border-width: thin;"><h4 style="margin-top: 5px">ENGELLİ BİLGİLERİ</h4></div>
+        </nb-card>
+      
+    </div>
+      <div class="col-md-12" style="margin-top:-20px">
+        <div class="row">
+          <nb-card size="active" style="width: 48.5%;">
+        <div class="col-md-12"style=" margin-top: 8px;">
+          <div class="row">
+          <div class="col-md-9">
+            <div class="form-group row">
+                <label class="col-4 col-form-label" style="border-style: solid;
+                border-width: thin;font-weight:bold;background-color: #dcdcdc">Adı Soyadı</label>
+                <div class="col-8" style="border-style: solid;
+                border-width: thin;">
+                <!-- <input type="text" class="form-control"[(ngModel)]="disability.ikadisoyadi" [ngModelOptions]="{standalone: true}" disabled>  -->
+                    <!-- {{disability.ikadisoyadi}} -->
+                    <label style="margin-top: 10px;"> {{disability.ikadisoyadi}}</label> 
+                </div>
+              </div>
+              <div class="form-group row">
+                    <label class="col-4 col-form-label" style="border-style: solid;
+                    border-width: thin;font-weight:bold;background-color: #dcdcdc">TC/Pasaport No</label>
+                    <div class="col-8" style="border-style: solid;
+                    border-width: thin;">
+                        <!-- <input type="text" class="form-control"[(ngModel)]="disability.iktcno" [ngModelOptions]="{standalone: true}" disabled>  -->
+                        <!-- {{disability.iktcno}} -->
+                        <label style="margin-top: 10px;"> {{disability.iktcno}}</label> 
+                    </div>
+                  </div>
+              <div class="form-group row">
+                        <label class="col-4 col-form-label" style="border-style: solid;
+                        border-width: thin;font-weight:bold;background-color: #dcdcdc">Doğum Tarihi</label>
+                        <div class="col-8" style="border-style: solid;
+                        border-width: thin;">
+                        <!-- <input [(ngModel)]="disability.ikdogtar" [ngModelOptions]="{standalone: true}" type="text" class="form-control"
+                        bsDatepicker placement="right " [bsConfig]="{ dateInputFormat:'DD/MM/YYYY' } " disabled> -->
+                           <label style="margin-top: 10px;"> {{disability.ikdogtar | date: 'dd/MM/yyyy'}}</label> 
+                    </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+                <img src="{{lisansFirst.photoSrc}}" style="border-radius: 50%;" alt="Paris" width="200" height="130">
+                <app-imageOperation #lisansFirst id="lisansFirst" [editable]="false" [tableNick]="'ik'" [id]="disability.ikid" hidden></app-imageOperation>
+             </div>
+          </div>
+        </div>
+      </nb-card>
+      <nb-card size="active" style="margin-left: 25px;width: 50%;">
+          <div class="col-md-12" style=" margin-top: 8px;">
+              <div class="row">
+                  <div class="col-md-9">
+              <div class="form-group row">
+                  <label class="col-4 col-form-label" style="border-style: solid;
+                  border-width: thin;font-weight:bold;background-color: #dcdcdc">Cinsiyeti</label>
+                  <div class="col-8" style="border-style: solid;
+                  border-width: thin;">
+                  <!-- <input type="text" class="form-control"[(ngModel)]="disability.ikcinsiyet" [ngModelOptions]="{standalone: true}" disabled>  -->
+                      <!-- {{disability.ikcinsiyet}} -->
+                      <label style="margin-top: 10px;"> {{disability.ikcinsiyet}}</label> 
+                  </div>
+                </div>
+              
+                  <div class="form-group row">
+                      <label class="col-4 col-form-label" style="border-style: solid;
+                      border-width: thin;font-weight:bold;background-color: #dcdcdc">Engel Grubu</label>
+                      <div class="col-8" style="border-style: solid;
+                      border-width: thin;">
+                          <!-- <input type="text" class="form-control"[(ngModel)]="disability.engelligrubu" [ngModelOptions]="{standalone: true}" disabled>  -->
+                          <!-- {{disability.engelligrubu}} -->
+                          <label style="margin-top: 10px;"> {{disability.engelligrubu}}</label> 
+                      </div>
+                    </div>
+                      <div class="form-group row">
+                          <label class="col-4 col-form-label" style="border-style: solid;
+                          border-width: thin;font-weight:bold;background-color: #dcdcdc">Baba Adı</label>
+                          <div class="col-8" style="border-style: solid;
+                          border-width: thin;">
+                          <!-- <input type="text" class="form-control"[(ngModel)]="disability.ikbabaadi" [ngModelOptions]="{standalone: true}" disabled>  -->
+                              <!-- {{disability.ikbabaadi}} -->
+                              <label style="margin-top: 10px;"> {{disability.ikbabaadi}}</label> 
+                          </div>
+                        </div>
+                        </div>
+                        <div class="col-md-3">
+                          <button style="margin-top: 40px;" type="button" class="btn btn-info" (click)="engelAra.show();">ENGELLİ SEÇİNİZ</button>
+                        </div>
+              </div>
+          </div>
+        </nb-card>
+      </div>
+    </div>
+    
+  <div bsModal #engelAra="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content" id="clrFiziksel">
+        <div class="modal-header">
+          <h5 id="dialog-sizes-name1" class="modal-title pull-left" style="color: white">Engelli Arama İşlemi</h5>
+          <button type="button" class="close pull-right" (click)="engelAra.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body"  style="color: black;font-weight: bold;">
+          <div class="form-group input-group-md">
+              <div class="row">
+                  <div class="col-md-12">
+                      <div>
+                        <div class="row">
+                          <div class="col-md-12">
+                             <div class="col-md-6">
+                               <div class="form-group row" style="text-align: center"><!--margin-right:90px-->
+                                 <span class="col-md-4" style="margin-top: 10px">ENGELLİ ARA:</span>
+                                 <div class="col-sm-8 input-group-sm">
+                                    <input #txtDisabilityName type="text" [(ngModel)]="_disabilityname"  (focusout)='toggleDropDown()'
+                                     (focus)='toggleDropDown()' (input)="onSearchDisability($event.target.value)" class="form-control">
+                                   <div *ngIf='showDropDown' class="autosearch-container-dropdown">
+                                     <div *ngFor='let disability of _disabilityList' class="autosearch-item">
+                                       <div class="row" (click)="selectDisability(disability);engelAra.hide();">
+                                         <div class="col-sm-12">{{disability.ikadisoyadi}} </div>
+                                       </div>
+                                     </div>
+                                   </div>
+                                 </div>
+                               </div>
+                             </div>
+                           </div>
+                    </div>
+                  </div>
+              </div>
+          </div>         
+        </div>
+        <div class="modal-footer">
+          <a href="javascript:void(0)" (click)="engelAra.hide();" class="btn btn-danger  btn-tn">Vazgeç</a>
+          <a href="javascript:void(0)" (click)="engelAra.hide();" class="btn btn-success btn-tn">Tamam</a>
+        </div>
+      </div>
+    </div>
+  </div>
