@@ -1,0 +1,8 @@
+<input #txtDisablitiyName type="text" [(ngModel)]="_disablitiyname" (focusout)='toggleDropDown()' (focus)='toggleDropDown()' (input)="onSearchDisablitiy($event.target.value)" class="form-control">
+<div *ngIf='showDropDown' class="autosearch-container-dropdown">
+  <div *ngFor='let disablitiy of _disablitiyList' class="autosearch-item ">
+    <div class="col-md-12" (click)="selectDisablitiy(disablitiy)" style="cursor:pointer;">
+      <div class="row">{{disablitiy.iktcno}} {{disablitiy.ikadisoyadi}} </div>
+    </div>
+  </div>
+</div>

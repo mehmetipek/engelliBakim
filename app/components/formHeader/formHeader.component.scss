@@ -1,0 +1,29 @@
+.form-header{
+    // padding: 5px;
+    // margin: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    &-tittle{
+        // width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+     table{
+    //     float: right;
+    //     width: 100%;
+    }
+    &-info{
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        // align-self:center;
+        &-item{
+            margin: auto;
+        }
+    }
+}
+.table th, .table td {
+    padding: 0.2rem;
+}

@@ -1,0 +1,95 @@
+<!-- Engelli Bilgileri -->
+<div class="row">
+  <div class="col-md-12">
+    <nb-card size="active">
+      <br />
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-12">
+            <h5>Filtrele</h5>
+            <hr />
+          </div>
+        </div>
+
+        <!-- Engel Adı -->
+        <!--
+          <div class="col-md-4">
+            <div class="form-group row">
+              <label class="col-2 col-form-label">Engelli Adı:</label>
+              <div class="col-6">
+                <app-disablitySearchWithTypeHead (getDisablitiyId)="getDisablitiyId($event)"></app-disablitySearchWithTypeHead>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group row">
+              <label class="col-3 col-form-label">Başlangıç Tarihi:</label>
+              <div class="col-6">
+                <input type="text" [(ngModel)]="filter.beginDate" (ngModelChange)="modelChange()" name="" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group row">
+              <label class="col-2 col-form-label">Bitiş Tarihi:</label>
+              <div class="col-6">
+                <input type="text" [(ngModel)]="filter.endDate" (ngModelChange)="modelChange()" name="" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+              </div>
+            </div>
+          </div>
+        </div>
+      -->
+        <div style="float:left" class="col-md-4">
+          <label>ENGELLİ ADI:</label>
+          <app-disablitySearchWithTypeHead (getDisablitiyId)="getDisablitiyId($event)"></app-disablitySearchWithTypeHead>
+        </div>
+        <div style="float:left" class="col-md-2">
+          <label>Başlangıç Tarihi:</label>
+          <input
+            type="text"
+            [(ngModel)]="filter.beginDate"
+            (ngModelChange)="modelChange()"
+            name=""
+            class="form-control"
+            bsDatepicker
+            placement="bottom"
+            [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"/>
+        </div>
+        <div style="float:left" class="col-md-2">
+          <label>Bitiş Tarihi:</label>
+          <input
+            type="text"
+            [(ngModel)]="filter.endDate"
+            (ngModelChange)="modelChange()"
+            name=""
+            class="form-control"
+            bsDatepicker
+            placement="bottom"
+            [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"/>
+        </div>
+        <div style="float: left;" class="col-md-2">
+          <label>İzin Şekli:</label>
+          <select class="form-control" >
+            <option value="Hepsi">HEPSİ</option>
+            <option value="Saatlik">Saatlik</option>
+            <option value="Yatılı">Yatılı</option>
+          </select>
+        </div>
+        <div style="float: right;" class="col-md-2">
+          <label>Durumu:</label>
+          <select class="form-control" >
+            <option value="Hepsi">HEPSİ</option>
+            <option value="İzinde Olanlar">İzinde Olanlar</option>
+            <option value="İzinde Dönenler">İzinden Dönenler</option>
+          </select>
+        </div>
+      </div>
+      <br />
+    </nb-card>
+  </div>
+</div>
+
+<!-- engelli adı
+bitiş tarihi
+bas tarihi -->

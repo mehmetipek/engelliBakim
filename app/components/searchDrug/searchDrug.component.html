@@ -1,0 +1,10 @@
+
+  <input #txtDrugName type="text" [(ngModel)]="_drugname" (focusout)='toggleDropDown()' (focus)='toggleDropDown()'
+  (input)="onSearchDrug($event.target.value)" class="form-control" placeholder="İlaç Adı.." >
+<div *ngIf='showDropDown' class="autosearch-container-dropdown">
+  <div *ngFor='let drug of _drugList' class="autosearch-item">
+    <div class="row" (click)="selectDrug(drug)">
+      <div class="col-sm-12">{{drug.ilacadi}} </div>
+    </div>
+  </div>
+</div>

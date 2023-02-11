@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-md-12" [hidden]="!id">
+
+      <div class="row" [hidden]="isLoading">
+      
+          <div class="container">
+            <img src="{{photoSrc}}" (load)="onImageLoad()" (click)="click(p)"  style="height: 95%;width: 96%;margin-top: 5px;">
+            <!-- margin-left: -5%; -->
+          </div>
+
+      </div>
+      <div class="row" [hidden]="!isLoading">
+        <div class="col-md-12" style="text-align: center;padding-top: 5px">
+            <img src="{{loadingURL}}" (click)="click(p)"  style="height: 95%;width: 96%;margin-top: 5px;">
+            <!-- margin-left: -5%; -->
+        </div>
+      </div>
+
+  </div>
+  <!-- <div class="col-md-12" [hidden]="id">
+    <h5>Fotoğraf Kaydetmek için Önce Kaydet işlemi yapınız!</h5>
+  </div> -->
+</div>
+<!-- The Modal -->
+<div id="myModal" [className]="isActive ? 'modal-open' : 'modal-close'">
+  <div class="xmodal-header" [hidden]="isLoading">
+    <div [hidden]="!editable">
+        <input #select (change)="onFileSelected($event)" type="file" name="file-1[]" id="file-{{id}}" class="inputfile inputfile-1"
+        data-multiple-caption="{count} files selected" multiple="">
+      <div class="buttons">
+        <label for="file-{{id}}" class="btn-select">Resim Seç</label>
+        <label [hidden]="!_photoFile" (click)="save()" class="btn-select">Kaydet</label>
+        <label class="btn-delete" (click)="delete()">Resim Sil</label>
+    </div>
+    
+      <!-- <br> -->
+      <!-- <label style="color:wheat"> {{url}}</label> -->
+    </div>
+    <!-- <span class="btn-upload" (click)="click()">Foto Yükle</span>  -->
+    <span class="close" (click)="close()"> &times;</span>
+  </div>
+  <div class="xmodal-header" [hidden]="!isLoading">
+      <div class="col-md-12" style="text-align: center;color:whitesmoke">
+          <p>Yükleniyor...</p>
+        </div>
+    </div>
+
+  <img class="modal-content" src="{{photoSrc }}" id="img01">
+  <div id="caption"></div>
+</div>

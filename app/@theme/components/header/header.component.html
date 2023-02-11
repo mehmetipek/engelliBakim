@@ -1,0 +1,30 @@
+<nav>
+  <div class="container">
+    <ul class="menu-main">
+      <li><a class="logo" href="../../#/pages/dashboard">engellibakim.org</a>
+      <li><a  href="../../#/pages/dashboard" >Ana Sayfa</a>
+
+      </li>
+      <li (mouseover)="hover=true" (mouseleave)="hover=false"><a href="javascript:void(0)"><i class="fa fa-bars"></i> MENU</a>
+        <div id="menu-sub" class="menu-sub" [ngStyle]="{display: hover==true  ? 'block' : 'none' }">
+
+          <div class="menu-col-1" *ngFor="let i of menu">
+            <h3 class="menu-category">{{i.title}}</h3>
+            <ul>
+              <li *ngFor="let c of i.children" (click)="hover=false;gotoPage(c);"> <a href="javascript:void(0)">{{c.title}}</a>
+              </li>
+
+            </ul>
+
+
+          </div>
+
+        </div>
+      </li>
+
+      <li style="float: right;padding: .75em 1.75em;" (click)="gotoPage('/auth/login')"><a href="#">Çıkış Yap</a></li>
+
+    </ul>
+
+  </div>
+</nav>

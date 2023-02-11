@@ -1,0 +1,11 @@
+
+  <input #txtEmployeeName type="text" [(ngModel)]="_employeename" (focusout)='toggleDropDown()' (focus)='toggleDropDown()'
+    (input)="onSearchEmployee($event.target.value)" class="form-control" placeholder="Personel Adı..">
+  <div *ngIf='showDropDown' class="autosearch-container-dropdown">
+    <div *ngFor='let employee of _employeeList' class="autosearch-item">
+
+      <div class="row" (click)="selectEmployee(employee)">
+        <div class="col-sm-12">{{employee.peradi}} {{employee.persoyadi}} </div>
+      </div>
+    </div>
+  </div>

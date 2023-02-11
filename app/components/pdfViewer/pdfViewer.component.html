@@ -1,0 +1,29 @@
+<div style="margin:-20px; height: 80vh">
+    <ng2-pdfjs-viewer  
+    #pdfViewer
+    
+    ></ng2-pdfjs-viewer>
+</div>
+     
+<!-- The overlay -->
+<div id="myNav" class="overlay">
+
+    <!-- Button to close the overlay navigation -->
+    <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+  
+    <!-- Overlay content -->
+    <div class="overlay-content">
+      <div class="row">
+        <div class="col-md-12">
+            <ng2-pdfjs-viewer  
+            #pdfViewer
+            [externalWindow]="true"
+            [fullScreen]="true"
+            ></ng2-pdfjs-viewer>
+        </div>
+  
+      </div>
+    </div>
+  
+  </div>
+  <!-- <span (click)="openNav()">open</span> -->

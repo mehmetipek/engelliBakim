@@ -1,0 +1,41 @@
+<div id="myNav" class="overlay">
+
+  <!-- Button to close the overlay navigation -->
+
+  <!-- Overlay content -->
+  <div class="overlay-content">
+
+    <div class="row" style="height: 100%">
+      <div class="col-md-12" style="height: 100%">
+        <nb-card style="height: 100%">
+          <div class="myModal-header">
+            <div class="row">
+              <div class="col-md-10">
+                <h1 style=" color:#fff;margin-left: 20%;">{{title}}</h1>
+              </div>
+              <div class="col-md-2" style="text-align: end">
+                <a href="javascript:void(0)" class="closebtn" (click)="hide()">&times;</a>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row">
+
+
+            <div class="col-md-12 mymodalBody">
+
+              <ng-content #body></ng-content>
+            </div>
+
+
+          </div>
+          <!-- İzin Dönüşü -->
+          <!--<div [hidden]="!model.disabilitypermissionform.id">-->
+        </nb-card>
+      </div>
+    </div>
+
+  </div>
+
+</div>

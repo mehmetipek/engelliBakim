@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-md-12">
+
+    <nb-card size="active">
+      <div class="row" [hidden]="isLoading">
+        <div class="col-md-2" *ngFor="let p of physicalPhotoList;let i = index;">
+
+          <div class="container">
+            <img src="{{p.bm_foto}}" (click)="click(p)" alt="a baby duckling sitting on its duckling butt" style="height: 95%;width: 100%;
+            margin-left: -5%;
+            margin-top: 5px;">
+          </div>
+
+        </div>
+      </div>
+      <div class="row" [hidden]="!isLoading">
+        <div class="col-md-12" style="text-align: center;padding-top: 5px">
+          <p>Yükleniyor...</p>
+        </div>
+      </div>
+    </nb-card>
+
+  </div>
+</div>
+<!-- The Modal -->
+<div id="myModal" [className]="isActive ? 'modal-open' : 'modal-close'">
+  <div class="xmodal-header" [hidden]="isLoading">
+    <div [hidden]="!editable">
+        <input #select (change)="onFileSelected($event)" type="file" name="file-1[]" id="file-{{id}}" class="inputfile inputfile-1"
+        data-multiple-caption="{count} files selected" multiple="">
+      <div class="buttons">
+        <label for="file-{{id}}" class="btn-select">Resim Seç</label>
+        <label [hidden]="!_photoFile" (click)="save()" class="btn-select">Kaydet</label>
+        <label class="btn-delete" (click)="delete()">Resim Sil</label>
+    </div>
+    
+      <!-- <br> -->
+      <!-- <label style="color:wheat"> {{url}}</label> -->
+    </div>
+    <!-- <span class="btn-upload" (click)="click()">Foto Yükle</span>  -->
+    <span class="close" (click)="close()"> &times;</span>
+  </div>
+  <div class="xmodal-header" [hidden]="!isLoading">
+      <div class="col-md-12" style="text-align: center;color:whitesmoke">
+          <p>Yükleniyor...</p>
+        </div>
+    </div>
+
+  <img class="modal-content" src="{{url }}" id="img01">
+  <div id="caption"></div>
+</div>
