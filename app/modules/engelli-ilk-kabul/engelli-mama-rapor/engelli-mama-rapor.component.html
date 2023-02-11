@@ -1,0 +1,215 @@
+<div class="row">
+  <div class="col-md-12">
+    <nb-card size="active">
+      <br>
+      <div class="col-md-12">
+        <div class="row" id="clrFiziksel">
+          <div class="col-md-12" style="height: 25px">
+            <div style="float:left" class="col-md-4">
+              <h5 style="margin-top:2px;color: white">ENGELLİ MAMA RAPORLARI</h5>
+            </div>
+            <div style="float:right;margin-top: -8px;" [hidden]="!(ikid>0)">
+              <div class="custom-control custom-checkbox"  style="margin-top: 5px">
+                <input  class="custom-control-input" id="disabilityMamaShowall"  [checked]="disabilityMamaShowall"
+                (change)="disabilityMamaShowall = !disabilityMamaShowall" type="checkbox" >
+                <label class="custom-control-label" for="disabilityMamaShowall">
+                  <b style="font-weight: bold;color: black;">Hepsini Göster</b>
+                </label>
+              </div>
+            </div>
+            <div style="float:right;margin-right: 20px" [hidden]="!(ikid>0)">
+              <button class="btn btn-hero-success btn-tn" (click)="engelliMamaRaporu.show();newMamaReport()"
+                style="margin-top: -4px">Yeni Mama Raporu Ekle</button>
+            </div>
+            <div style="float:right;margin-right: 20px;color:#fff" [hidden]="ikid>0">
+              <p>Engelli Mama Raporu Ekleyebilmek İçin Lütfen İlk Kabul İşlemini Yapınız..</p>
+          </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead style="background: #C46210">
+                  <tr style="color: white;text-align: center;height: 45px;vertical-align: top;">
+                    <th style="width: 12%;">Düzenleyen Kurum</th>
+                    <th style="width: 12%;">Rapor Tarihi</th>
+                    <th style="width: 12%;">Rapor No</th>
+                    <th style="width: 12%;">Rapor Geçerlilik Durumu</th>
+                    <th style="width: 12%;">Rapor Geçerlilik Tarihi</th>
+                    <th style="width: 12%;">İşlemler</th>
+                  </tr>
+                </thead>
+                <tbody style="text-align: center">
+                  <tr *ngFor="let r of _disabilityFoodList" [hidden]="(r.raporaktif==false && !disabilityMamaShowall)">
+                    <!-- -->
+                    <!-- <tr> -->
+                    <td scope="row">
+                      <div class="form-check form-check-inline">
+                        <small [hidden]="r.raporaktif"
+                          style="font-size: 0.8em ;background-color:rgb(216, 33, 33);color:white;border: 2px solid rgb(216, 33, 33);border-radius: 12px;padding: 3px">Kapalı
+                          Kayıt </small>&nbsp;
+                        {{r.emr_rap_duz_kur}}
+                      </div>
+
+                    </td>
+                    <td>
+                      <div class="form-check form-check-inline">
+                        {{r.emr_rap_tar | date:'dd/MM/yyyy' }}
+                      </div>
+                    </td>
+                    <td scope="row">
+                      <div class="form-check form-check-inline">
+                        {{r.emr_rap_no}}
+                      </div>
+
+                    </td>
+
+                    <td>
+                      <div class="form-check form-check-inline">
+                        {{r.emr_rap_gec_dur}}
+                      </div>
+                    </td>
+                    <td>
+                      <div class="form-check form-check-inline" style="font-size: 1.5rem;font-weight: bold">
+                        {{r.emr_rap_gec_tar | date:'dd/MM/yyyy'}}
+                      </div>
+                    </td>
+                    <td>
+                      <div class="col-md-12">
+                        <button class="btn btn-hero-info btn-demo btn-tn"
+                          (click)="engelliMamaRaporu.show();editFoodReport(r,engelliMamaRaporu)">Göster ve Düzenle</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
+    </nb-card>
+  </div>
+
+</div>
+<div bsModal #engelliMamaRaporu="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+  aria-labelledby="dialog-sizes-name1">
+
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" id="clrFiziksel">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal-basic-title" style="color: #fff">Engelli Mama Raporu</h5>
+        <button type="button" class="close" aria-label="Close" (click)="engelliMamaRaporu.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group input-group-md">
+            <div class="row">
+              <div class="col-md-12">
+                <!-- Düzenleyen Kurum-->
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group input-group-md">
+                      <label>Raporu Düzenleyen Kurum</label>
+                      <input type="text" [(ngModel)]="_disabilityFood.emr_rap_duz_kur"
+                        [ngModelOptions]="{standalone: true}" class="form-control"> <!-- Rapor -->
+                    </div>
+                  </div>
+                </div>
+                <!-- Rapor Tarihi - Rapor no -->
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group input-group-md">
+                      <label>Rapor Tarihi</label>
+                      <div class="input-group-append">
+                        <input type="text" [(ngModel)]="_disabilityFood.emr_rap_tar"
+                          [ngModelOptions]="{standalone: true}" class="form-control" bsDatepicker placement="right"
+                          [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group input-group-md">
+                      <label>Rapor No</label>
+                      <input class="form-control" [(ngModel)]="_disabilityFood.emr_rap_no"
+                        [ngModelOptions]="{standalone: true}" type="text" class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <!-- Rapor Geçerlilik Durumu - Rapor Geçerlilik Tarihi -->
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group input-group-md">
+                      <label>Raporun Geçerlilik Durumu</label>
+                      <select [(ngModel)]="_disabilityFood.emr_rap_gec_dur" [ngModelOptions]="{standalone: true}"
+                        class="form-control" class="form-control">
+                        <option value="null" disabled>Seçiniz..</option>
+                        <option value="Süreli">Süreli</option>
+                        <option value="Süresiz">Süresiz</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-6" [hidden]="_disabilityFood.emr_rap_gec_dur!='Süreli'">
+                    <div class="form-group input-group-md">
+                      <label>Rapor Geçerlilik Tarihi</label>
+                      <div class="input-group-append">
+                        <input type="text" class="form-control" [(ngModel)]="_disabilityFood.emr_rap_gec_tar"
+                          [ngModelOptions]="{standalone: true}" bsDatepicker placement="right"
+                          [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Günlük Kullanım Adedi - Aylık kullanım adedi -->
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group input-group-md">
+                      <label>Günlük Kullanım Adedi</label>
+                      <select [(ngModel)]="_disabilityFood.emr_gun_kul_aded" [ngModelOptions]="{standalone: true}"
+                        (change)="verFood($event, value)" class="form-control" class="form-control">
+                        <option value="null" disabled>Seçiniz..</option>
+                        <option value="1x1">1x1</option>
+                        <option value="1x2">1x2</option>
+                        <option value="1x3">1x3</option>
+                        <option value="1x4">1x4</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <!--[hidden]="_disabilityCloth.raporgecerlilikdurumu=='Süresiz'"-->
+                    <div class="form-group input-group-md">
+                      <label>Aylık Kullanım Adedi</label>
+                      <div class="input-group-append">
+                        <input type="text" [(ngModel)]="_disabilityFood.emr_aylik_kul_aded"
+                          [ngModelOptions]="{standalone: true}" class="form-control" disabled>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <app-imageOperation #lisansMama id="lisansMama" [editable]="true" [tableNick]="'mr'" [id]="_disabilityFood.id" ></app-imageOperation>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" (click)="engelliMamaRaporu.hide()" class="btn btn-hero-danger btn-tn">Vazgeç</button>
+        <div [hidden]="!_disabilityFood.id || _disabilityFood.raporaktif=='false'">
+          <button type="button" (click)="engelliMamaRaporu.hide();closeFood();" class="btn btn-hero-warning btn-tn">Kaydı Kapat</button>
+        </div>
+        <button type="button" class="btn btn-hero-success btn-tn" (click)="addFood();">Kaydet</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,315 @@
+<!-- Vasi Bilgileri -->
+<div class="row">
+    <div class="col-md-12">
+        <nb-card size="active">
+            <br>
+            <div class="col-md-12">
+                <div class="row" id="clrFiziksel">
+                    <div class="col-md-12" style="height: 25px">
+                        <div style="float:left" class="col-md-4">
+                            <h5 style="margin-top:2px;color: white;">VASİ BİLGİLERİ</h5>
+                        </div>
+                        <div style="float:right;margin-top: -8px;" [hidden]="!(ikid>0)">
+                            <div class="custom-control custom-checkbox" style="margin-top: 5px">
+                                <input class="custom-control-input" id="vasiShowAll" type="checkbox"
+                                    [checked]="vasiShowAll" (change)="vasiShowAll = !vasiShowAll">
+                                <label class="custom-control-label" for="vasiShowAll">
+                                    <b style="font-weight: bold;color: black;">Hepsini Göster</b>
+                                </label>
+                            </div>
+                        </div>
+                        <div style="float:right;margin-right: 20px" [hidden]="!(ikid>0)">
+                            <button class="btn btn-hero-success btn-tn " (click)="engelliVasi.show();newVasi();"
+                                style="margin-top: -4px">Yeni
+                                Vasi Ekle</button>
+                        </div>
+                        <div style="float:right;margin-right: 20px;color:#fff" [hidden]="ikid>0">
+                            <p>Vasi Ekleyebilmek İçin Lütfen İlk Kabul İşlemini Yapınız..</p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead style="background:#C46210;">
+                                        <tr style="color: white;text-align: center;height: 45px;vertical-align: top;">
+                                            <th style="width:12%;">Adı Soyadı</th>
+                                            <th style="width:12%;">TC No</th>
+                                            <th style="width:12%;">Telefon No</th>
+                                            <th style="width:12%;">GSM</th>
+                                            <th style="width:12%;">Geçerlilik Durumu</th>
+                                            <th style="width:12%;">Geçerlilik Tarihi</th>
+                                            <th style="width:12%;">İşlemler</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody style="text-align: center">
+                                        <tr *ngFor="let v of _vasiList" [hidden]="!v.aktif && !vasiShowAll">
+                                            <td scope="row">
+                                                <div class="form-check form-check-inline">
+                                                    <small [hidden]="v.aktif"
+                                                        style="font-size: 0.8em ;background-color:rgb(216, 33, 33);color:white;border: 2px solid rgb(216, 33, 33);border-radius: 12px;padding: 3px">Kapalı
+                                                        Kayıt </small>&nbsp; {{v.vasiadi}} {{v.vasisoyadi}}
+                                                </div>
+                                            </td>
+                                            <td scope="row">
+                                                <div class="form-check form-check-inline">
+                                                    {{v.vasitc}}
+                                                </div>
+                                            </td>
+                                            <td scope="row">
+                                                <div class="form-check form-check-inline">
+                                                    {{v.telefon}}
+                                                </div>
+                                            </td>
+                                            <td scope="row">
+                                                <div class="form-check form-check-inline">
+                                                    {{v.gsm}}
+                                                </div>
+                                            </td>
+                                            <td scope="row">
+                                                <div class="form-check form-check-inline">
+                                                    {{v.gecerlilikdurumu}}
+                                                </div>
+                                            </td>
+                                            <td scope="row">
+                                                <div class="form-check form-check-inline"
+                                                    style="font-size: 1.5rem;font-weight: bold">
+                                                    {{v.gecerliliktarihi | date: 'dd/MM/yyyy'}}
+                                                </div>
+                                            </td>
+
+                                            <td scope="row">
+                                                <div class="col-md-12">
+                                                    <button class="btn btn-hero-info btn-demo btn-tn"
+                                                        (click)="editVasi(v);engelliVasi.show();">Göster
+                                                        ve Düzenle</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </nb-card>
+    </div>
+</div>
+<div bsModal #engelliVasi="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="dialog-sizes-name1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" id="clrFiziksel">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal-basic-title" style="color: #fff">Vasi Bilgileri</h5>
+                <button type="button" class="close" aria-label="Close" (click)="engelliVasi.hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group input-group-md">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- Form -->
+                                <div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="form-group input-group-md">
+                                                <label>TC Kimlik</label>
+                                                <input [textMask]="{mask: tc_mask}" [(ngModel)]="_vasi.vasitc"
+                                                    [ngModelOptions]="{standalone: true}" type="text"
+                                                    class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- adı soyadı -->
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group input-group-md">
+                                                <label>Adı</label>
+                                                <input [(ngModel)]="_vasi.vasiadi" [ngModelOptions]="{standalone: true}"
+                                                    type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group input-group-md">
+                                                <label>Soyadı</label>
+                                                <input [(ngModel)]="_vasi.vasisoyadi"
+                                                    [ngModelOptions]="{standalone: true}" type="text"
+                                                    class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- mahkeme adı -->
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="form-group input-group-md">
+                                                <label>Mahkeme Adı</label>
+                                                <input [(ngModel)]="_vasi.mahkemeadi"
+                                                    [ngModelOptions]="{standalone: true}" type="text"
+                                                    class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Karar Tarihi Karar numarası -->
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group input-group-md">
+                                                <label>Karar Tarihi</label>
+
+                                                <div class="input-group-append">
+
+                                                    <input type="text" class="form-control" bsDatepicker
+                                                        placement="right" [(ngModel)]="_vasi.karartarihi"
+                                                        [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"
+                                                        [ngModelOptions]="{standalone: true}" style="height: 40.78px;">
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-6">
+                                            <div class="form-group input-group-md">
+                                                <label>Karar Numarası (Esas No)</label>
+                                                <input [(ngModel)]="_vasi.kararnumarasi"
+                                                    [ngModelOptions]="{standalone: true}" type="text"
+                                                    class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Geçerlilik Durumu - Geçerlilik Tarihi -->
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group input-group-md">
+                                                <label>Geçerlilik Durumu</label>
+                                                <select [(ngModel)]="_vasi.gecerlilikdurumu"
+                                                    [ngModelOptions]="{standalone: true}" class="form-control">
+                                                    <option value="null" disabled>Seçiniz..</option>
+                                                    <option value="Süreli">Süreli</option>
+                                                    <option value="Süresiz">Süresiz</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6" [hidden]="_vasi.gecerlilikdurumu!='Süreli'">
+                                            <label>Geçerlilik Tarihi</label>
+                                            <div class="input-group-append">
+                                                <input type="text" [(ngModel)]="_vasi.gecerliliktarihi"
+                                                    class="form-control" bsDatepicker placement="right"
+                                                    [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"
+                                                    [ngModelOptions]="{standalone: true}" style="height: 40.78px;">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!--<div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group input-group-md">
+                                    <label>Nedeni</label>
+                                    <textarea style="height: 80px" class="form-control"></textarea>
+                                </div>
+                            </div>
+                        </div>-->
+                                    <br>
+                                    <h5 style="color: #fff">Vasi İkametgah Bilgileri</h5>
+                                    <hr>
+                                    <!-- il ilçe -->
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group input-group-md">
+                                                <label>İl</label>
+                                                <select [(ngModel)]="_vasi.vasiil" [ngModelOptions]="{standalone: true}"
+                                                    (ngModelChange)="CityonChange_vasi($event)" class="form-control">
+                                                    <option value="null" disabled>Seçiniz..</option>
+                                                    <option *ngFor="let c of cityList" [ngValue]="c.iladi">{{c.iladi}}
+                                                    </option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group input-group-md">
+                                                <label>İlçe</label>
+                                                <select [(ngModel)]="_vasi.vasiilce"
+                                                    [ngModelOptions]="{standalone: true}" class="form-control">
+                                                    <option value="null" disabled>Seçiniz..</option>
+                                                    <option *ngFor="let c of _countyList_vasi" [ngValue]="c.ilceadi">
+                                                        {{c.ilceadi}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="form-group input-group-md">
+                                                <label>Adres</label>
+                                                <input [(ngModel)]="_vasi.adres" [ngModelOptions]="{standalone: true}"
+                                                    type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group input-group-md">
+                                                <label>Telefon Numarası</label>
+
+                                                <input [textMask]="{mask: mask}" [(ngModel)]="_vasi.telefon"
+                                                    class="form-control textbox" type="text"
+                                                    placeholder="0 (xxx) xxx xxxx"
+                                                    [ngModelOptions]="{standalone: true}" />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group input-group-md">
+                                                <label>GSM</label>
+                                                <input [textMask]="{mask: mask}" [(ngModel)]="_vasi.gsm"
+                                                    class="form-control textbox" type="text"
+                                                    placeholder="0 (xxx) xxx xxxx"
+                                                    [ngModelOptions]="{standalone: true}" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+
+                                    </div>
+                                    <div class="row">
+                                        <!-- <div class="custom-file">
+                                <input type="file" (change)="onFileSelected_vasi($event)" class="custom-file-input" data-buttonText="Vasi Karar Belgesi" >
+                                <label class="custom-file-label" for="customFile">Resim Seç</label>
+                            </div> -->
+                            <div class="col-md-12">
+                                <p class="card-text" style="padding: 0.5rem 1.25rem;
+                                      font-size: 0.75rem;
+                                      line-height: 1.25;
+                                      border-radius: 0.375rem;color: black;font-weight: bold;">
+                                  * Mahkeme kararını yüklemek için kaydet işlemini yapınız.</p>
+                              </div>
+                                        <div class="col-md-12">
+                                            <app-imageOperation #engelVasi id="engelVasi" [editable]="true"
+                                                [tableNick]="'vasi'" [id]="_vasi.id"></app-imageOperation>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-hero-danger btn-tn" (click)="cancelVasi();engelliVasi.hide();">Vazgeç</button>
+                <button class="btn btn-hero-warning btn-tn" (click)="closeVasi();engelliVasi.hide();"
+                    style="margin-right: 5px" *ngIf="_vasi.id != null">Kaydı
+                    Kapat
+                </button>
+                <button class="btn btn-hero-success btn-tn" (click)="addVasi();"
+                    style="margin-right: 15px">Kaydet</button>
+            </div>
+        </div>
+    </div>
+</div>

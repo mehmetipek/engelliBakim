@@ -1,0 +1,226 @@
+
+
+<!-- Engelli Bez Rapor Bilgileri -->
+<div class="row">
+  <div class="col-md-12">
+      <nb-card size="active">
+          <br>
+          <div class="col-md-12">
+                  <div class="row" id="clrFiziksel" >
+                          <div class="col-md-12" style="height: 25px">
+                              <div style="float:left" class="col-md-4">
+                                  <h5 style="margin-top:2px;color: white;">ENGELLİ BEZ RAPORLARI</h5>
+                              </div>
+                          <div style="float:right;margin-top: -8px;" [hidden]="!(ikid>0)">
+                              <div class="custom-control custom-checkbox"  style="margin-top: 5px">
+                                      <input  class="custom-control-input" id="disabilityClothShowAll"
+                                  type="checkbox"[checked]="disabilityClothShowAll"
+                                  (change)="disabilityClothShowAll = !disabilityClothShowAll">
+                              <label class="custom-control-label" for="disabilityClothShowAll">
+                                  <b style="font-weight: bold;color: black;">Hepsini Göster</b>
+                              </label>
+                              </div>
+                           </div>
+                           <div style="float:right;margin-right: 20px" [hidden]="!(ikid>0)">
+                                  <button class="btn btn-hero-success btn-tn " (click)="engelliBez.show();newDiaperReport()" style="margin-top: -4px">
+                                          Yeni Bez Raporu Ekle</button>
+                          </div>
+                          <div style="float:right;margin-right: 20px;color:#fff" [hidden]="ikid>0">
+                            <p>Engelli Bez Raporu Ekleyebilmek İçin Lütfen İlk Kabul İşlemini Yapınız..</p>
+                        </div>
+                        </div>
+                      </div>
+              <div class="col-md-12">
+                  <div class="card">
+                      <div class="card-body">
+                          <div class="table-responsive">
+                              <!-- Bez Rapor Listesi -->
+                              <table class="table table-bordered">
+                                  <thead style="background: #C46210">
+                                      <tr style="color: white;text-align: center;height: 45px;vertical-align: top;">
+                                          <th style="width: 12%;">Düzenleyen Kurum</th>
+                                          <th style="width: 12%;">Rapor Tarihi</th>
+                                          <th style="width: 12%;">Rapor No</th>
+                                          <th style="width: 12%;">Rapor Geçerlilik Durumu</th>
+                                          <th style="width: 12%;">Rapor Geçerlilik Tarihi</th>
+                                          <th style="width: 12%;">İşlemler</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody style="text-align: center">
+                                      <tr  *ngFor="let r of _disabilityClothList" [hidden]="!r.raporaktif && !disabilityClothShowAll">
+                                          <!-- -->
+                                          <!-- <tr> -->
+                                          <td scope="row">
+                                              <div class="form-check form-check-inline">
+                                                      <small [hidden]="r.raporaktif" style="font-size: 0.8em ;background-color:rgb(216, 33, 33);color:white;border: 2px solid rgb(216, 33, 33);border-radius: 12px;padding: 3px">Kapalı
+                                                              Kayıt </small>&nbsp; {{r.duzenleyenkurum}}
+                                              </div>
+                                          </td>
+                                          <td>
+                                              <div class="form-check form-check-inline">
+                                                  {{r.raportarihi | date:'dd/MM/yyyy'}}
+                                              </div>
+                                          </td>
+                                          <td scope="row">
+                                              <div class="form-check form-check-inline">
+                                                  {{r.raporno}}
+                                              </div>
+                                          </td>
+                                          <td>
+                                              <div class="form-check form-check-inline">
+                                                  {{r.raporgecerlilikdurumu}}
+                                              </div>
+                                          </td>
+                                          <td>
+                                              <div class="form-check form-check-inline" style="font-size: 1.5rem;font-weight: bold">
+                                                  {{r.raporgecerliliktarihi | date:'dd/MM/yyyy'}}
+                                              </div>
+                                          </td>
+                                          <td>
+                                              <div class="col-md-12">
+                                                  <button class="btn btn-hero-info btn-demo btn-tn" (click)="editClothReport(r);engelliBez.show();">Göster
+                                                      ve Düzenle</button>
+                                              </div>
+                                          </td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <br>
+      </nb-card>
+  </div>
+</div>
+<!-- Engelli Bez Raporu Modal -->
+
+<div bsModal #engelliBez="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+  aria-labelledby="dialog-sizes-name1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" id="clrFiziksel">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal-basic-title" style="color: #fff">Yeni Bez Raporu Ekle</h5>
+        <button type="button" class="close" aria-label="Close" (click)="engelliBez.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group input-group-md">
+              <div class="row">
+                  <div class="col-md-12">
+                      <!-- Düzenleyen Kurum-->
+                      <div class="row">
+                          <div class="col-sm-12">
+                              <div class="form-group input-group-md">
+                                  <label>Raporu Düzenleyen Kurum</label>
+                                  <input [(ngModel)]="_disabilityCloth.duzenleyenkurum" [ngModelOptions]="{standalone: true}"
+                                      type="text" class="form-control">
+                              </div>
+                          </div>
+                      </div>
+                      <!-- Rapor Tarihi - Rapor no -->
+                      <div class="row">
+                          <div class="col-sm-6">
+                              <div class="form-group input-group-md">
+                                  <label>Rapor Tarihi</label>
+                                  <div class="input-group-append">
+                                      <input type="text" [(ngModel)]="_disabilityCloth.raportarihi" class="form-control"
+                                          bsDatepicker placement="right" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"
+                                          [ngModelOptions]="{standalone: true}">
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-sm-6">
+                              <div class="form-group input-group-md">
+                                  <label>Rapor No</label>
+                                  <input [(ngModel)]="_disabilityCloth.raporno" [ngModelOptions]="{standalone: true}"
+                                      class="form-control" type="text" class="form-control">
+                              </div>
+                          </div>
+                      </div>
+                      <!-- Rapor Geçerlilik Durumu - Rapor Geçerlilik Tarihi -->
+                      <div class="row">
+                          <div class="col-sm-6">
+                              <div class="form-group input-group-md">
+                                  <label>Raporun Geçerlilik Durumu</label>
+                                  <select [(ngModel)]="_disabilityCloth.raporgecerlilikdurumu" [ngModelOptions]="{standalone: true}"
+                                      class="form-control" class="form-control">
+                                      <option value="null" disabled>Seçiniz..</option>
+                                      <option value="Süreli">Süreli</option>
+                                      <option value="Süresiz">Süresiz</option>
+                                  </select>
+                              </div>
+                          </div>
+                          <div class="col-sm-6" [hidden]="_disabilityCloth.raporgecerlilikdurumu!='Süreli'">
+                              <div class="form-group input-group-md">
+                                  <label>Rapor Geçerlilik Tarihi</label>
+                                  <div class="input-group-append">
+                                      <input type="text" [(ngModel)]="_disabilityCloth.raporgecerliliktarihi" class="form-control"
+                                          bsDatepicker placement="right" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"
+                                          [ngModelOptions]="{standalone: true}">
+    
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <!-- Bez  -->
+                      <div class="row">
+                          <div class="col-sm-12">
+                              <div class="form-group input-group-md">
+                                  <label>Tanısı</label>
+                                  <input #txtMedicament type="text" [(ngModel)]="_disabilityCloth.tani"
+                                      [ngModelOptions]="{standalone: true}" class="form-control">
+    
+    
+                              </div>
+                          </div>
+    
+                      </div>
+                      <!-- Günlük Kullanım Adedi - Aylık kullanım adedi -->
+                      <div class="row">
+                          <div class="col-sm-6">
+                              <div class="form-group input-group-md">
+                                  <label>Günlük Kullanım Adedi</label>
+                                  <select  [(ngModel)]="_disabilityCloth.gunlukkullanimadedi" [ngModelOptions]="{standalone: true}" (change)="ver($event, value)"
+                                      class="form-control" class="form-control">
+                                      <option value="null" disabled>Seçiniz..</option>
+                                      <option  value="1">1x1</option>
+                                      <option value="2">1x2</option>
+                                      <option  value="3">1x3</option>
+                                      <option  value="4">1x4</option>
+                                  </select>
+                              </div>
+                          </div>
+                          <div class="col-sm-6" ><!--[hidden]="_disabilityCloth.raporgecerlilikdurumu=='Süresiz'"-->
+                              <div class="form-group input-group-md">
+                                  <label>Aylık Kullanım Adedi</label>
+                                  <div class="input-group-append">
+                                      <input type="text" [(ngModel)]="_disabilityCloth.aylikkullanimadedi" [ngModelOptions]="{standalone: true}" class="form-control" disabled>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                            <app-imageOperation #bezPhoto id="bezPhoto" [editable]="true" [tableNick]="'dcr'" [id]="_disabilityCloth.id" ></app-imageOperation>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-hero-danger btn-tn" (click)="engelliBez.hide();">Vazgeç</button>
+        <div [hidden]="!_disabilityCloth.id || _disabilityCloth.raporaktif=='false'">
+          <button type="button" (click)="closeCloth();engelliBez.hide();" class="btn btn-hero-warning btn-tn">Kaydı
+              Kapat</button>
+      </div>
+        <button class="btn btn-hero-success btn-tn" (click)="addCloth();" style="margin-right: 15px">Kaydet</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,256 @@
+<!-- Engelli Rapor Bilgileri -->
+<div class="row">
+  <div class="col-md-12">
+      <nb-card size="active">
+          <br>
+          <div class="col-md-12" >
+                  <div class="row" id="clrFiziksel">
+                          <div class="col-md-12" style="height: 25px">
+                              <div style="float:left" class="col-md-4">
+                                  <h5 style="margin-top:2px;color: white;">ENGELLİ RAPORLARI</h5>
+                              </div>
+                          <div style="float:right;margin-top: -8px;" [hidden]="!(ikid>0)">
+                              <div class="custom-control custom-checkbox" style="margin-top: 5px">
+                                      <input  class="custom-control-input" id="disabledReportShowAll"
+                                      type="checkbox" [checked]="disabledReportShowAll"
+                                      (change)="disabledReportShowAll = !disabledReportShowAll">
+                                  <label class="custom-control-label" for="disabledReportShowAll">
+                                      <b style="font-weight: bold;color: black;">Hepsini Göster</b>
+                                  </label>
+                              </div>
+                           </div>
+                           <div style="float:right;margin-right: 20px" [hidden]="!(ikid>0)">
+                                  <button class="btn btn-hero-success btn-tn " (click)="engelliRaporlari.show();newDisabilityReport();" style="margin-top: -4px">
+                                          Yeni Rapor Ekle</button>
+                          </div>
+                          <div style="float:right;margin-right: 20px;color:#fff" [hidden]="ikid>0">
+                            <p>Engelli Raporu Ekleyebilmek İçin Lütfen İlk Kabul İşlemini Yapınız..</p>
+                        </div>
+                        </div>
+                      </div>
+              <div class="col-md-12">
+                  <div class="card">
+                      <div class="card-body">
+                          <div class="table-responsive">
+                              <!-- Rapor Listesi -->
+                              <table class="table table-bordered">
+                                  <thead style="background: #C46210">
+                                      <tr style="color: white;text-align: center;height: 45px;vertical-align: top;" >
+                                          <th style="width: 12%;">Düzenleyen Kurum</th>
+                                          <th style="width: 12%;">Rapor Tarihi</th>
+                                          <th style="width: 12%;">Rapor No</th>
+                                          <th style="width: 12%;">Bağımlılık Değerlendirmesi</th>
+                                          <th style="width: 12%;">Engel Grubu </th>
+                                          <th style="width: 12%;">Teşhis</th>
+                                          <th style="width: 12%;">Rapor Geçerlilik Durumu</th>
+                                          <th style="width: 12%;">Rapor Geçerlilik Tarihi</th>
+                                          <th style="width: 12%;">İşlemler</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody style="text-align: center">
+                                      <tr  *ngFor="let r of _disabilityReportList" [hidden]="!r.raporaktif && !disabledReportShowAll">
+                                          <!-- <tr> -->
+                                          <td scope="row">
+                                              <div class="form-check form-check-inline">
+                                                      <small [hidden]="r.raporaktif" style="font-size: 0.8em ;background-color:rgb(216, 33, 33);color:white;border: 2px solid rgb(216, 33, 33);border-radius: 12px;padding: 3px">Kapalı
+                                                              Kayıt </small>&nbsp; 
+                                                  {{r.duzenleyenkurum}}
+                                              </div>
+
+                                          </td>
+                                          <td>
+                                              <div class="form-check form-check-inline">
+                                                  {{r.raportarihi | date:'dd/MM/yyyy'}}
+                                              </div>
+                                          </td>
+                                          <td scope="row">
+                                              <div class="form-check form-check-inline">
+                                                  {{r.raporno}}
+                                              </div>
+
+                                          </td>
+                                          <td>
+                                              <div class="form-check form-check-inline">
+                                                  {{r.ikbagimlideg}}
+                                              </div>
+                                          </td>
+                                          <td>
+                                              <div class="form-check form-check-inline">
+                                                  {{r.engelligrubu}}
+                                              </div>
+                                          </td>
+                                          <td>
+                                              <div class="form-check form-check-inline">
+                                                  {{r.teshis}}
+                                              </div>
+                                          </td>
+
+                                          <td>
+                                              <div class="form-check form-check-inline">
+                                                  {{r.raporgecerlilikdurumu}}
+                                              </div>
+                                          </td>
+                                          <td>
+                                              <div class="form-check form-check-inline" style="font-size: 1.5rem;font-weight: bold">
+                                                  {{r.raporbitistar | date:'dd/MM/yyyy'}}
+                                              </div>
+                                          </td>
+                                          <td>
+                                              <div class="col-md-12">
+                                                  <button class="btn btn-hero-info btn-demo btn-tn" (click)="editDisabilityReport(r);engelliRaporlari.show();">Göster
+                                                      ve Düzenle</button>
+                                              </div>
+                                          </td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <br>
+      </nb-card>
+  </div>
+</div>
+<div bsModal #engelliRaporlari="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" id="clrFiziksel">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal-basic-title" style="color: #fff">Rapor Bilgileri</h5>
+        <button type="button" class="close" aria-label="Close" (click)="engelliRaporlari.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group input-group-md">
+              <div class="row">
+                  <div class="col-md-12">
+                      <!-- Düzenleyen Kurum-->
+                      <div class="row">
+                          <div class="col-sm-12">
+                              <div class="form-group input-group-md">
+                                  <label>Raporu Düzenleyen Kurum</label>
+                                  <input [(ngModel)]="_disabilityReport.duzenleyenkurum" [ngModelOptions]="{standalone: true}"
+                                      type="text" class="form-control">
+                              </div>
+                          </div>
+                      </div>
+                      <!-- Rapor Tarihi - Rapor no -->
+                      <div class="row">
+                          <div class="col-sm-6">
+                              <div class="form-group input-group-md">
+                                  <label>Rapor Tarihi</label>
+
+                                  <div class="input-group-append">
+
+                                      <input type="text" [(ngModel)]="_disabilityReport.raportarihi" class="form-control"
+                                          bsDatepicker placement="right" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"
+                                          [ngModelOptions]="{standalone: true}">
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-sm-6">
+                              <div class="form-group input-group-md">
+                                  <label>Rapor No</label>
+                                  <input [(ngModel)]="_disabilityReport.raporno" [ngModelOptions]="{standalone: true}"
+                                      type="text" class="form-control">
+                              </div>
+                          </div>
+                      </div>
+                      <!-- Rapor Derecesi - Ağır Engelli  -->
+                      <div class="row">
+                              <div class="col-sm-6">
+                                      <div class="form-group input-group-md">
+                                          <label>Engel Oranı(%)</label>
+                                          <input [(ngModel)]="_disabilityReport.raporderecesi" [ngModelOptions]="{standalone: true}" (keypress)="validate($event)" placeholder="1-100 Arasında Sayı Olmalıdır."
+                                              type="text" class="form-control"><!--Engel Oranı olucak.-->
+                                      </div>
+                                  </div>
+                              <div class="col-sm-6">
+                                      <div class="form-group input-group-md">
+                                          <label>Bağımlılık Değerlendirmesi</label> 
+                                          <select [(ngModel)]="_disabilityReport.ikbagimlideg" [ngModelOptions]="{standalone: true}"
+                                              class="form-control">
+                                              <option value="null" disabled>Seçiniz..</option>
+                                              <option >Bağımsız</option>
+                                              <option >Kısmi Bağımlı</option>
+                                              <option >Tam Bağımlı</option>
+                                          </select>
+                                      </div>
+                                  </div>
+                      </div>
+                      <!-- Engel Grubu - Teşhis -->
+                      <div class="row">
+                          <div class="col-sm-6">
+                              <div class="form-group input-group-md">
+                                  <label>Engel Grubu</label>
+                                  <select class="form-control" disabled [(ngModel)]="engelli.ikengelligrubu" [ngModelOptions]="{standalone: true}">
+                                      <option value="null" disabled>Lütfen Engel Grubunu Seçiniz!..</option>
+                                      <option value="ZİHİNSEL">ZİHİNSEL</option>
+                                      <option value="BEDENSEL">BEDENSEL</option>
+                                      <option value="RUHSAL">RUHSAL</option>
+                                  </select>
+                              </div>
+                          </div>
+                          <div class="col-sm-6">
+                              <div class="form-group input-group-md">
+                                  <label>Teşhis </label>
+                                  <select [(ngModel)]="_disabilityReport.teshis" [ngModelOptions]="{standalone: true}"
+                                      class="form-control">
+                                      <option value="null" disabled>Seçiniz..</option>
+                                      <option>Şizofren</option>
+                                      <option>Demans</option>
+                                      <option>Bipolar</option>
+                                      <option>Alzheimer</option>
+                                      <option>Ampute</option>
+                                  </select>
+                              </div>
+                          </div>
+                      </div>
+                      <!-- Rapor Geçerlilik Durumu - Rapor Geçerlilik Tarihi -->
+                      <div class="row">
+                          <div class="col-sm-6">
+                              <div class="form-group input-group-md">
+                                  <label>Raporun Geçerlilik Durumu</label>
+                                  <select [(ngModel)]="_disabilityReport.raporgecerlilikdurumu" [ngModelOptions]="{standalone: true}"
+                                      class="form-control">
+                                      <option value="null" disabled>Seçiniz..</option>
+                                      <option value="Süreli">Süreli</option>
+                                      <option value="Süresiz">Süresiz</option>
+                                  </select>
+                              </div>
+                          </div>
+                          <div class="col-sm-6" [hidden]="_disabilityReport.raporgecerlilikdurumu!='Süreli'">
+                              <div class="form-group input-group-md">
+                                  <label>Rapor Geçerlilik Tarihi</label>
+                                  <div class="input-group-append">
+                                      <input type="text" [(ngModel)]="_disabilityReport.raporbitistar" class="form-control"
+                                          bsDatepicker placement="right" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"
+                                          [ngModelOptions]="{standalone: true}">
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-12">
+                            <app-imageOperation #lisansRapor id="lisansRapor" [editable]="true" [tableNick]="'dr'" [id]="_disabilityReport.id" ></app-imageOperation>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-hero-danger btn-tn" (click)="engelliRaporlari.hide();">Vazgeç</button>
+        <div [hidden]="!_disabilityReport.id || _disabilityReport.raporgecerlilikdurumu=='false'">
+          <button type="button" (click)="closeDisabilityReport();engelliRaporlari.hide();" class="btn btn-hero-warning btn-tn">Kaydı Kapat</button>
+      </div>
+        <button class="btn btn-hero-success btn-tn" (click)="disabilityReportSave();" style="margin-right: 15px">Kaydet</button>
+      </div>
+    </div>
+  </div>
+</div>

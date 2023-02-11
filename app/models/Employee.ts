@@ -1,0 +1,71 @@
+import { Experience } from "./Experience";
+
+
+export class Employee {
+    public perid:number;
+    public perbmid: number;
+    public pertcno: string;
+    public peradi: string;
+    public persoyadi: string;
+    public perdogtar: Date;
+    public perdogyeril: string;
+    public perdogyerilce: string;
+    public percinsiyet: string;
+    public peraskerdurum: string;
+    public perasteciltar: Date;
+    public permedenihali: string;
+    public perehliyet: string;
+    public pertel1: string;
+    public pertel2: string;
+    public peremail:string;
+    public peradres: string;
+    public peradril: string;
+    public peradrilce: string;
+    public perogrenimdurumu: string;
+    public personmezunolokul: string;
+    public personmezunokulbolum: string;
+    public personmezuntar: number;
+    public personmezunokuldiplomano:string;
+    public permeslek: string;
+    public perkadro: string;
+    public perTecrube: Experience[]=[];
+    public perkapkayittar:Date;
+    public peruserkodu:string;
+    public perdatetime:Date;
+    public pergiristar: Date;
+    public pergiraspimonaytar:Date;
+    public pergiraspimonayno:string;
+    public percikistar:Date;
+    public perciraspimonaytar:Date;
+    public perciraspimonayno:string;
+    public perboy:number;
+    public perkilo:number;
+    public perbeden:number;
+    public perayakkabino:number;
+    public percikaspimonaytar:Date;
+    public kayitaktif:Boolean;
+    public percikaspimonayno;
+    public persigarakul:string;
+    public perdigermeslek:string;
+    public perfoto:string;
+    constructor() {
+        this.pertcno=null;
+        this.peradril=null;
+        this.peradrilce=null;
+        this.percinsiyet=null;
+        this.perdogyeril=null;
+        this.perdogyerilce=null;
+        this.permedenihali=null;
+        this.perehliyet=null;
+        this.permeslek=null;
+        this.perkadro=null;
+        this.perdogtar=null;
+        this.kayitaktif=true;
+        this.perbeden=null;
+        this.perogrenimdurumu=null;
+        this.perasteciltar=null;
+        this.persigarakul=null;
+        this.perayakkabino=null;
+        this.peraskerdurum=null;
+    }
+}
