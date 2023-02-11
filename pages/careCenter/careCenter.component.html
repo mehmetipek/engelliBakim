@@ -1,0 +1,1005 @@
+<!-- Bakım Merkezi Bilgileri -->
+<div [ngClass]="{'blur': isBlur}">
+<div class="row">
+  <div class="col-md-12">
+    <nb-card size="active">
+      <!-- style="zoom: 75%"-->
+      <br>
+      <div class="col-md-12">
+        <div class="row">
+
+          <div class="col-md-2">
+            <img class="card-img-top" id="careCenterImage" [src]="getCareCenterPhotoUrl" style="width: 120px;" height="120px" alt="image">
+          </div>
+
+          <div class="col-md-8" style="text-align: center">
+            <h2 class="card-title" style="margin-top: 40px;">{{BM.bmadi}}</h2>
+          </div>
+
+        </div>
+        <!-- <hr>-->
+
+        <div class="row" style="padding:5px">
+          <!--  <h5>Bakım Merkezi Bilgileri</h5>-->
+
+          <!-- Genel Bilgiler -->
+          <div class="card col-md-3">
+
+            <div class="card-body" style="margin: -12px;">
+              <div id="clrFiziksel" class="center">
+                <h5 style="color: white">GENEL BİLGİLER</h5>
+              </div>
+              <hr>
+              <table>
+                <colgroup>
+                  <col span="1" style="width: 19%;">
+                  <col span="1" style="width: 1%;">
+                  <col span="1" style="width: 80%;">
+                </colgroup>
+
+                <tbody>
+                  <tr>
+                    <td style="color: black;"><strong>Adı</strong></td>
+                    <td>:</td>
+                    <td>&nbsp;{{BM.bmadi}}</td>
+                  </tr>
+                  <tr>
+                    <td style="color: black;"><strong>Telefon</strong></td>
+                    <td>:</td>
+                    <td>&nbsp;{{BM.bmtel1}}</td>
+                  </tr>
+                  <tr>
+                    <td style="color: black;"><strong>GSM</strong></td>
+                    <td>:</td>
+                    <td>&nbsp;{{BM.bmtel2}}</td>
+                  </tr>
+                  <tr>
+                    <td style="color: black;"><strong>İl/İlçe</strong></td>
+                    <td>:</td>
+                    <td>&nbsp;{{BM.bmil}} / {{BM.bmilce}}</td>
+                  </tr>
+                  <tr>
+                    <td style="color: black;"><strong>Adres</strong></td>
+                    <td>:</td>
+                    <td>&nbsp;{{BM.bmadres}}</td>
+                  </tr>
+                  <tr>
+                    <td style="color: black;"><strong>E-posta</strong></td>
+                    <td>:</td>
+                    <td>&nbsp;{{BM.bmeposta}}</td>
+                  </tr>
+                  <tr>
+                    <td style="color: black;"><strong>Web</strong></td>
+                    <td>:</td>
+                    <td>&nbsp;{{BM.bmweb}}</td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+            <div class="card-footer">
+              <div style="width: 200px;margin: auto;">
+                <a href="javascript:void(0)" (click)="openModal(true);generalInfomodal.show();" class="btn btn-info btn-block btn-tn">Tanımla
+                  / Düzenle</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ticari Bilgileri -->
+          <div class="card col-md-3 ">
+
+            <div class="card-body" style="margin: -12px;">
+              <div id="clrFiziksel" class="center">
+                <h5 style="color: white">TİCARİ BİLGİLER</h5>
+              </div>
+              <hr>
+              <table>
+                <colgroup>
+                  <col span="1" style="width: 34%;">
+                  <col span="1" style="width: 1%;">
+                  <col span="1" style="width: 65%;">
+                </colgroup>
+
+                <tbody>
+                  <tr>
+                    <td style="color: black;"><strong>Ticari Ünvan</strong></td>
+                    <td>:</td>
+                    <td>{{BM.bmticunvan}}</td>
+                  </tr>
+                  <br>
+                  <tr>
+                    <td style="color: black;"><strong>İl/İlçe</strong></td>
+                    <td>:</td>
+                    <td>{{BM.bmticil}} / {{BM.bmticilce}}</td>
+                  </tr>
+                  
+                  <tr>
+                    <td style="color: black;"><strong>Adres</strong></td>
+                    <td>:</td>
+                    <td>{{BM.bmticadres}}</td>
+                  </tr>
+                  
+                  <tr>
+                    <td style="color: black;"><strong>Vergi Dairesi</strong></td>
+                    <td>:</td>
+                    <td>{{BM.bmticvda}}</td>
+                  </tr>
+                  
+                  <tr>
+                    <td style="color: black;"><strong>Hesap IBAN No</strong></td>
+                    <td>:</td>
+                    <td>{{BM.bm_bank_iban}}</td>
+                  </tr>
+                  
+                  <tr>
+                    <td style="color: black;"><strong>Hesap Adı</strong></td>
+                    <td>:</td>
+                    <td>{{BM.bm_bank_hesap_adi}}</td>
+                  </tr>
+                  <br>
+                  <tr>
+                    <td style="color: black;"><strong>Harçlık IBAN No</strong></td>
+                    <td>:</td>
+                    <td>{{BM.bm_harc_iban_no}}</td>
+                  </tr>
+                  <tr>
+                    <td style="color: black;"><strong>Harçlık Hesap Adı</strong></td>
+                    <td>:</td>
+                    <td>{{BM.bm_harc_hesap_adi}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card-footer">
+              <div style="width: 200px;margin: auto;">
+                <a href="javascript:void(0)" (click)="openModal(true);commercialInfomodal.show()" class="btn btn-info btn-block btn-tn">Tanımla
+                  / Düzenle</a>
+              </div>
+            </div>
+          </div>
+          <!-- Fiziksel Bilgiler -->
+          <div class="card col-md-3">
+            <div class="card-body" style="margin: -12px;">
+              <div id="clrFiziksel" class="center">
+                <h5 style="color: white">FİZİKSEL BİLGİLER</h5>
+              </div>
+              <hr>
+              <table>
+                <colgroup>
+                  <col span="1" style="width: 30%;">
+                  <col span="1" style="width: 1%;">
+                  <col span="1" style="width: 69%;">
+                </colgroup>
+
+                <tbody>
+                  <tr>
+                    <td style="color: black;"><strong>Bina Sahiplik Durumu</strong></td>
+                    <td>:</td>
+                    <td>&nbsp;{{BM.bm_binasahipdur}} / {{BM.bm_aylikkiratut | currency:'₺'}}</td>
+                  </tr>
+                  <tr>
+                    <td style="color: black;"><strong>Kat Sayısı</strong></td>
+                    <td>:</td>
+                    <td>&nbsp;{{BM.bm_katsayisi}}</td>
+                  </tr>
+                  <tr>
+                    <td style="color: black;"><strong>Asansör</strong></td>
+                    <td>:</td>
+                    <td>&nbsp;{{asansrSorg}}</td>
+                  </tr>
+
+                  <tr>
+                    <td style="color: black;"><strong>Jeneratör</strong></td>
+                    <td>:</td>
+                    <td>&nbsp;{{jeneratorSorg}} / {{BM.bm_jeneratorguc=='null' ? " ":BM.bm_jeneratorguc}}</td>
+                  </tr>
+                  <tr>
+                    <td style="color: black;"><strong>Su Deposu</strong></td>
+                    <td>:</td>
+                    <td>&nbsp;{{suSorg}} / {{BM.bm_sdkapasite=='null' ? " ":BM.bm_sdkapasite}}</td>
+                  </tr>
+                  <tr>
+                    <td style="color: black;"><strong>Bahçe</strong></td>
+                    <td>:</td>
+                    <td>&nbsp;{{BM.bm_bahcemetrekare | number}} m<sup>2</sup></td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+            <div class="card-footer">
+              <div style="width: 200px;margin: auto;">
+                <a href="javascript:void(0)" (click)="generalFiziksel.show();getBM();openModal(true);" class="btn btn-info btn-block btn-tn">Tanımla
+                  / Düzenle</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Yönetim Bilgileri -->
+          <div class="card col-md-3 ">
+            <div class="card-body" style="margin: -12px;">
+              <div id="clrFiziksel" class="center">
+                <h5 style="color: white;">YÖNETİM BİLGİLER</h5>
+              </div>
+              <hr>
+              <p class="card-text">
+                <div class="row">
+                  <div class="col-md-6">
+                    <p class="card-text" style="text-align: center">
+                      <strong>Kurucu Müdür</strong>
+                    </p>
+                    <img class="card-img-top" src="{{bmKurMud.perfoto}}" alt="image" width="260" height="180">
+
+                    <h6 class="card-title" style="margin: 5px">
+                      <b>{{bmKurMud.peradi}} {{bmKurMud.persoyadi}}</b>
+                    </h6>
+                    <p class="card-text">
+                      <strong>GSM:</strong> {{bmKurMud.pertel2}} </p>
+                    <p class="card-text"><strong>E-posta:</strong><br>{{bmKurMud.peremail}}</p>
+                    <button class="btn btn-info btn-block btn-tn" [routerLink]="['../employee']" [queryParams]="{ id: bmKurMud.perid }">DETAY</button>
+                  </div>
+                  <div class="col-md-6">
+                    <p class="card-text" style="text-align: center">
+                      <strong>Sorumlu Müdür</strong>
+                    </p>
+                    <img class="card-img-top" src="{{bmSorMud.perfoto}}" alt="image" width="260" height="180">
+                    <h6 class="card-title" style="margin: 5px">
+                      <b>{{bmSorMud.peradi}} {{bmSorMud.persoyadi}}</b>
+                    </h6>
+                    <p class="card-text">
+                      <strong>GSM:</strong> {{bmSorMud.pertel2}} </p>
+                    <p class="card-text"><strong>E-posta:</strong><br>{{bmSorMud.peremail}}</p>
+                    <button class="btn btn-info btn-block btn-tn" [routerLink]="['../employee']" [queryParams]="{ id: bmSorMud.perid }">DETAY</button>
+                  </div>
+                </div>
+            </div>
+            <div class="card-footer">
+              <p class="card-text" style="padding: 0.5rem 1.25rem;
+                    font-size: 0.75rem;
+                    line-height: 1.25;
+                    border-radius: 0.375rem;">
+                * Tanımlama Yapılamaz.Otomatik Görüntüleme </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </nb-card>
+  </div>
+</div>
+<!-- Bakım Merkezi Fotolar -->
+
+    <app-sixImageOperation id="showSixPhoto" #showSixPhoto></app-sixImageOperation>
+
+    
+<!-- Hizmet Bilgileri -->
+<div class="row">
+  <div class="col-md-12">
+    <nb-card size="active">
+      <div class="col-md-12">
+        <div class="row" id="clrFiziksel">
+          <div class="col-md-12" style="height: 35px">
+            <div style="float:left" class="col-md-4">
+              <h5 style="margin-top:7px;color: white;">Hizmet/Kapasite Bilgileri</h5>
+            </div>
+            <div style="float:right">
+              <div class="custom-control custom-checkbox ">
+                <input class="custom-control-input" id="licensesShowAll"  [checked]="islicensesShowAll"
+                (change)="islicensesShowAll = !islicensesShowAll" type="checkbox">
+                <label class="custom-control-label" for="licensesShowAll">
+                  <b>Hepsini Göster</b>
+                </label>
+              </div>
+            </div>
+            <div style="float:right;margin-right: 20px">
+              <button class="btn btn-hero-success btn-tn" (click)="lisansModal.show();newLisans();openModal(true);">Kapasite Tanımla</button>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="col-md-12">
+          <table class="table table-bordered ">
+            <thead style="background:#C46210">
+              <tr style="color: white;text-align: center">
+                <th>Engel Grubu</th>
+                <th>Yaş Grubu</th>
+                <th class="text-center">Kadın</th>
+                <th class="text-center">Erkek</th>
+                <th class="text-center">Toplam</th>
+                <th>Onay Tarihi </th>
+                <th>Ruhsat No</th>
+                <th>İşlemler</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let l of BM.ruhsat"  style="text-align: center" [hidden]="(l.bmegkapalikayit==true && !islicensesShowAll)">
+                <td scope="row">
+                  <div class="capacity-number-text">
+                    <small [hidden]="l.bmegkapalikayit==false"
+                          style="font-size: 0.8em ;background-color:rgb(216, 33, 33);color:white;border: 2px solid rgb(216, 33, 33);border-radius: 12px;padding: 3px">Kapalı
+                          Kayıt </small>&nbsp; {{l.bmegengelgrubu}}
+                  </div>
+
+                </td>
+                <td>
+                  <div class="capacity-number-text">
+                    {{l.bmegyasgrubu}}
+                  </div>
+                </td>
+                <td>
+                  <div class="capacity-number-text">
+                    {{l.bmegkpstkadin}}
+                  </div>
+                </td>
+                <td>
+                  <div class="capacity-number-text">
+                    {{l.bmegkpsterkek}}
+                  </div>
+                </td>
+                <td>
+                  <div class="capacity-number-text">
+                    {{l.bmegkpsterkek +l.bmegkpstkadin}}
+                  </div>
+                </td>
+                <td>
+                  <div class="capacity-number-text">
+                      {{l.bmegonaytar | date: 'dd/MM/yyyy'}}
+                  </div>
+                </td>
+                <td>
+                  <div class="capacity-number-text">
+                      {{l.bmegruhsatno}}
+                  </div>
+                </td>
+                <td>
+                  <button class="btn btn-hero-info btn-demo btn-tn" (click)="lisansModal.show();editLicense(l);openModal(true);">Düzenle</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </nb-card>
+  </div>
+
+</div>
+</div>
+
+<!-- Yeni Ruhsat Ekle Modal -->
+<div bsModal #lisansModal="bs-modal" class="modal fade" [config]="{ignoreBackdropClick: true, keyboard: false}" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content" id="clrFiziksel">
+        <div class="modal-header">
+            <h4  class="modal-title" id="modal-basic-title" style="color: #fff">Hizmet/Kapasite Bilgileri</h4>
+          <button type="button" class="close pull-right" (click)="lisansModal.hide();openModal(false);" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+       
+        <div class="modal-body" style="color: black;font-weight: bold;">
+            <form>
+              <div class="form-group input-group-md">
+                <div class="input-group">
+                  <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                      <!-- Engel Grubu-->
+                      <div class="row">
+        
+                        <div class="col-sm-12">
+                          <div class="form-group input-group-md">
+                            <label>Engel Grubu</label>
+                            <select [(ngModel)]="_license.bmegengelgrubu" [ngModelOptions]="{standalone: true}" class="form-control"
+                              id="" name="">
+        
+                              <option value="Ruhsal">Ruhsal</option>
+                              <option value="Zihinsel">Zihinsel</option>
+                              <option value="Bedensel">Bedensel</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Yaş Grubu -->
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <div class="form-group input-group-md">
+                            <label>Yaş Grubu</label>
+                            <select [(ngModel)]="_license.bmegyasgrubu" [ngModelOptions]="{standalone: true}" class="form-control">
+                              <option value="0-12">0-12</option>
+                              <option value="13-18">13-18</option>
+                              <option value="19+">19+</option>
+        
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Kadın Sayısı - Erkek Sayısı - Toplam -->
+                      <div class="row">
+                        <div class="col-sm-4">
+                          <div class="form-group input-group-md">
+                            <label>Kadın Sayısı</label>
+                            <input type="number" [(ngModel)]="_license.bmegkpstkadin" (keypress)="validate($event)" [ngModelOptions]="{standalone: true}"
+                              class="form-control">
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="form-group input-group-md">
+                            <label>Erkek Sayısı</label>
+                            <input type="number" [(ngModel)]="_license.bmegkpsterkek" (keypress)="validate($event)" [ngModelOptions]="{standalone: true}"
+                              class="form-control">
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="form-group input-group-md">
+                            <label>Toplam</label>
+                            <input type="number" disabled  class="form-control" value="{{_license.bmegkpsterkek*1+_license.bmegkpstkadin*1}}">
+                          </div>
+                        </div>
+                      </div>
+                 
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <div class="form-group input-group-md">
+                            <label>Açılış İzin Belgesi İzin Tarihi</label>
+                            <input type="text" [(ngModel)]="_license.bmegonaytar" [ngModelOptions]="{standalone: true}" class="form-control" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+                          </div>
+                        </div>
+                        <br>
+                        <div class="col-md-12">
+                          <div class="form-group input-group-md">
+                            <label>Ruhsat No</label>
+                            <input type="text" [(ngModel)]="_license.bmegruhsatno" [ngModelOptions]="{standalone: true}" class="form-control">
+                          </div>
+                        </div>
+                      </div>
+                      <br>
+                      <!-- resim Ekle -->
+                      <!-- <div class="row">
+                        <div class="col-md-12">
+                          <div class="custom-file">
+                            <input type="file" (change)="onFileSelected_acilisIzin($event)" class="custom-file-input"
+                              data-buttonText="Açılış İzin Belgesi">
+                            <label class="custom-file-label" for="customFile">Açılış İzin Belgesi</label>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <img _ngcontent-c13="" (click)="open(imageViewer);openImage(_izinBelgesiResimUrl)" alt="image" class="card-img-top" height="275" width="260" src={{_izinBelgesiResimUrl}}>
+                        </div>
+                      </div> -->
+                      <div class="row">
+                              <div class="col-md-12">
+                                  <app-imageOperation #lisansPhoto id="lisansPhoto" [editable]="true" [tableNick]="'acf'" [id]="_license.bmegid" ></app-imageOperation>
+                              </div>
+        
+                              <!-- <input type="file" (change)="onFileSelected_acilisIzin($event)" class="custom-file-input" data-buttonText="Açılış İzin Belgesi" >
+                              <label class="custom-file-label" for="customFile">Resim Seç</label> -->
+                              <!-- Açılış İzin Belgesi Foto -->
+                       
+                      </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+
+
+
+
+        <div class="modal-footer">
+           
+          <a href="javascript:void(0)" (click)="getBM();lisansModal.hide();openModal(false);" class="btn btn-danger  btn-tn">Vazgeç</a>
+          <div *ngIf="_license.bmegid">
+            <button type="button" (click)="closeLicense(_license);lisansModal.hide();openModal(false);" class="btn btn-hero-warning btn-tn">Kaydı
+              Kapat</button>
+          </div>
+          <a href="javascript:void(0)" (click)="saveLicense();openModal(false);" class="btn btn-success  btn-tn">Kaydet</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Genel Bilgiler Düzenle -->
+<div bsModal #generalInfomodal="bs-modal" [config]="{ignoreBackdropClick: true, keyboard: false}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1" >
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" id="clrFiziksel">
+      <div class="modal-header">
+        <h5 id="dialog-sizes-name1" class="modal-title pull-left" style="color: white">Genel Bilgiler</h5>
+        <button type="button" class="close pull-right" (click)="openModal(false);generalInfomodal.hide();" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="color: black;font-weight: bold;">
+
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Bakım Merkezi Adı</label>
+          <div class="col-9">
+            <input type="text" [(ngModel)]="BM.bmadi" [ngModelOptions]="{standalone: true}" class="form-control ">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-3 col-form-label">İl</label>
+          <div class="col-9">
+            <select class="form-control" [(ngModel)]="BM.bmil" (ngModelChange)="cityOnChange_genel($event)"
+              [ngModelOptions]="{standalone: true}">
+              <option value="null">Seçiniz..</option>
+              <option *ngFor="let c of cityList_genel" [ngValue]="c.iladi">{{c.iladi}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">İlçe</label>
+          <div class="col-9">
+            <select [(ngModel)]="BM.bmilce" [ngModelOptions]="{standalone: true}" class="form-control" required>
+              <option value="null">Seçiniz..</option>
+              <option *ngFor="let c of countyList_genel" [ngValue]="c.ilceadi">{{c.ilceadi}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Adres</label>
+          <div class="col-9">
+            <input type="text" [(ngModel)]="BM.bmadres" [ngModelOptions]="{standalone: true}" class="form-control textbox">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Telefon</label>
+          <div class="col-9">
+            <input [textMask]="{mask: mask}" [(ngModel)]="BM.bmtel1" class="form-control textbox" type="text"
+              placeholder="0 (xxx) xxx xxxx" [ngModelOptions]="{standalone: true}" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">GSM</label>
+          <div class="col-9">
+            <input [textMask]="{mask: mask}" [(ngModel)]="BM.bmtel2" class="form-control textbox" type="text"
+              placeholder="0 (xxx) xxx xxxx" [ngModelOptions]="{standalone: true}" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Web</label>
+          <div class="col-9">
+            <input type="text" [(ngModel)]="BM.bmweb" [ngModelOptions]="{standalone: true}" class="form-control">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">E-posta</label>
+          <div class="col-9">
+            <input type="email" [(ngModel)]="BM.bmeposta" [ngModelOptions]="{standalone: true}" class="form-control">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Logo Ekle</label>
+          <div class="col-9">
+            <!-- <input type="file" (change)="onFileSelected($event)" #careCenterPhotoInput id="careCenterPhotoInput" > -->
+            <button (click)="careCenterPhotoInput.click()" class="btn btn-hero-success">LOGO EKLE</button>
+            <span style="visibility: hidden; position: absolute; overflow: hidden; width: 0px; height:0px;border:none;margin:0; padding:0">
+     <input type="file" (change)="onFileSelected($event)" #careCenterPhotoInput id="careCenterPhotoInput" />
+          </span>
+            <!-- Fotoğraf Kaldırma  Metodu-->
+            <a href="javascript:void(0)" class="btn btn-danger a-btn-slide-text" style="margin-left: 5px;" (click)="removeLogo(); careCenterPhotoInput.value=''">
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+              <span><strong>LOGO KALDIR</strong></span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="javascript:void(0)" (click)="getBM();generalInfomodal.hide();careCenterPhotoInput.value='';openModal(false);" class="btn btn-danger  btn-tn">Vazgeç</a>
+        <a href="javascript:void(0)" (click)="saveCareCenter();generalInfomodal.hide();careCenterPhotoInput.value='';openModal(false);" class="btn btn-success  btn-tn">Kaydet</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Ticari Bilgiler Düzenle -->
+<div bsModal #commercialInfomodal="bs-modal" class="modal fade" [config]="{ignoreBackdropClick: true, keyboard: false}" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" id="clrFiziksel">
+     <div class="modal-header">
+        <h5 id="dialog-sizes-name1" class="modal-title pull-left" style="color: white">Ticari Bilgiler</h5>
+        <button type="button" class="close pull-right" (click)="openModal(false);commercialInfomodal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div> 
+      <div class="modal-body" style="color: black;font-weight: bold;">
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Ticari Ünvan</label>
+          <div class="col-9">
+            <input type="text" [(ngModel)]="BM.bmticunvan" [ngModelOptions]="{standalone: true}" class="form-control textbox">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">İl</label>
+          <div class="col-9">
+            <select class="form-control" [(ngModel)]="BM.bmticil" (ngModelChange)="cityOnChange_ticari($event)"
+              [ngModelOptions]="{standalone: true}">
+              <option value="null" disabled>Seçiniz..</option>
+              <option *ngFor="let xc of cityList_ticari" [ngValue]="xc.iladi">{{xc.iladi}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">İlçe</label>
+          <div class="col-9">
+            <select [(ngModel)]="BM.bmticilce" [ngModelOptions]="{standalone: true}" class="form-control">
+              <option value="null" disabled>Seçiniz..</option>
+              <option *ngFor="let c of countyList_ticari" [ngValue]="c.ilceadi">{{c.ilceadi}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Adres</label>
+          <div class="col-9">
+            <input type="text" [(ngModel)]="BM.bmticadres" [ngModelOptions]="{standalone: true}" class="form-control">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Vergi Dairesi</label>
+          <div class="col-9">
+            <select [(ngModel)]="BM.bmticvda" [ngModelOptions]="{standalone: true}" class="form-control">
+              <option value="null" disabled>Seçiniz..</option>
+              <option *ngFor="let v of taxOfficeList" [ngValue]="v.vdAdi">{{v.vdAdi}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Vergi No</label>
+          <div class="col-9">
+            <input type="text" [(ngModel)]="BM.bmticvno" [ngModelOptions]="{standalone: true}" (keypress)="validate($event)" class="form-control">
+          </div>
+        </div>
+        <hr>
+        <h5 style="color: white">Banka Hesap Bilgileri</h5>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Banka Adı</label>
+          <div class="col-9">
+            <input type="text" [(ngModel)]="BM.bm_bank_adi" [ngModelOptions]="{standalone: true}" class="form-control">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Şube Adı</label>
+          <div class="col-9">
+            <input type="text" [(ngModel)]="BM.bm_bank_sube_adi" [ngModelOptions]="{standalone: true}" class="form-control">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">IBAN No</label>
+          <div class="col-9">
+            <input [textMask]="{mask: iban_mask}" class="form-control textbox" type="text" [(ngModel)]="BM.bm_bank_iban"
+              [ngModelOptions]="{standalone: true}" placeholder="TR-- ---- ---- ---- ---- ---- --" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Hesap Adı</label>
+          <div class="col-9">
+            <input type="text" [(ngModel)]="BM.bm_bank_hesap_adi" [ngModelOptions]="{standalone: true}" class="form-control">
+          </div>
+        </div>
+
+        <hr>
+        <h5 style="color: white">Harçlık Hesap Bilgileri</h5>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Banka Adı</label>
+          <div class="col-9">
+            <input type="text" [(ngModel)]="BM.bm_harc_bank_adi" [ngModelOptions]="{standalone: true}" class="form-control">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Şube Adı</label>
+          <div class="col-9">
+            <input type="text" [(ngModel)]="BM.bm_harc_sube_adi" [ngModelOptions]="{standalone: true}" class="form-control">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">IBAN No</label>
+          <div class="col-9">
+            <input [textMask]="{mask: iban_mask}" class="form-control textbox" type="text" [(ngModel)]="BM.bm_harc_iban_no"
+              [ngModelOptions]="{standalone: true}" placeholder="TR-- ---- ---- ---- ---- ---- --" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Hesap Adı</label>
+          <div class="col-9">
+            <input type="text" [(ngModel)]="BM.bm_harc_hesap_adi" [ngModelOptions]="{standalone: true}" class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="javascript:void(0)" (click)="getBM();commercialInfomodal.hide();openModal(false);" class="btn btn-danger  btn-tn">Vazgeç</a>
+        <a href="javascript:void(0)" (click)="saveCareCenter();commercialInfomodal.hide();openModal(false);" class="btn btn-success  btn-tn">Kaydet</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div bsModal #generalFiziksel="bs-modal" class="modal fade" [config]="{ignoreBackdropClick: true, keyboard: false}" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" id="clrFiziksel" [ngClass]="{'blur': isPopup}">
+        <div class="modal-header">
+            <h5 id="dialog-sizes-name1" class="modal-title pull-left" style="color: white">Fiziksel Bilgiler</h5>
+            <button type="button" class="close pull-right" (click)="openModal(false);generalFiziksel.hide()" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div> 
+      <div class="modal-body" style="color: black;font-weight: bold;">
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Bina Sahiplik Durumu</label>
+          <div class="col-9">
+            <select #selectedBinaDrm [(ngModel)]="BM.bm_binasahipdur" [ngModelOptions]="{standalone: true}" class="form-control">
+              <option value="null" disabled>Seçiniz..</option>
+              <option value="Mülk">Mülk</option>
+              <option value="Kira">Kira</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row" [hidden]="(selectedBinaDrm.value!='Kira') || (selectedBinaDrm.value=='null')">
+          <label class="col-3 col-form-label">Aylık Kira Tutarı</label>
+          <div class="col-9">
+              <input currencyMask [(ngModel)]="BM.bm_aylikkiratut" [ngModelOptions]="{standalone: true}" [options]="{ prefix:'', suffix: 'TL', thousands: '.', decimal: ',', align: 'left' }" class="form-control textbox"/>
+             
+          </div>
+        </div>
+        <div class="form-group row" [hidden]="(selectedBinaDrm.value!='Kira') || (selectedBinaDrm.value=='null')">
+          <label class="col-3 col-form-label">Kira Başlangıç Tarihi</label>
+          <div class="col-9">
+            <input [(ngModel)]="BM.bm_kirasozbastar" [ngModelOptions]="{standalone: true}" type="text" class="form-control"
+              bsDatepicker [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+          </div>
+        </div>
+        <div class="form-group row" [hidden]="(selectedBinaDrm.value!='Kira') || (selectedBinaDrm.value=='null')">
+          <label class="col-3 col-form-label">Kira Sözleşme Bitiş Tarihi</label>
+          <div class="col-9">
+            <input [(ngModel)]="BM.bm_kirasozbittar" [ngModelOptions]="{standalone: true}" type="text" class="form-control"
+              bsDatepicker [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Kat Sayısı</label>
+          <div class="col-9">
+            <select [(ngModel)]="BM.bm_katsayisi" [ngModelOptions]="{standalone: true}" class="form-control">
+              <option value="null" disabled>Seçiniz..</option>
+              <option value="Tek Kat">Tek Kat</option>
+              <option value="Zemin+1">Zemin+1</option>
+              <option value="Zemin+2">Zemin+2</option>
+              <option value="Zemin+3">Zemin+3</option>
+              <option value="Zemin+4">Zemin+4</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Asansör</label>
+          <div class="col-9">
+            <select [(ngModel)]="BM.bm_asansor" [ngModelOptions]="{standalone: true}" (ngModelChange)="saveCareCenter();" #selectedAsans class="form-control">
+              <option value=null disabled>Seçiniz..</option>
+              <option value=true>Var</option>
+              <option value=false>Yok</option>
+            </select>
+          </div>
+
+        </div>
+        <div class="col-12 text-right" [hidden]="selectedAsans.value=='null' || selectedAsans.value=='false'">
+          <button class="btn btn-success btn-tn" (click)="fzkAsansor.show();asansrG();openModalTwo(true);" style="margin-bottom: 8px;">Asansör Bilgileri Ekle</button>
+          <br>
+        </div>
+        <!-- AsansorList -->
+        <table class="table table-bordered " [hidden]="selectedAsans.value=='null' || selectedAsans.value=='false'">
+          <thead style="background:#008080">
+            <tr style="color: white;text-align: center">
+              <th>Blok Adı</th>
+              <th>Asansör No</th>
+              <th>Asansör Etiket Rengi</th>
+              <th>Asansör Kapasitesi</th>
+              <th>Son Muayane Tarihi </th>
+              <th>İşlemler</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let l of BM._bm_asansor" style="text-align: center">
+              <td>
+                <div>
+                  {{l.asansorblok}}
+                </div>
+              </td>
+              <td scope="row">
+                <div class="form-check form-check-inline">
+                  {{l.asansorno}}
+                </div>
+
+              </td>
+              <td>
+                <div>
+                  {{l.asansorrenk}}
+                </div>
+              </td>
+              <td>
+                <div>
+                  {{l.asansorkap}}
+                </div>
+              </td>
+
+              <td>
+                {{l.asansorsonmuatar | date: 'dd/MM/yyyy'}}
+              </td>
+
+
+
+              <td>
+                <button class="btn btn-hero-danger btn-demo btn-tn" (click)="showElevator(l);">SİL</button>
+                <!-- "fzkAsansor.show();showElevator(l)" -->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Jeneratör</label>
+          <!--(ngModelChange)="saveCareCenter();"-->
+          <div class="col-9">
+            <select [(ngModel)]="BM.bm_jenerator" [ngModelOptions]="{standalone: true}"  #selectedJr class="form-control">
+              <option value=null disabled>Seçiniz..</option>
+              <option value=true>Var</option>
+              <option value=false>Yok</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row" [hidden]="(selectedJr.value !='true')|| (selectedJr.value=='null')">
+          <label class="col-3 col-form-label">Jeneratör Gücü</label>
+          <div class="col-9">
+            <select [(ngModel)]="BM.bm_jeneratorguc" [ngModelOptions]="{standalone: true}" class="form-control">
+              <option value="null" disabled>Seçiniz..</option>
+              <option>1-5 kVA</option>
+              <option>6-10 kVA</option>
+              <option>11-25 kVA</option>
+              <option>26-50 kVA</option>
+              <option>51-75 kVA</option>
+              <option>76-100 kVA</option>
+              <option>101-150 kVA</option>
+              <option>151+ kVA</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Su Deposu</label>
+          <!--(ngModelChange)="saveCareCenter();"-->
+          <div class="col-9">
+            <select [(ngModel)]="BM.bm_sudeposu" [ngModelOptions]="{standalone: true}"  #selectedSuDeposu class="form-control">
+              <option value=null disabled>Seçiniz..</option>
+              <option value=true>Var</option>
+              <option value=false>Yok</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row" [hidden]="(selectedSuDeposu.value !='true')|| (selectedSuDeposu.value=='null')">
+          <label class="col-3 col-form-label">Kapasite</label>
+          <div class="col-9">
+            <select [(ngModel)]="BM.bm_sdkapasite" [ngModelOptions]="{standalone: true}" class="form-control">
+              <option value="null" disabled>Seçiniz..</option>
+              <option>1 Ton</option>
+              <option>2-5 Ton</option>
+              <option>6-10 Ton</option>
+              <option>11-15 Ton</option>
+              <option>16+ Ton</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label">Bahçe</label>
+          <div class="col-9">
+          
+                  <div class="input-group suffix">                           
+                     <input type="text" currencyMask [(ngModel)]="BM.bm_bahcemetrekare" [ngModelOptions]="{standalone: true}" [options]="{ prefix:'', suffix: '', thousands: '.', align: 'left',precision: 0 }">
+                    <span class="input-group-addon ">m<sup>2</sup></span>
+                  </div>                   
+               
+            <!-- <input currencyMask [(ngModel)]="BM.bm_bahcemetrekare" [ngModelOptions]="{standalone: true}" [options]="{ prefix:'', suffix: ' metrekare ', thousands: '.', align: 'left',precision: 2 }" class="form-control textbox"/> -->
+            <!-- <input [(ngModel)]="BM.bm_bahcemetrekare" [ngModelOptions]="{standalone: true}" type="text" class="form-control"> -->
+          </div>
+        </div>
+        <div class="row">
+          <strong><label class="col-md-12 col-form-label" style="text-align: center">Fotoğraf İşlemleri İçin İşlem
+              Yapmak İstediğiniz Fotoğrafa Tıklayınız..</label></strong>
+        </div>
+
+        <br>
+        <!-- Resimler -->
+         
+          <app-sixImageOperation id="editSixPhoto" (refreshed)="sixPhotoRefreshed($event)" #editSixPhoto [editable]="true"></app-sixImageOperation>
+
+
+      </div>
+
+      <div class="modal-footer">
+        <a href="javascript:void(0)" (click)="getBM();generalFiziksel.hide();openModal(false);" class="btn btn-danger  btn-tn">Vazgeç</a>
+        <a href="javascript:void(0)" (click)="saveCareCenter();generalFiziksel.hide();openModal(false);" class="btn btn-success  btn-tn">Kaydet</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div bsModal #fzkAsansor="bs-modal" class="modal fade" tabindex="-1" role="dialog" [config]="{ignoreBackdropClick: true, keyboard: false}" aria-labelledby="dialog-sizes-name1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" id="clrFizikselPopup" style="width: 99%;">
+        <div class="modal-header">
+            <h5 id="dialog-sizes-name1" class="modal-title pull-left" style="color: white">Asansör Bilgileri</h5>
+            <button type="button" class="close pull-right" (click)="openModalTwo(false);fzkAsansor.hide()" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div> 
+      <div class="modal-body" style="color: black;font-weight: bold;">
+
+        <div class="form-group row">
+          <label class="col-3 col-form-label" style="color: black;font-weight: bold;">Asansör Blok</label>
+          <div class="col-9">
+            <select #asansorblock [(ngModel)]="_elevator.asansorblok" [ngModelOptions]="{standalone: true}" class="form-control">
+              <option value="null" disabled>Seçiniz..</option>
+              <option value="{{i}}" *ngFor="let i of blocklist;">{{i}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group row" [hidden]="!asansorblock.value">
+          <label class="col-3 col-form-label" style="color: black;font-weight: bold;">Asansör No</label>
+          <div class="col-9">
+            <select [(ngModel)]="_elevator.asansorno" [ngModelOptions]="{standalone: true}" class="form-control">
+              <option value="null" disabled>Seçiniz..</option>
+
+              <option value="{{i}}" *ngFor="let i of getNumbers();">{{i}}</option>
+
+            </select>
+          </div>
+        </div>
+
+
+
+        <div class="form-group row">
+          <label class="col-3 col-form-label"style="color: black;font-weight: bold;">Asansör Kapasitesi</label>
+          <div class="col-9">
+            <select [(ngModel)]="_elevator.asansorkap" [ngModelOptions]="{standalone: true}" class="form-control">
+              <option value="null" disabled>Seçiniz..</option>
+              <option value="Sedye Asansörü">Sedye Asansörü</option>
+              <option value="4 Kişilik">4 Kişilik</option>
+              <option value="6 Kişilik">6 Kişilik</option>
+              <option value="8 Kişilik">8 Kişilik</option>
+              <option value="10 Kişilik">10 Kişilik</option>
+              <option value="13 Kişilik">13 Kişilik</option>
+              <option value="14+ Kişilik">14+ Kişilik</option>
+            </select>
+          </div>
+        </div>
+
+
+        <div class="form-group row">
+          <label class="col-3 col-form-label"style="color: black;font-weight: bold;">Asansör Son Muayene Tarihi</label>
+          <div class="col-9">
+            <input type="text" [(ngModel)]="_elevator.asansorsonmuatar" [ngModelOptions]="{standalone: true}" class="form-control"
+              bsDatepicker [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-3 col-form-label"style="color: black;font-weight: bold;">Etiket Rengi</label>
+          <div class="col-9">
+            <select [(ngModel)]="_elevator.asansorrenk" [ngModelOptions]="{standalone: true}" class="form-control">
+              <option value="null" disabled>Seçiniz..</option>
+              <option value="Etiket Yok">Etiket Yok</option>
+              <option value="Yeşil Etiket">Yeşil Etiket</option>
+              <option value="Mavi Etiket">Mavi Etiket</option>
+              <option value="Sarı Etiket">Sarı Etiket</option>
+              <option value="Kırmızı Etiket">Kırmızı Etiket</option>
+            </select>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+          <!-- <a href="javascript:void(0)" [hidden]="!(_elevator.id>0)" (click)="deleteAsansor();fzkAsansor.hide()" class="btn btn-hero-primary  btn-tn">Sil</a> -->
+        <a href="javascript:void(0)" (click)="cancelElevator();fzkAsansor.hide();openModalTwo(false);" class="btn btn-danger  btn-tn">Vazgeç</a>
+        <a href="javascript:void(0)" (click)="saveElevator();fzkAsansor.hide();openModalTwo(false);" class="btn btn-success  btn-tn">Kaydet</a>
+      </div>
+    </div>
+  </div>
+</div>
+<toaster-container>
+</toaster-container>

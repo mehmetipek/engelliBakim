@@ -1,0 +1,212 @@
+<div class="hhh">
+  <div class="row statusCardGroup">
+    <!--    -------------------------------------------------------------------------------   -->
+<!-- Engelli -->
+    <div class="col-md-3">
+      <div class="statusCard">
+        <div class="statusCard-title-green">
+          <h6 style="color:white"> Toplam Engelli Sayısı (Aktif) </h6>
+        </div>
+        <div class="statusCard-number">
+         <!----> <h3><strong>{{mainMonitorData.toplamEngelli}}</strong></h3>
+        </div>
+      </div>
+      <div class="statusCard">
+        <div class="statusCard-title-green">
+          <h6 style="color:white"> İzindeki Engelli Sayısı </h6>
+        </div>
+        <div class="statusCard-number">
+          <h3><strong>-</strong></h3>
+        </div>
+      </div>
+      <div class="statusCard">
+        <div class="statusCard-title-green">
+          <h6 style="color:white"> Hastanedeki Engellli Sayısı </h6>
+        </div>
+        <div class="statusCard-number">
+          <h3><strong>-</strong></h3>
+        </div>
+      </div>
+      <div class="statusCard">
+        <div class="statusCard-title-green">
+          <h6 style="color:white"> Hastanede Yatan Engellli Sayısı </h6>
+        </div>
+        <div class="statusCard-number">
+          <h3><strong>-</strong></h3>
+        </div>
+      </div>
+    </div>
+    <!--    -------------------------------------------------------------------------------   -->
+    <!-- Personel -->
+    <div class="col-md-3">
+
+      <div class="statusCard">
+        <div class="statusCard-title-blue">
+          <h6 style="color:white"> Toplam Personel Sayısı(Aktif) </h6>
+        </div>
+        <div class="statusCard-number">
+          <h3><strong> {{mainMonitorData.toplamPersonel}}</strong></h3>
+        </div>
+      </div>
+      <div class="statusCard">
+        <div class="statusCard-title-blue">
+          <h6 style="color:white"> Yıllık İzindeki Personel Sayısı</h6>
+        </div>
+        <div class="statusCard-number">
+          <h3><strong>-</strong></h3>
+        </div>
+      </div>
+      <div class="statusCard">
+        <div class="statusCard-title-blue">
+          <h6 style="color:white"> Raporlu Personel Sayısı</h6>
+        </div>
+        <div class="statusCard-number">
+          <h3><strong>-</strong></h3>
+        </div>
+      </div>
+      <div class="statusCard">
+        <div class="statusCard-title-blue">
+          <h6 style="color:white">Boş</h6>
+        </div>
+        <div class="statusCard-number">
+          <h3><strong>-</strong></h3>
+        </div>
+      </div>
+    </div>
+    <!--    -------------------------------------------------------------------------------   -->
+  <!-- Kapasite -->
+    <div class="col-md-3">
+    
+      <div class="statusCard">
+        <div class="statusCard-title-red">
+          <h6 style="color:white">Toplam Yatak Kapasite(Kapasite/Boş Yatak) </h6>
+        </div>
+        <div class="statusCard-number">
+          <h3><strong>{{mainMonitorData.toplamYatakKap}}</strong></h3>
+        </div>
+      </div>
+      <div class="statusCard">
+        <div class="statusCard-title-red">
+          <h6 style="color:white"> Erkek Kapasite(Kapasite/Boş Yatak)</h6>
+        </div>
+        <div class="statusCard-number">
+          <h3><strong>{{mainMonitorData.toplamErkekKap}} </strong></h3>
+        </div>
+      </div>
+      <div class="statusCard">
+        <div class="statusCard-title-red">
+          <h6 style="color:white"> Kadın Kapasite(Kapasite/Boş Yatak) </h6>
+        </div>
+        <div class="statusCard-number">
+          <h3><strong>{{mainMonitorData.toplamKadinKap}} </strong></h3>
+        </div>
+      </div>
+      <div class="statusCard">
+        <div class="statusCard-title-red">
+          <h6 style="color:white"> Boş </h6>
+        </div>
+        <div class="statusCard-number">
+          <h3><strong>-</strong></h3>
+        </div>
+      </div>
+    </div>
+    <!--    -------------------------------------------------------------------------------   -->
+    <div class="col-md-3">
+
+      <div class="statusCard">
+        <div class="statusCard-title-green">
+          <h6 style="color:white"> Mesleki Personel/Zorunlu Personel </h6>
+        </div>
+        <div class="statusCard-number">
+          <h3><strong [ngClass]="{avaible: isAvaible}">{{mainMonitorData.meslekiPersonel}}</strong></h3>
+        </div>
+      </div>
+      <div class="statusCard">
+        <div class="statusCard-title-green">
+          <h6 style="color:white">Bakıcı Personel</h6>
+        </div>
+        <div class="statusCard-number">
+          <h3><strong>{{mainMonitorData.bakiciPersonel}}</strong></h3>
+        </div>
+      </div>
+      <div class="statusCard">
+        <div class="statusCard-title-green">
+          <h6 style="color:white"> Sağlık Personeli </h6>
+        </div>
+        <div class="statusCard-number">
+          <h3><strong>{{mainMonitorData.saglikPersoneli}}</strong></h3>
+        </div>
+      </div>
+      <div class="statusCard">
+        <div class="statusCard-title-green">
+          <h6 style="color:white"> Boş </h6>
+        </div>
+        <div class="statusCard-number">
+          <h3><strong>-</strong></h3>
+        </div>
+      </div>
+    </div>
+    <!------------------------------------------------------------------------>
+
+    <!-- Kapasiteler -->
+
+      <!---------------------------------------------------------------------------------------->
+      <div class="col-md-3" *ngFor="let data of mainMonitorData.zbrPost; let i=index">
+    <!-- yatak Kapsitesi -->
+          <div class="statusCard">
+            <div  [ngClass]="{
+              'statusCard-title-blue':i === 0,
+              'statusCard-title-red':i === 1,
+              'statusCard-title-green':i === 2
+            }" class="statusCard-title-red">
+              <h6 style="color:white">{{data.engelliGrubu}} Yatak Kapasite(Kapasite/Boş Yatak) </h6>
+            </div>
+            <div class="statusCard-number">
+              <h3><strong>{{data.yatakKap}}</strong></h3>
+            </div>
+          </div>
+          <!-- erkek KApasitesi -->
+          <div class="statusCard">
+            <div  [ngClass]="{
+              'statusCard-title-blue':i === 0,
+              'statusCard-title-red':i === 1,
+              'statusCard-title-green':i === 2
+            }" class="statusCard-title-red">
+              <h6 style="color:white">{{data.engelliGrubu}} Erkek Kapasite(Kapasite/Boş Yatak) </h6>
+            </div>
+            <div class="statusCard-number">
+              <h3><strong>{{data.erkekKap}}</strong></h3>
+            </div>
+          </div>
+<!-- Kadın -->
+          <div class="statusCard">
+            <div  [ngClass]="{
+              'statusCard-title-blue':i === 0,
+              'statusCard-title-red':i === 1,
+              'statusCard-title-green':i === 2
+            }" class="statusCard-title-red">
+              <h6 style="color:white">{{data.engelliGrubu}} Kadın Kapasite(Kapasite/Boş Yatak) </h6>
+            </div>
+            <div class="statusCard-number">
+              <h3><strong> {{data.kadinKap}}</strong></h3>
+            </div>
+          </div>
+
+          <div class="statusCard">
+            <div  [ngClass]="{
+              'statusCard-title-blue':i === 0,
+              'statusCard-title-red':i === 1,
+              'statusCard-title-green':i === 2
+            }" class="statusCard-title-red">
+              <h6 style="color:white">Boş </h6>
+            </div>
+            <div class="statusCard-number">
+              <h3><strong>-</strong></h3>
+            </div>
+          </div>
+        </div>
+        <!-------------------------------------------------------------------------------------->
+      
+  </div>
+  <!--    -------------------------------------------------------------------------------   -->
+</div>

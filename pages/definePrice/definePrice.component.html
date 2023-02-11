@@ -1,0 +1,219 @@
+<div class="row">
+  <div class="col-md-3">
+    <nb-card size="active">
+      <br>
+
+      <br>
+      <div class="row">
+
+        <div class="col-md-2"></div>
+        <div class="col-sm-8">
+          <h5>Parametreler</h5>
+          <hr>
+
+          <br>
+          <div class="col-sm-12">
+            <div class="form-group input-group-md">
+              <label>Başlangıç Tarihi</label>
+              <!-- <input [(ngModel)]="engelli.ikdogtar" [ngModelOptions]="{standalone: true}" type="date" class="form-control date"> -->
+              <input type="text" class="form-control" bsDatepicker placement="right" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+            </div>
+          </div>
+          <br>
+          <div class="col-sm-12">
+            <div class="form-group input-group-md">
+              <label>Bitiş Tarihi</label>
+              <!-- <input [(ngModel)]="engelli.ikdogtar" [ngModelOptions]="{standalone: true}" type="date" class="form-control date"> -->
+              <input type="text" class="form-control" bsDatepicker placement="right" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+    </nb-card>
+    <br>
+    <br>
+
+    <nb-card size="active">
+        <br>
+        <br>
+      <div class="col-md-12">
+          <h5>Memur Katsayısı</h5>
+        <hr>
+      </div>
+        <div class="form-group input-group-md col-md-12">
+       
+            <input [(ngModel)]="oran" [ngModelOptions]="{standalone: true}" type="number" class="form-control">
+          </div>
+      </nb-card>
+  </div>
+
+ 
+  <div class="col-md-3">
+    <nb-card size="active">
+      <br>
+
+      <br>
+      <div class="row">
+
+        <div class="col-md-2"></div>
+        <div class="col-sm-8">
+          <h5>Ücret Hesapla</h5>
+          <hr>
+          <div class="row">
+            <div class="form-group input-group-md col-md-12">
+              <label>Katsayı</label>
+              <input [(ngModel)]="_ucret_price.katsayi" [ngModelOptions]="{standalone: true}" type="number" class="form-control">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group input-group-md col-md-12">
+              <label>Ücret</label>
+              <input [(ngModel)]="_ucret_ucret" [ngModelOptions]="{standalone: true}" type="text" class="form-control" disabled>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group input-group-md col-md-12">
+              <label>KDV (%8)</label>
+              <input [(ngModel)]="_ucret_price.kdv" [ngModelOptions]="{standalone: true}" type="text" class="form-control" disabled>
+            </div>
+            <div class="form-group input-group-md col-md-12">
+              <label>Tevkifat (5/10)</label>
+              <input [(ngModel)]="_ucret_price.tevkifat" [ngModelOptions]="{standalone: true}" type="text" class="form-control" disabled>
+            </div>
+            <div class="form-group input-group-md col-md-12">
+              <label>Tutar</label>
+              <input [(ngModel)]="_ucret_price.tutar" [ngModelOptions]="{standalone: true}" type="text" class="form-control">
+            </div>
+
+          </div>
+
+        </div>
+        <div class="col-md-2"></div>
+
+      </div>
+      <br>
+    </nb-card>
+  </div>
+  <div class="col-md-3">
+    <nb-card size="active">
+      <br>
+
+      <br>
+      <div class="row">
+
+        <div class="col-md-2"></div>
+        <div class="col-sm-8">
+          <h5>Teşvik Hesapla</h5>
+          <hr>
+          <div class="row">
+
+            <div class="form-group input-group-md col-md-12">
+              <label>Katsayı</label>
+              <input [(ngModel)]="_tesvik_price.katsayi" [ngModelOptions]="{standalone: true}" type="number" class="form-control">
+            </div>
+
+            <div class="form-group input-group-md col-md-12">
+              <label>Ücret</label>
+              <input [(ngModel)]="_tesvik_ucret" [ngModelOptions]="{standalone: true}" type="text" class="form-control" disabled>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group input-group-md col-md-12">
+              <label>KDV</label>
+              <input [(ngModel)]="_tesvik_price.kdv" [ngModelOptions]="{standalone: true}" type="text" class="form-control" disabled>
+            </div>
+            <div class="form-group input-group-md col-md-12">
+              <label>Tevkifat</label>
+              <input [(ngModel)]="_tesvik_price.tevkifat" [ngModelOptions]="{standalone: true}" type="text" class="form-control" disabled>
+            </div>
+            <div class="form-group input-group-md col-md-12">
+              <label>Tutar</label>
+              <input [(ngModel)]="_tesvik_price.tutar" [ngModelOptions]="{standalone: true}" type="text" class="form-control">
+            </div>
+
+          </div>
+
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+      <br>
+    </nb-card>
+  </div>
+  <div class="col-md-3">
+    <nb-card size="active">
+      <br>
+
+      <div class="row">
+
+        <div class="col-md-2"></div>
+        <div class="col-sm-8">
+          <h5>Toplam Ücret</h5>
+          <hr>
+          <div class="row" style="margin-left:3px" align="center">
+            <h4>
+              <b>{{sumPrice}} TL</b>
+            </h4>
+            <hr>
+
+          </div>
+
+
+        </div>
+   
+        
+      </div>
+      <br>
+    </nb-card>
+    <br>
+    <br>
+
+    <nb-card size="active">
+      <br>
+      <div class="row">
+
+        <div class="col-md-2"></div>
+        <div class="col-sm-8">
+          <h5>Günlük Ücret</h5>
+          <hr>
+          <div class="row" style="margin-left:3px" align="center">
+            <h4>
+              <b>{{dailyPrice}} TL</b>
+            </h4>
+            <hr>
+
+          </div>
+
+
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+      <br>
+    </nb-card>
+    <br>
+    <br>
+
+    <nb-card size="active">
+      <br>
+      <div class="row">
+
+        <div class="col-md-2"></div>
+        <div class="col-sm-8">
+          <h5>İşlemler</h5>
+          <hr>
+          <!-- Kaydet Yeni Kayıt Button -->
+          <div class="row">
+            <div class="col-md-12">
+              <button type="submit" class="btn btn-hero-success btn-demo" (click)="calc()">Hesapla / Kaydet</button>
+
+            </div>
+          </div>
+
+
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+      <br>
+    </nb-card>
+  </div>
+</div>

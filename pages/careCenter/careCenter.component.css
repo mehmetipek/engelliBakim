@@ -1,0 +1,111 @@
+.capacity-number-text{
+    font-size: 1.2rem;
+    text-align: center;
+}
+.card-container{
+    display: flex;
+}
+.card-item-title{
+    flex-grow: 1;
+}
+/*table tr td{
+    width: 12%;
+}*/
+tr{
+height: 45px;
+vertical-align: top;
+}
+.blur{
+    filter: blur(2px);
+  }
+.card{
+    margin-right: auto;
+    margin-left: auto;
+}
+.card-title-text{
+    /* color:#00FFFF; */
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+    color:rgb(48, 194, 213);
+    text-shadow: -2px -2px 5px rgba(82, 179, 218, 0.2);
+}
+.col-md-3 {
+    flex: 0 0 24%;}
+#clrFiziksel{
+    background-color:#419cdb; 
+    padding: 15px;
+    border-radius: 20px;
+}
+#clrFizikselPopup{
+    background-color:#419cdb; 
+    padding: 15px;
+    border-radius: 20px;
+}
+.center { 
+    height: 50px;
+    width: auto;
+    position: relative;
+  }
+  .center h5{
+   text-align: center;
+  }
+  .input-group-addon {
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    color: #555;
+    text-align: center;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    width: 1%;
+    white-space: nowrap;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+input {
+    position: relative;
+    z-index: 2;
+    float: left;
+    width: 100%;
+    margin-bottom: 0;
+    display: table-cell;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    margin: 0;
+    height: 40px;
+}
+
+.suffix input {
+    border-radius: 4px 0px 0px 4px;
+}
+.suffix .input-group-addon {
+    border-left: 0;
+    border-radius: 0px 4px 4px 0px;
+}
+.prefix input {
+    border-radius: 0px 4px 4px 0px;
+}
+.prefix .input-group-addon {
+    border-right: 0;
+    border-radius: 4px 0px 0px 4px;
+}
+.presuffix input {
+    border-radius: 0px;
+}
+.input-group-addon.prefix {
+    border-radius: 4px 0px 0px 4px;
+    border-right: 0;
+}
+.input-group-addon.suffix {
+    border-radius: 0px 4px 4px 0px;
+    border-left: 0;
+}
+.input-group {
+    position: relative;
+    display: table;
+    border-collapse: separate;
+}

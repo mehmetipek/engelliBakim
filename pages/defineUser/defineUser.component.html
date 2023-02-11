@@ -1,0 +1,122 @@
+<div class="row">
+
+
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
+    <nb-card size="active">
+      <div class="col-12">
+        <div class="row" id="clrFiziksel">
+          <div class="col-md-12" style="height: 42px">
+            <div style="float:left" class="col-md-4">
+              <h5 style="margin-top:8px;color: white;">Kullanıcı Tanımla</h5>
+            </div>
+            <!-- <div style="float:right;margin-right: 20px">
+        <button class="btn btn-hero-success btn-tn " (click)="experienceNull();employeExprience.show();" style="margin-top: 4px">Yeni Tecrübe Ekle</button>
+    </div> -->
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="col-sm-12">
+
+        <div class="row">
+          <div class="form-group input-group-md col-md-3">
+            <label>Kullanıcı Adı</label>
+            <input #username type="text" [(ngModel)]="xusername" (focusout)='toggleDropDown()'
+              (focus)='toggleDropDown()' (input)="SearchUser($event.target.value)" class="form-control">
+            <div *ngIf='showDropDown' class="autosearch-container-dropdown">
+              <div *ngFor='let user of _userlist' class="autosearch-item">
+                <div class="row" (click)="selectUser(user)" style="width:100%;">
+                  <div class="col-sm-12">{{user.peradi}} {{user.persoyadi}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group input-group-md col-md-3">
+            <label>Kullanıcı Tc</label>
+            <input name="userTc" [(ngModel)]="userTc" (keyup.enter)="getUser()" type="text" class="form-control">
+          </div>
+          <div class="form-group input-group-md col-md-3">
+            <label>Kullanıcı Kodu</label>
+            <input #usercode [(ngModel)]="_user.userkodu" type="text" class="form-control">
+          </div>
+
+          <div class="form-group input-group-md col-md-3">
+            <label>Şifre</label>
+            <input #psw [(ngModel)]="_user.userpass" type="password" class="form-control">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <hr>
+            <div class="card">
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead style="background: #C46210">
+                      <tr style="color: white;text-align: center;height: 45px;vertical-align: top;">
+                        <th>İşlemler</th>
+                        <th class="td-actions text-right">Görüntüleme</th>
+                        <th class="td-actions text-right">Ekleme</th>
+                        <th class="td-actions text-right">Değiştirme</th>
+                        <th class="td-actions text-right">Silme</th>
+                        <th class="td-actions text-right">Kapatma</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let aut of _user.yetkimodel">
+                        <td>{{aut.islem}}</td>
+                        <td class="td-actions text-right">
+                          <select [(ngModel)]="aut.goruntuleme" [ngClass]="aut.goruntuleme ? 'xtrue':'xfalse'"
+                            class="form-control-sm select-auth">
+                            <option value="true" class="xtrue">Evet</option>
+                            <option value="false" class="xfalse">Hayır</option>
+                          </select>
+                        </td>
+                        <td class="td-actions text-right">
+                          <select [(ngModel)]="aut.ekleme" [ngClass]="aut.ekleme ? 'xtrue':'xfalse'"
+                            class="form-control-sm select-auth">
+                            <option value="true" class="xtrue">Evet</option>
+                            <option value="false" class="xfalse">Hayır</option>
+                          </select>
+                        </td>
+                        <td class="td-actions text-right">
+                          <select [(ngModel)]="aut.degistirme" [ngClass]="aut.degistirme ? 'xtrue':'xfalse'"
+                            class="form-control-sm select-auth">
+                            <option value="true" class="xtrue">Evet</option>
+                            <option value="false" class="xfalse">Hayır</option>
+                          </select>
+                        </td>
+
+
+                        <td class="td-actions text-right">
+                          <select [(ngModel)]="aut.silme" [ngClass]="aut.silme ? 'xtrue':'xfalse'"
+                            class="form-control-sm select-auth" >
+                            <option value="true" class="xtrue">Evet</option>
+                            <option value="false" class="xfalse">Hayır</option>
+                          </select>
+                        </td>
+                        <td class="td-actions text-right">
+                          <select [(ngModel)]="aut.kapatma" [ngClass]="aut.kapatma ? 'xtrue':'xfalse'"
+                            class="form-control-sm select-auth">
+                            <option value="true" class="xtrue">Evet</option>
+                            <option value="false" class="xfalse">Hayır</option>
+                          </select>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Kaydet Yeni Kayıt Button -->
+        <div class="col-md-12" align="right" style="margin-top:10px">
+          <button type="submit" class="btn btn-success btn-sm" (click)="saveUser()">Kaydet</button>
+        </div>
+      </div>
+      <br>
+    </nb-card>
+  </div>
+</div>

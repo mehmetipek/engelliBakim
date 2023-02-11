@@ -1,0 +1,54 @@
+<div class="flex-container">
+
+
+  <div class="col-5" id="clrFiziksel">
+
+    <div class="col-12 form-title">
+      <h5 style="color: white">İLAÇ TANIMLA</h5>
+      <hr>
+    </div>
+    <div class="row form-body" style="color: black;font-weight: bold">
+      <div class="col-sm-12">
+        <div class="form-group input-group-md">
+          <label>İlaç Adı</label>
+          <!-- <input type="text" [(ngModel)]="ilac.ilacadi" [ngModelOptions]="{standalone: true}" class="form-control"> -->
+          <!--<app-searchDrug [_drugname]="drugname"></app-searchDrug>-->
+          <input #txtDrugName type="text" [(ngModel)]="ilac.ilacadi" (focusout)='toggleDropDown()' (focus)='toggleDropDown()'
+            (input)="onSearchDrug($event.target.value)" class="form-control" placeholder="İlaç Adı..">
+          <div *ngIf='showDropDown' class="autosearch-container-dropdown">
+            <div *ngFor='let drug of _drugList' class="autosearch-item">
+              <div class="row">
+                <div class="col-sm-12">{{drug.ilacadi}} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <div class="form-group input-group-md">
+          <label>Ambalaj Şekli</label>
+          <select [(ngModel)]="ilac.ilacambsekli" [ngModelOptions]="{standalone: true}" class="form-control">
+            <option value="null" disabled>Seçiniz..</option>
+            <option value="Kutu">Kutu</option>
+            <option value="Şişe">Şişe</option>
+            <option value="Ampül">Ampül</option>
+            <option value="Diğer">Diğer</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <div class="form-group input-group-md">
+          <label>Ambalaj Başına Doz Sayısı</label>
+          <input type="text" [(ngModel)]="ilac.ilacambbasdozsayisi" (keypress)="validate($event)" [ngModelOptions]="{standalone: true}"
+            class="form-control">
+        </div>
+      </div>
+      <div class="col-12" align="right">
+        <button type="button" (click)="insertIlac();" class="btn btn-hero-success btn-tn">Kaydet</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<toaster-container>
+</toaster-container>

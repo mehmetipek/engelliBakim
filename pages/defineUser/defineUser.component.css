@@ -1,0 +1,24 @@
+#clrFiziksel{
+    background-color:#419cdb; 
+    padding: 15px;
+    border-radius: 20px;
+}
+
+.center { 
+    height: 50px;
+    width: auto;
+    position: relative;
+  }
+  
+  .center h5{
+   text-align: center;
+  }
+  .select-auth{
+      color:white;
+  }
+  .xtrue{
+      background-color: green;
+  }
+  .xfalse{
+      background-color: red;
+  }
